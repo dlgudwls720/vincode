@@ -4,133 +4,94 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      font-family: 'Arial', sans-serif;
       background-color: white;
       color: black;
+      font-family: 'Arial', sans-serif;
       text-align: center;
     }
-
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
     .logo {
       max-width: 200px;
-      margin: 60px auto 20px;
+      margin-bottom: 20px;
     }
-
     h1 {
-      font-size: 2.8em;
+      font-size: 2.5em;
       margin-bottom: 10px;
     }
-
     p {
       font-size: 1.2em;
       margin-bottom: 30px;
-      color: #555;
     }
-
-    .start-button {
+    a.button {
+      display: inline-block;
+      padding: 12px 24px;
       background-color: black;
       color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2em;
+      font-weight: bold;
+      text-decoration: none;
       border-radius: 30px;
-      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
       margin-bottom: 40px;
     }
-
-    .start-button:hover {
+    a.button:hover {
       background-color: #333;
     }
 
-    .swiper {
-      width: 90%;
-      padding: 20px 0 60px;
-    }
-
-    .swiper-slide {
-      background: #eee;
-      border-radius: 12px;
-      overflow: hidden;
-      height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .swiper-slide img {
+    .swiper-container {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
+      padding: 20px 0;
+      background: #f9f9f9;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
     }
-
-    .special-slide {
-      background-color: #000;
-    }
-
-    .special-slide a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.2em;
+    .swiper-slide {
+      font-size: 1em;
       font-weight: bold;
-      padding: 20px;
-      display: block;
-    }
-
-    .special-slide a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2em; }
-      .start-button { font-size: 1em; padding: 12px 24px; }
-      .logo { max-width: 150px; }
+      padding: 10px;
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <img src="images/logo-nav.jpeg" alt="vincode logo" class="logo">
+    <h1>vincode</h1>
+    <p>Unlock Your Code</p>
+    <a href="products.html" class="button">쇼핑 시작하기</a>
+  </div>
 
-  <img src="images/logo-nav.jpeg" alt="vincode logo" class="logo" />
-  <h1>vincode</h1>
-  <p>Unlock Your Code</p>
-  <a href="products.html">
-    <button class="start-button">쇼핑 시작하기</button>
-  </a>
-
-  <!-- Swiper 슬라이드 -->
-  <div class="swiper">
+  <div class="swiper-container swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="https://via.placeholder.com/300x200?text=Item+1" alt="Item 1"></div>
-      <div class="swiper-slide"><img src="https://via.placeholder.com/300x200?text=Item+2" alt="Item 2"></div>
-      <div class="swiper-slide"><img src="https://via.placeholder.com/300x200?text=Item+3" alt="Item 3"></div>
-      <div class="swiper-slide"><img src="https://via.placeholder.com/300x200?text=Item+4" alt="Item 4"></div>
-      <div class="swiper-slide special-slide">
-        <a href="products.html">+ 신제품 보러가기</a>
-      </div>
+      <div class="swiper-slide">스트릿 감성의 정수, vincode의 새로운 컬렉션을 만나보세요.</div>
+      <div class="swiper-slide">지금 인기 제품을 확인하고 나만의 코드를 해제하세요.</div>
+      <div class="swiper-slide">한정 수량! 품절 전에 구매하세요.</div>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
     const swiper = new Swiper('.swiper', {
       loop: true,
       autoplay: {
-        delay: 2500,
-        disableOnInteraction: false
+        delay: 3000,
+        disableOnInteraction: false,
       },
-      slidesPerView: 1.2,
-      spaceBetween: 20,
-      breakpoints: {
-        768: {
-          slidesPerView: 3,
-        }
-      }
+      slidesPerView: 'auto',
+      spaceBetween: 50,
+      grabCursor: true,
+      freeMode: true,
     });
   </script>
-
 </body>
 </html>
