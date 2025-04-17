@@ -16,7 +16,7 @@
 
     .navbar {
       background-color: #1a1a1a;
-      padding: 10px 20px;
+      padding: 10px 0;
       display: flex;
       justify-content: center;
       gap: 30px;
@@ -40,42 +40,6 @@
     h1 {
       font-size: 2.5em;
       margin-bottom: 20px;
-      animation: fadeIn 1s ease-out forwards;
-      opacity: 0;
-    }
-
-    .search-container {
-      margin-bottom: 30px;
-    }
-
-    .search-container input {
-      padding: 10px 20px;
-      border-radius: 30px;
-      border: none;
-      width: 300px;
-      max-width: 80%;
-      font-size: 1em;
-    }
-
-    .filter-buttons {
-      margin-bottom: 30px;
-    }
-
-    .filter-buttons button {
-      margin: 5px;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 20px;
-      background-color: #333;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .filter-buttons button.active,
-    .filter-buttons button:hover {
-      background-color: #ffcc00;
-      color: #000;
     }
 
     .grid {
@@ -90,10 +54,7 @@
       background-color: #1c1c1c;
       padding: 20px;
       border-radius: 10px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1s ease-out forwards;
-      animation-delay: 0.3s;
+      position: relative;
     }
 
     .product img {
@@ -109,90 +70,55 @@
 
     .product p {
       font-size: 0.9em;
-      opacity: 0.7;
+      opacity: 0.8;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .favorite {
+      cursor: pointer;
+      font-size: 1.5em;
+      color: #888;
+      transition: color 0.3s;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .favorite.active {
+      color: #ff3366;
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+<nav class="navbar">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-  <h1>vincode 제품 목록</h1>
+<h1>vincode 제품 목록</h1>
 
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." onkeyup="filterProducts()" />
+<div class="grid">
+  <div class="product">
+    <img src="https://via.placeholder.com/300x200" alt="후드티" />
+    <h3>스트릿 후드티</h3>
+    <p>₩39,000</p>
+    <span class="favorite" onclick="toggleFavorite(this)">♡</span>
   </div>
-
-  <div class="filter-buttons">
-    <button class="active" onclick="filterCategory('all')">전체</button>
-    <button onclick="filterCategory('후드티')">후드티</button>
-    <button onclick="filterCategory('반팔')">반팔</button>
-    <button onclick="filterCategory('반바지')">반바지</button>
-    <button onclick="filterCategory('긴바지')">긴바지</button>
+  <div class="product">
+    <img src="https://via.placeholder.com/300x200" alt="반팔티" />
+    <h3>반팔티</h3>
+    <p>₩25,000</p>
+    <span class="favorite" onclick="toggleFavorite(this)">♡</span>
   </div>
+</div>
 
-  <div class="grid" id="productGrid">
-    <div class="product" data-category="후드티">
-      <img src="https://via.placeholder.com/300x200" alt="제품1" />
-      <h3>스트릿 후드티</h3>
-      <p>₩59,000</p>
-    </div>
-    <div class="product" data-category="반팔">
-      <img src="https://via.placeholder.com/300x200" alt="제품2" />
-      <h3>빈티지 반팔티</h3>
-      <p>₩39,000</p>
-    </div>
-    <div class="product" data-category="반바지">
-      <img src="https://via.placeholder.com/300x200" alt="제품3" />
-      <h3>시티 반바지</h3>
-      <p>₩49,000</p>
-    </div>
-    <div class="product" data-category="긴바지">
-      <img src="https://via.placeholder.com/300x200" alt="제품4" />
-      <h3>카고 팬츠</h3>
-      <p>₩69,000</p>
-    </div>
-  </div>
+<script>
+  function toggleFavorite(element) {
+    element.classList.toggle('active');
+    element.textContent = element.classList.contains('active') ? '❤️' : '♡';
+  }
+</script>
 
-  <script>
-    function filterProducts() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const products = document.querySelectorAll(".product");
-
-      products.forEach(product => {
-        const title = product.querySelector("h3").textContent.toLowerCase();
-        product.style.display = title.includes(input) ? "block" : "none";
-      });
-    }
-
-    function filterCategory(category) {
-      const buttons = document.querySelectorAll(".filter-buttons button");
-      buttons.forEach(btn => btn.classList.remove("active"));
-
-      const products = document.querySelectorAll(".product");
-      products.forEach(product => {
-        const cat = product.getAttribute("data-category");
-        if (category === "all" || cat === category) {
-          product.style.display = "block";
-        } else {
-          product.style.display = "none";
-        }
-      });
-
-      event.target.classList.add("active");
-    }
-  </script>
 </body>
 </html>
