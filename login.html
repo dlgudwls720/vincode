@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - vincode</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -12,9 +13,9 @@
     }
 
     body {
-      font-family: 'Arial', sans-serif;
       background-color: white;
       color: black;
+      font-family: 'Arial', sans-serif;
     }
 
     nav {
@@ -116,6 +117,16 @@
       text-decoration: none;
       color: black;
     }
+
+    /* 아이콘 스타일 */
+    .auth a i {
+      font-size: 1.5em;
+      color: black;
+    }
+
+    .auth a:hover i {
+      color: #ffcc00;
+    }
   </style>
 </head>
 <body>
@@ -132,8 +143,8 @@
     <img src="images/logo-nav.jpeg" alt="vincode logo" />
   </div>
   <div class="auth">
-    <a href="login.html">Login</a>
-    <a href="signup.html">Signup</a>
+    <a href="login.html"><i class="fas fa-user"></i></a>
+    <a href="signup.html"><i class="fas fa-user-plus"></i></a>
   </div>
 </nav>
 
