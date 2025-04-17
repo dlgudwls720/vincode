@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode - 제품 목록</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
@@ -31,7 +31,7 @@
 
     .nav-left, .auth {
       display: flex;
-      gap: 15px;
+      gap: 20px;
       font-weight: bold;
       flex-wrap: wrap;
     }
@@ -40,7 +40,6 @@
       text-decoration: none;
       color: black;
       transition: 0.3s;
-      font-size: 16px;
     }
 
     .nav-left a:hover, .auth a:hover {
@@ -54,13 +53,13 @@
     }
 
     .nav-center img {
-      height: 35px;
+      height: 40px;
     }
 
     h1 {
       text-align: center;
-      font-size: 2em;
-      margin: 30px 0 10px;
+      font-size: 2.5em;
+      margin: 40px 0 10px;
     }
 
     .search-filter {
@@ -74,19 +73,17 @@
 
     .filters {
       margin-bottom: 10px;
-      text-align: center;
     }
 
     .filters button {
       background-color: #eee;
       border: none;
       border-radius: 20px;
-      padding: 8px 14px;
+      padding: 8px 16px;
       margin: 5px;
       color: black;
       cursor: pointer;
       font-weight: bold;
-      font-size: 14px;
     }
 
     .filters button.active, .filters button:hover {
@@ -104,7 +101,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       max-width: 1000px;
       margin: 0 auto;
@@ -120,7 +117,7 @@
 
     .product img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
       border-radius: 5px;
     }
@@ -132,6 +129,15 @@
     .product p {
       font-size: 0.9em;
       opacity: 0.8;
+    }
+
+    .checkout-info {
+      margin-top: 10px;
+      font-size: 0.9em;
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
     }
 
     .favorite {
@@ -148,38 +154,16 @@
       color: #ff3366;
     }
 
-    #toTop {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background-color: black;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 18px;
-      cursor: pointer;
-      display: none;
-      z-index: 9999;
-    }
-
     @media (max-width: 600px) {
       nav {
         flex-direction: column;
-        align-items: flex-start;
         gap: 10px;
-        padding: 20px;
       }
 
       .nav-center {
         position: static;
         transform: none;
         margin-top: 10px;
-      }
-
-      .search-box input {
-        width: 90%;
       }
     }
   </style>
@@ -193,7 +177,6 @@
     <a href="wishlist.html">Wishlist</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    <a href="checkout.html">Checkout</a>
   </div>
   <div class="nav-center">
     <img src="images/logo-nav.jpeg" alt="vincode logo" />
@@ -205,6 +188,7 @@
 </nav>
 
 <h1>vincode 제품 목록</h1>
+
 <div class="search-filter">
   <div class="filters">
     <button onclick="filterCategory('전체')" class="active">전체</button>
@@ -214,13 +198,11 @@
     <button onclick="filterCategory('키링')">키링</button>
   </div>
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="제품명을 입력하세요...">
+    <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." />
   </div>
 </div>
 
 <div class="grid" id="product-grid"></div>
-
-<button onclick="scrollToTop()" id="toTop">↑</button>
 
 <script>
   const allProducts = [
@@ -258,6 +240,10 @@
         <img src="${item.img}" alt="${item.name}" />
         <h3>${item.name}</h3>
         <p>${item.price}</p>
+        <div class="checkout-info">
+          <p><strong>결제 계좌:</strong><br>NH농협 352-7561-671763 (예금주: 이형진)</p>
+          <p style="font-size: 0.9em; margin-top: 5px;">입금 후 인스타 <strong>@vincode.official</strong> DM으로 알려주세요.</p>
+        </div>
         <button class="favorite" onclick="toggleFavorite(this, '${item.id}')">♡</button>
       `;
       container.appendChild(div);
@@ -306,14 +292,6 @@
   window.addEventListener("DOMContentLoaded", () => {
     renderProducts();
   });
-
-  const toTop = document.getElementById("toTop");
-  window.onscroll = function () {
-    toTop.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
-  };
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 </script>
 
 </body>
