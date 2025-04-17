@@ -4,96 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: white;
-      color: black;
-    }
-
-    nav {
-      background-color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav .logo {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
-
-    nav .menu a {
-      color: black;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav .menu a:hover {
-      color: black;
-    }
-
-    .swiper {
-      width: 100%;
+    .hero {
       height: 100vh;
-    }
-
-    .swiper-slide {
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    .slide-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
       color: white;
     }
 
-    .slide-content h1 {
+    .hero h1 {
       font-size: 3em;
-      margin-bottom: 20px;
-      animation: fadeIn 1s ease-out forwards;
+      animation: fadeIn 2s ease-out;
     }
 
-    .slide-content a {
+    .hero p {
+      font-size: 1.2em;
+      margin-top: 10px;
+      animation: fadeIn 2s ease-out 0.5s forwards;
+    }
+
+    .hero a.button {
+      margin-top: 30px;
       padding: 12px 24px;
-      background-color: white;
+      background-color: #ffcc00;
       color: black;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
       border-radius: 30px;
-      transition: background 0.3s, color 0.3s;
+      transition: background-color 0.3s, color 0.3s;
+      animation: fadeIn 2s ease-out 1s forwards;
     }
 
-    .slide-content a:hover {
-      background-color: #ffcc00;
-      color: #000;
+    .hero a.button:hover {
+      background-color: #000;
+      color: white;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="logo">vincode</div>
     <div class="menu">
@@ -103,91 +62,17 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </div>
-  <div class="auth" id="auth-area">
-  <a href="#" id="loginBtn">Login</a>
-</div>
-</nav>
-
-  <div class="swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1612423284934-ff9815b8ea4d?auto=format&fit=crop&w=1350&q=80');">
-        <div class="slide-content">
-          <h1>Unlock Your Code</h1>
-          <a href="products.html">제품 보러가기</a>
-        </div>
-      </div>
-      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1533113354174-09f4736aa7c7?auto=format&fit=crop&w=1350&q=80');">
-        <div class="slide-content">
-          <h1>New Season Arrivals</h1>
-          <a href="products.html">바로 보기</a>
-        </div>
-      </div>
-      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1618354691414-2308ebd6cd6d?auto=format&fit=crop&w=1350&q=80');">
-        <div class="slide-content">
-          <h1>Feel The Street Vibe</h1>
-          <a href="products.html">쇼핑 시작</a>
-        </div>
-      </div>
+    <div class="auth">
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
+  </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-  <script>
-    const swiper = new Swiper('.swiper', {
-      loop: true,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-  </script>
-<div id="loginModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center;">
-  <div style="background: #1c1c1c; padding: 30px; border-radius: 10px; text-align: center;">
-    <h2 style="margin-bottom: 20px;">로그인</h2>
-    <input type="text" id="usernameInput" placeholder="닉네임 입력" style="padding: 10px; width: 200px; border-radius: 5px; border: none; margin-bottom: 10px;"><br>
-    <button id="confirmLogin" style="padding: 10px 20px; background: #ffcc00; border: none; font-weight: bold; border-radius: 5px;">로그인</button>
-  </div>
-</div>
-
-<script>
-  const loginBtn = document.getElementById("loginBtn");
-  const loginModal = document.getElementById("loginModal");
-  const confirmLogin = document.getElementById("confirmLogin");
-  const usernameInput = document.getElementById("usernameInput");
-  const authArea = document.getElementById("auth-area");
-
-  function updateAuthUI() {
-    const user = localStorage.getItem("vincodeUser");
-    if (user) {
-      authArea.innerHTML = `${user}님 | <a href="#" id="logoutBtn">Logout</a>`;
-      document.getElementById("logoutBtn").onclick = () => {
-        localStorage.removeItem("vincodeUser");
-        location.reload();
-      };
-    }
-  }
-
-  loginBtn.onclick = () => {
-    loginModal.style.display = "flex";
-  };
-
-  confirmLogin.onclick = () => {
-    const username = usernameInput.value.trim();
-    if (username) {
-      localStorage.setItem("vincodeUser", username);
-      loginModal.style.display = "none";
-      updateAuthUI();
-    }
-  };
-
-  window.addEventListener("DOMContentLoaded", updateAuthUI);
-</script>
+  <section class="hero">
+    <h1>Feel <span style="color: #ffcc00;">The Street</span> Vibe</h1>
+    <p>너만의 스트릿 감각을 풀어봐</p>
+    <a href="products.html" class="button">쇼핑 시작</a>
+  </section>
 
 </body>
 </html>
