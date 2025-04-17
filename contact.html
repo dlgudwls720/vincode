@@ -1,80 +1,129 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact - vincode</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vincode - 문의하기</title>
   <style>
-    body {
-      background-color: #0e0e0e;
-      color: white;
-      font-family: 'Arial', sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 40px 20px;
-      text-align: center;
+      padding: 0;
     }
 
-    .navbar {
-      background-color: #1a1a1a;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      position: sticky;
+    body {
+      background-color: #ffffff;
+      color: #000;
+      font-family: 'Arial', sans-serif;
+      padding: 100px 20px 40px;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
       top: 0;
-      z-index: 999;
+      left: 0;
+      background-color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid #ddd;
     }
 
-    .navbar a {
-      color: white;
-      text-decoration: none;
+    .logo {
+      font-size: 1.5em;
       font-weight: bold;
-      font-size: 1em;
-      transition: color 0.3s;
+      color: #000;
     }
 
-    .navbar a:hover {
-      color: #ffcc00;
+    .menu, .auth {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #000;
     }
 
     h1 {
-      margin-top: 40px;
-      animation: fadeIn 1s ease-out forwards;
-      opacity: 0;
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 30px;
     }
 
-    p {
-      margin: 20px 0;
-      font-size: 1.1em;
-      opacity: 0.8;
-      animation: fadeIn 1.5s ease-out forwards;
+    .form-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
 
-    a.link {
-      color: #ffcc00;
-      text-decoration: underline;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    input, textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #333;
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
+<nav>
+  <div class="logo">vincode</div>
+  <div class="menu">
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </nav>
+  </div>
+  <div class="auth">
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+  </div>
+</nav>
 
-  <h1>문의하기</h1>
-  <p>궁금한 점이 있으신가요?<br />아래 연락처로 언제든지 문의해주세요!</p>
-  <p>📩 이메일: <a class="link" href="mailto:vincodebrand@gmail.com">vincodebrand@gmail.com</a></p>
-  <p>📱 인스타그램: <a class="link" href="https://instagram.com/vincode.official" target="_blank">@vincode.official</a></p>
+<h1>문의하기</h1>
+<div class="form-wrapper">
+  <form action="#" method="post">
+    <input type="text" name="name" placeholder="이름" required />
+    <input type="email" name="email" placeholder="이메일" required />
+    <textarea name="message" rows="6" placeholder="문의 내용을 입력하세요..." required></textarea>
+    <button type="submit">보내기</button>
+  </form>
+</div>
 
 </body>
 </html>
