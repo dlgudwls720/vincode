@@ -103,7 +103,10 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </div>
-  </nav>
+  <div class="auth" id="auth-area">
+  <a href="#" id="loginBtn">Login</a>
+</div>
+</nav>
 
   <div class="swiper">
     <div class="swiper-wrapper">
@@ -144,5 +147,47 @@
       },
     });
   </script>
+<div id="loginModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center;">
+  <div style="background: #1c1c1c; padding: 30px; border-radius: 10px; text-align: center;">
+    <h2 style="margin-bottom: 20px;">로그인</h2>
+    <input type="text" id="usernameInput" placeholder="닉네임 입력" style="padding: 10px; width: 200px; border-radius: 5px; border: none; margin-bottom: 10px;"><br>
+    <button id="confirmLogin" style="padding: 10px 20px; background: #ffcc00; border: none; font-weight: bold; border-radius: 5px;">로그인</button>
+  </div>
+</div>
+
+<script>
+  const loginBtn = document.getElementById("loginBtn");
+  const loginModal = document.getElementById("loginModal");
+  const confirmLogin = document.getElementById("confirmLogin");
+  const usernameInput = document.getElementById("usernameInput");
+  const authArea = document.getElementById("auth-area");
+
+  function updateAuthUI() {
+    const user = localStorage.getItem("vincodeUser");
+    if (user) {
+      authArea.innerHTML = `${user}님 | <a href="#" id="logoutBtn">Logout</a>`;
+      document.getElementById("logoutBtn").onclick = () => {
+        localStorage.removeItem("vincodeUser");
+        location.reload();
+      };
+    }
+  }
+
+  loginBtn.onclick = () => {
+    loginModal.style.display = "flex";
+  };
+
+  confirmLogin.onclick = () => {
+    const username = usernameInput.value.trim();
+    if (username) {
+      localStorage.setItem("vincodeUser", username);
+      loginModal.style.display = "none";
+      updateAuthUI();
+    }
+  };
+
+  window.addEventListener("DOMContentLoaded", updateAuthUI);
+</script>
+
 </body>
 </html>
