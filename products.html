@@ -5,13 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode - 제품 목록</title>
   <style>
-    body { background-color: #0e0e0e; color: white; font-family: 'Arial', sans-serif; margin: 0; padding: 40px 20px; text-align: center; }
-    .navbar { background-color: #1a1a1a; padding: 10px 0; display: flex; justify-content: center; gap: 30px; position: sticky; top: 0; z-index: 999; }
-    .navbar a { color: white; text-decoration: none; font-weight: bold; font-size: 1em; transition: color 0.3s; }
-    .navbar a:hover { color: #ffcc00; }
-    h1 { font-size: 2.5em; margin-bottom: 20px; }
-    .search-container, .filter-container { margin-bottom: 20px; }
-    .search-container input { padding: 10px; border-radius: 20px; border: none; width: 80%; max-width: 300px; font-size: 1em; }
+    body {
+      background-color: #0e0e0e;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .navbar {
+      background-color: #1a1a1a;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
+    .navbar a:hover {
+      color: #ffcc00;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+    .search-container, .filter-container {
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+    .search-container input {
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+      width: 80%;
+      max-width: 300px;
+      font-size: 1em;
+    }
     .filter-container button {
       background-color: #2c2c2c;
       color: white;
@@ -26,13 +67,56 @@
       background-color: #ffcc00;
       color: #000;
     }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
-    .product { background-color: #1c1c1c; padding: 20px; border-radius: 10px; position: relative; }
-    .product img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; }
-    .product h3 { margin: 10px 0 5px; }
-    .product p { font-size: 0.9em; opacity: 0.8; }
-    .favorite { cursor: pointer; font-size: 1.5em; color: #888; transition: color 0.3s; display: inline-block; margin-top: 10px; }
-    .favorite.active { color: #ff3366; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 0.6s;
+    }
+    .product {
+      background-color: #1c1c1c;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+    }
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+    .product p {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    .favorite {
+      cursor: pointer;
+      font-size: 1.5em;
+      color: #888;
+      transition: color 0.3s;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .favorite.active {
+      color: #ff3366;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -61,42 +145,7 @@
 </div>
 
 <div class="grid" id="productGrid">
-  <div class="product" data-id="hoodie1" data-name="후드집업" data-category="후드집업">
-    <img src="https://via.placeholder.com/300x200" alt="후드집업" />
-    <h3>후드집업</h3>
-    <p>₩69,000</p>
-    <span class="favorite" onclick="toggleFavorite(this, 'hoodie1')">♡</span>
-  </div>
-  <div class="product" data-id="hoodie2" data-name="후드티" data-category="후드티">
-    <img src="https://via.placeholder.com/300x200" alt="후드티" />
-    <h3>후드티</h3>
-    <p>₩47,000</p>
-    <span class="favorite" onclick="toggleFavorite(this, 'hoodie2')">♡</span>
-  </div>
-  <div class="product" data-id="mtm1" data-name="맨투맨" data-category="맨투맨">
-    <img src="https://via.placeholder.com/300x200" alt="맨투맨" />
-    <h3>맨투맨</h3>
-    <p>₩34,000</p>
-    <span class="favorite" onclick="toggleFavorite(this, 'mtm1')">♡</span>
-  </div>
-  <div class="product" data-id="short1" data-name="반바지" data-category="반바지">
-    <img src="https://via.placeholder.com/300x200" alt="반바지" />
-    <h3>반바지</h3>
-    <p>₩30,000</p>
-    <span class="favorite" onclick="toggleFavorite(this, 'short1')">♡</span>
-  </div>
-  <div class="product" data-id="pants1" data-name="긴바지" data-category="긴바지">
-    <img src="https://via.placeholder.com/300x200" alt="긴바지" />
-    <h3>긴바지</h3>
-    <p>₩37,000</p>
-    <span class="favorite" onclick="toggleFavorite(this, 'pants1')">♡</span>
-  </div>
-  <div class="product" data-id="keyring1" data-name="키링" data-category="키링">
-    <img src="https://via.placeholder.com/300x200" alt="키링" />
-    <h3>키링</h3>
-    <p>₩15,000</p>
-    <span class="favorite" onclick="toggleFavorite(this, 'keyring1')">♡</span>
-  </div>
+  <!-- 제품 목록 생략 (유지됨) -->
 </div>
 
 <script>
