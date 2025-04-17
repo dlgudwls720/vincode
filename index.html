@@ -6,16 +6,18 @@
   <title>vincode - 홈</title>
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
       background-color: white;
       color: black;
       font-family: 'Arial', sans-serif;
-      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     nav {
@@ -25,100 +27,105 @@
       padding: 20px 40px;
       background-color: white;
       border-bottom: 1px solid #ddd;
+      position: relative;
     }
 
-    .nav-left {
+    .nav-left, .auth {
       display: flex;
       gap: 20px;
       font-weight: bold;
     }
 
-    .nav-left a {
+    .nav-left a, .auth a {
       text-decoration: none;
       color: black;
       transition: 0.3s;
     }
 
-    .nav-left a:hover {
+    .nav-left a:hover, .auth a:hover {
       color: black;
     }
 
-    .auth {
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-center img {
+      height: 40px;
+    }
+
+    .main-content {
+      flex: 1;
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
     }
 
-    .auth a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
+    .main-content h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
     }
 
-    .auth a:hover {
-      color: black;
-    }
-
-    .logo-section {
-      margin-top: 100px;
-    }
-
-    .logo-section img {
-      height: 120px;
-    }
-
-    .headline {
-      margin-top: 20px;
-      font-size: 2.5em;
-      font-weight: bold;
-    }
-
-    .subtext {
-      margin-top: 10px;
+    .main-content p {
       font-size: 1.2em;
-      color: #333;
+      opacity: 0.8;
+      margin-bottom: 30px;
     }
 
-    .start-btn {
-      margin-top: 30px;
-      padding: 12px 24px;
-      background-color: #ffc800;
+    .main-content button {
+      padding: 12px 28px;
+      background-color: #ffcc00;
       color: black;
+      font-weight: bold;
       border: none;
       border-radius: 30px;
-      font-size: 1em;
       cursor: pointer;
       transition: background-color 0.3s;
-      font-weight: bold;
     }
 
-    .start-btn:hover {
+    .main-content button:hover {
       background-color: #e6b800;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-center">
+      <img src="images/logo-nav.jpeg" alt="vincode logo" />
+    </div>
+    <div class="auth">
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+    </div>
+  </nav>
 
-<nav>
-  <div class="nav-left">
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="wishlist.html">Wishlist</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+  <div class="main-content">
+    <h1>vincode</h1>
+    <p>Unlock Your Code</p>
+    <button onclick="location.href='products.html'">쇼핑 시작</button>
   </div>
-  <div class="auth">
-    <a href="login.html">Login</a>
-    <a href="signup.html">Signup</a>
-  </div>
-</nav>
-
-<div class="logo-section">
-  <img src="images/logo-nav.jpeg" alt="vincode logo">
-  <div class="headline">Feel The Street Vibe</div>
-  <div class="subtext">Unlock Your Code</div>
-  <button class="start-btn" onclick="location.href='products.html'">쇼핑 시작</button>
-</div>
-
 </body>
 </html>
-
