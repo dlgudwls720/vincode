@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode</title>
   <style>
     * {
@@ -12,9 +12,9 @@
     }
 
     body {
-      background-color: #2e2e2e;
+      background-color: #ffffff;
       font-family: 'Arial', sans-serif;
-      color: #fff;
+      color: #000;
       overflow-x: hidden;
     }
 
@@ -51,7 +51,7 @@
     }
 
     nav a:hover {
-      color: #ffcc00;
+      color: #000;
     }
 
     .hero {
@@ -60,7 +60,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background-color: #2e2e2e;
+      background-color: #ffffff;
       position: relative;
     }
 
@@ -68,17 +68,19 @@
       font-size: 3rem;
       font-weight: bold;
       opacity: 0;
+      color: #000;
       animation: fadeIn 1s ease-in-out 0.5s forwards;
     }
 
     .hero h1 span {
-      color: #ffcc00;
+      color: #000;
     }
 
     .hero p {
       margin-top: 20px;
       font-size: 1.2rem;
       opacity: 0;
+      color: #000;
       animation: fadeIn 1s ease-in-out 1s forwards;
     }
 
@@ -87,13 +89,18 @@
       padding: 12px 28px;
       font-size: 1rem;
       background-color: #ffcc00;
-      color: black;
+      color: #000;
       border: none;
       border-radius: 30px;
       cursor: pointer;
       font-weight: bold;
       opacity: 0;
       animation: fadeIn 1s ease-in-out 1.5s forwards;
+    }
+
+    .start-button:hover {
+      background-color: #ffcc00;
+      color: #000;
     }
 
     @keyframes fadeIn {
@@ -106,27 +113,6 @@
         transform: translateY(0);
       }
     }
-
-    /* Optional background slider */
-    .slider {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-size: cover;
-      background-position: center;
-      animation: slider 15s infinite;
-    }
-
-    @keyframes slider {
-      0%   { background-image: url('https://via.placeholder.com/1600x900?text=Slide+1'); }
-      33%  { background-image: url('https://via.placeholder.com/1600x900?text=Slide+2'); }
-      66%  { background-image: url('https://via.placeholder.com/1600x900?text=Slide+3'); }
-      100% { background-image: url('https://via.placeholder.com/1600x900?text=Slide+1'); }
-    }
-
   </style>
 </head>
 <body>
@@ -147,13 +133,13 @@
   </nav>
 
   <div class="hero">
-    <div class="slider"></div>
     <div>
       <h1><span>Feel</span> The Street <span>Vibe</span></h1>
-      <p>너만의 스트릿 감각을 풀어봐</p>
+      <p>Unlock Your Code</p>
       <button class="start-button" onclick="location.href='products.html'">쇼핑 시작</button>
     </div>
   </div>
 
 </body>
 </html>
+
