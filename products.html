@@ -20,9 +20,10 @@
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 15px 20px;
       background-color: white;
       border-bottom: 1px solid #ddd;
       position: relative;
@@ -30,14 +31,16 @@
 
     .nav-left, .auth {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       font-weight: bold;
+      flex-wrap: wrap;
     }
 
     .nav-left a, .auth a {
       text-decoration: none;
       color: black;
       transition: 0.3s;
+      font-size: 0.95em;
     }
 
     .nav-left a:hover, .auth a:hover {
@@ -51,26 +54,21 @@
     }
 
     .nav-center img {
-      height: 40px;
+      height: 30px;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.5em;
-      margin: 40px 0 10px;
+      font-size: 2.2em;
+      margin: 30px 0 15px;
     }
 
-    .search-filter {
-      max-width: 1000px;
-      margin: 0 auto 30px;
-      padding: 0 20px;
+    .filters, .search-box {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .filters {
-      margin-bottom: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 20px;
     }
 
     .filters button {
@@ -78,7 +76,6 @@
       border: none;
       border-radius: 20px;
       padding: 8px 16px;
-      margin: 5px;
       color: black;
       cursor: pointer;
       font-weight: bold;
@@ -99,7 +96,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       max-width: 1000px;
       margin: 0 auto;
@@ -107,18 +104,15 @@
     }
 
     .product {
-      background-color: #f1f1f1;
-      padding: 20px;
+      background-color: #f9f9f9;
+      padding: 15px;
       border-radius: 10px;
       text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 0.5s ease-out forwards;
     }
 
     .product img {
       width: 100%;
-      height: 200px;
+      height: 180px;
       object-fit: cover;
       border-radius: 5px;
     }
@@ -146,17 +140,27 @@
       color: #ff3366;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .nav-center {
+        position: static;
+        transform: none;
+        align-self: center;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      .product img {
+        height: 150px;
       }
     }
-
   </style>
 </head>
 <body>
-
   <nav>
     <div class="nav-left">
       <a href="index.html">Home</a>
@@ -169,40 +173,35 @@
       <img src="images/logo-nav.jpeg" alt="vincode logo" />
     </div>
     <div class="auth">
-      <a href="login.html">
-        <i class="fas fa-user"></i> 
-      </a>
-      <a href="signup.html">
-        <i class="fas fa-user-plus"></i> 
-      </a>
+      <a href="login.html"><i class="fas fa-user"></i></a>
+      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
     </div>
   </nav>
 
   <h1>vincode 제품 목록</h1>
 
-  <div class="search-filter">
-    <div class="filters">
-      <button onclick="filterCategory('전체')" class="active">전체</button>
-      <button onclick="filterCategory('후드티')">후드티</button>
-      <button onclick="filterCategory('반바지')">반바지</button>
-      <button onclick="filterCategory('긴바지')">긴바지</button>
-      <button onclick="filterCategory('키링')">키링</button>
-    </div>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." />
-    </div>
+  <div class="filters">
+    <button onclick="filterCategory('전체')" class="active">전체</button>
+    <button onclick="filterCategory('후드티')">후드티</button>
+    <button onclick="filterCategory('반바지')">반바지</button>
+    <button onclick="filterCategory('긴바지')">긴바지</button>
+    <button onclick="filterCategory('키링')">키링</button>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." />
   </div>
 
   <div class="grid" id="product-grid"></div>
 
   <script>
     const allProducts = [
-      { id: "hoodiezipup", name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-      { id: "hoodie", name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-      { id: "mtm", name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
-      { id: "shorts", name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
-      { id: "pants", name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
-      { id: "keyring", name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
+      { id: "hoodiezipup1", name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+      { id: "hoodie1", name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+      { id: "mtm1", name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
+      { id: "shorts1", name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
+      { id: "pants1", name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
+      { id: "keyring1", name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
     ];
 
     let selectedCategory = "전체";
@@ -275,10 +274,7 @@
     }
 
     document.getElementById("searchInput").addEventListener("input", renderProducts);
-
-    window.addEventListener("DOMContentLoaded", () => {
-      renderProducts();
-    });
+    window.addEventListener("DOMContentLoaded", renderProducts);
   </script>
 
 </body>
