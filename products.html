@@ -112,7 +112,13 @@
         transform: translateY(0);
       }
     }
-  </style>
+  .fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease-out forwards;
+  animation-fill-mode: both;
+}
+</style>
 </head>
 <body>
 
@@ -124,12 +130,12 @@
   <a href="contact.html">Contact</a>
 </nav>
 
-<h1>vincode 제품 목록</h1>
+<h1 class="fade-in" style="animation-delay: 0.1s;">$1</h1>
 
-<div class="search-container">
+<div class="search-container fade-in" style="animation-delay: 0.3s;">
   <input type="text" id="searchInput" placeholder="제품명을 검색하세요...">
 </div>
-<div class="filter-container">
+<div class="filter-container fade-in" style="animation-delay: 0.5s;">
   <button class="filter-btn active" data-category="전체">전체</button>
   <button class="filter-btn" data-category="후드집업">후드집업</button>
   <button class="filter-btn" data-category="후드티">후드티</button>
@@ -139,7 +145,7 @@
   <button class="filter-btn" data-category="키링">키링</button>
 </div>
 
-<div class="grid" id="productGrid">
+<div class="grid fade-in" id="productGrid" style="animation-delay: 0.7s;">
   <div class="product" data-id="hoodie1" data-name="후드집업" data-category="후드집업">
     <img src="https://via.placeholder.com/300x200" alt="후드집업">
     <h3>후드집업</h3>
