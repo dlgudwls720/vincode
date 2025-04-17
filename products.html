@@ -105,7 +105,7 @@
       gap: 20px;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 0 20px 40px;
+      padding: 0 20px 80px;
     }
 
     .product {
@@ -154,7 +154,11 @@
       color: #ff3366;
     }
 
-    @media (max-width: 600px) {
+    .mobile-bottom-nav {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
       nav {
         flex-direction: column;
         gap: 10px;
@@ -164,6 +168,34 @@
         position: static;
         transform: none;
         margin-top: 10px;
+      }
+
+      .mobile-bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-top: 1px solid #ccc;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px 0;
+        z-index: 1000;
+      }
+
+      .mobile-bottom-nav a {
+        text-decoration: none;
+        color: black;
+        font-size: 0.8em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .mobile-bottom-nav i {
+        font-size: 1.2em;
+        margin-bottom: 2px;
       }
     }
   </style>
@@ -203,6 +235,15 @@
 </div>
 
 <div class="grid" id="product-grid"></div>
+
+<!-- 모바일 하단 메뉴 -->
+<div class="mobile-bottom-nav">
+  <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
+  <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
+  <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
+  <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
+  <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
+</div>
 
 <script>
   const allProducts = [
