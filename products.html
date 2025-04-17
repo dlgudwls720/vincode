@@ -56,7 +56,44 @@
     h1 {
       text-align: center;
       font-size: 2.5em;
-      margin: 40px 0 20px;
+      margin: 40px 0 10px;
+    }
+
+    .search-filter {
+      max-width: 1000px;
+      margin: 0 auto 30px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .filters {
+      margin-bottom: 10px;
+    }
+
+    .filters button {
+      background-color: #eee;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin: 5px;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .filters button.active, .filters button:hover {
+      background-color: #ffcc00;
+    }
+
+    .search-box input {
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      text-align: center;
     }
 
     .grid {
@@ -126,46 +163,65 @@
 </nav>
 
 <h1>vincode 제품 목록</h1>
-<div class="grid">
-  <div class="product" data-id="hoodiezipup">
-    <img src="https://via.placeholder.com/300x200" alt="후드집업" />
-    <h3>후드집업</h3>
-    <p>₩69,000</p>
-    <button class="favorite" onclick="toggleFavorite(this, 'hoodiezipup')">♡</button>
+<div class="search-filter">
+  <div class="filters">
+    <button onclick="filterCategory('전체')" class="active">전체</button>
+    <button onclick="filterCategory('후드티')">후드티</button>
+    <button onclick="filterCategory('반바지')">반바지</button>
+    <button onclick="filterCategory('긴바지')">긴바지</button>
+    <button onclick="filterCategory('키링')">키링</button>
   </div>
-  <div class="product" data-id="hoodie">
-    <img src="https://via.placeholder.com/300x200" alt="후드티" />
-    <h3>후드티</h3>
-    <p>₩47,000</p>
-    <button class="favorite" onclick="toggleFavorite(this, 'hoodie')">♡</button>
-  </div>
-  <div class="product" data-id="mtm">
-    <img src="https://via.placeholder.com/300x200" alt="맨투맨" />
-    <h3>맨투맨</h3>
-    <p>₩34,000</p>
-    <button class="favorite" onclick="toggleFavorite(this, 'mtm')">♡</button>
-  </div>
-  <div class="product" data-id="shorts">
-    <img src="https://via.placeholder.com/300x200" alt="반바지" />
-    <h3>반바지</h3>
-    <p>₩30,000</p>
-    <button class="favorite" onclick="toggleFavorite(this, 'shorts')">♡</button>
-  </div>
-  <div class="product" data-id="pants">
-    <img src="https://via.placeholder.com/300x200" alt="긴바지" />
-    <h3>긴바지</h3>
-    <p>₩37,000</p>
-    <button class="favorite" onclick="toggleFavorite(this, 'pants')">♡</button>
-  </div>
-  <div class="product" data-id="keyring">
-    <img src="https://via.placeholder.com/300x200" alt="키링" />
-    <h3>키링</h3>
-    <p>₩15,000</p>
-    <button class="favorite" onclick="toggleFavorite(this, 'keyring')">♡</button>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." />
   </div>
 </div>
 
+<div class="grid" id="product-grid"></div>
+
 <script>
+  const allProducts = [
+    { id: "hoodiezipup", name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+    { id: "hoodie", name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+    { id: "mtm", name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
+    { id: "shorts", name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
+    { id: "pants", name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
+    { id: "keyring", name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
+  ];
+
+  let selectedCategory = "전체";
+
+  function renderProducts() {
+    const keyword = document.getElementById("searchInput").value.toLowerCase();
+    const filtered = allProducts.filter(item => {
+      const matchKeyword = item.name.toLowerCase().includes(keyword);
+      const matchCategory = selectedCategory === "전체" || item.category === selectedCategory;
+      return matchKeyword && matchCategory;
+    });
+
+    const container = document.getElementById("product-grid");
+    container.innerHTML = "";
+
+    if (filtered.length === 0) {
+      container.innerHTML = "<p>검색 결과가 없습니다.</p>";
+      return;
+    }
+
+    filtered.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.setAttribute("data-id", item.id);
+      div.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" />
+        <h3>${item.name}</h3>
+        <p>${item.price}</p>
+        <button class="favorite" onclick="toggleFavorite(this, '${item.id}')">♡</button>
+      `;
+      container.appendChild(div);
+    });
+
+    applyFavorites();
+  }
+
   function toggleFavorite(element, productId) {
     element.classList.toggle('active');
     const isActive = element.classList.contains('active');
@@ -182,7 +238,7 @@
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }
 
-  window.addEventListener('DOMContentLoaded', () => {
+  function applyFavorites() {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     document.querySelectorAll('.product').forEach(product => {
       const id = product.getAttribute('data-id');
@@ -192,6 +248,19 @@
         fav.textContent = '❤️';
       }
     });
+  }
+
+  function filterCategory(category) {
+    selectedCategory = category;
+    document.querySelectorAll(".filters button").forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
+    renderProducts();
+  }
+
+  document.getElementById("searchInput").addEventListener("input", renderProducts);
+
+  window.addEventListener("DOMContentLoaded", () => {
+    renderProducts();
   });
 </script>
 
