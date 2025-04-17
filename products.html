@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode - 홈</title>
+  <title>vincode - 제품 목록</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * {
@@ -56,8 +56,8 @@
 
     h1 {
       text-align: center;
-      font-size: 3em;
-      margin-bottom: 10px;
+      font-size: 2.5em;
+      margin: 40px 0 10px;
     }
 
     .search-filter {
@@ -111,6 +111,9 @@
       padding: 20px;
       border-radius: 10px;
       text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.5s ease-out forwards;
     }
 
     .product img {
@@ -142,9 +145,18 @@
     .favorite.active {
       color: #ff3366;
     }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
   </style>
 </head>
 <body>
+
   <nav>
     <div class="nav-left">
       <a href="index.html">Home</a>
@@ -167,6 +179,7 @@
   </nav>
 
   <h1>vincode 제품 목록</h1>
+
   <div class="search-filter">
     <div class="filters">
       <button onclick="filterCategory('전체')" class="active">전체</button>
@@ -267,5 +280,6 @@
       renderProducts();
     });
   </script>
+
 </body>
 </html>
