@@ -3,10 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Signup - vincode</title>
+  <title>회원가입 - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    /* 기존 스타일은 그대로 유지 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: white;
+      color: black;
+      font-family: 'Arial', sans-serif;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+
+    .nav-left, .auth {
+      display: flex;
+      gap: 20px;
+      font-weight: bold;
+    }
+
+    .nav-left a, .auth a {
+      text-decoration: none;
+      color: black;
+      transition: 0.3s;
+    }
+
+    .nav-left a:hover, .auth a:hover {
+      color: black;
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-center img {
+      height: 40px;
+    }
+
+    .signup-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .signup-container h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .signup-container input {
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .signup-container button {
+      padding: 12px 28px;
+      background-color: #ffcc00;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .signup-container button:hover {
+      background-color: #e6b800;
+    }
+
+    .auth-link {
+      margin-top: 20px;
+      font-size: 1em;
+    }
+
+    .auth-link a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .auth-link a:hover {
+      color: #ffcc00;
+    }
+
   </style>
 </head>
 <body>
@@ -33,12 +133,18 @@
 
   <div class="signup-container">
     <h2>회원가입</h2>
-    <input type="email" placeholder="이메일" required />
-    <input type="password" placeholder="비밀번호" required />
-    <input type="password" placeholder="비밀번호 확인" required />
-    <button>
-      <i class="fas fa-user-plus"></i> 회원가입
-    </button>
+    <form action="" method="POST">
+      <input type="email" placeholder="이메일" required />
+      <input type="password" placeholder="비밀번호" required />
+      <input type="password" placeholder="비밀번호 확인" required />
+      <button type="submit">
+        <i class="fas fa-user-plus"></i> 회원가입
+      </button>
+    </form>
+
+    <div class="auth-link">
+      <p>이미 계정이 있으신가요? <a href="login.html">로그인</a></p>
+    </div>
   </div>
 </body>
 </html>
