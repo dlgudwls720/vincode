@@ -14,43 +14,6 @@
       text-align: center;
     }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: white;
-      border-bottom: 1px solid #ddd;
-      position: relative;
-      flex-wrap: wrap;
-    }
-
-    .nav-left, .auth {
-      display: flex;
-      gap: 20px;
-      font-weight: bold;
-    }
-
-    .nav-left a, .auth a {
-      text-decoration: none;
-      color: black;
-      transition: 0.3s;
-    }
-
-    .nav-left a:hover, .auth a:hover {
-      color: black;
-    }
-
-    .nav-center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .nav-center img {
-      height: 40px;
-    }
-
     .hero {
       padding: 100px 20px;
     }
@@ -81,15 +44,7 @@
       background-color: #333;
     }
 
-    .mobile-bottom-nav {
-      display: none;
-    }
-
     @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
-
       .hero h1 {
         font-size: 2.2em;
       }
@@ -97,68 +52,14 @@
       .hero p {
         font-size: 1em;
       }
-
-      .mobile-bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        border-top: 1px solid #ccc;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 8px 0;
-        z-index: 1000;
-      }
-
-      .mobile-bottom-nav a {
-        text-decoration: none;
-        color: black;
-        font-size: 0.8em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .mobile-bottom-nav i {
-        font-size: 1.2em;
-        margin-bottom: 2px;
-      }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-left">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-center">
-      <img src="images/logo-nav.jpeg" alt="vincode logo" />
-    </div>
-    <div class="auth">
-      <a href="login.html"><i class="fas fa-user"></i></a>
-      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
-    </div>
-  </nav>
-
   <div class="hero">
     <h1>vincode</h1>
     <p>Unlock Your Code</p>
     <a href="products.html">쇼핑 시작하기</a>
-  </div>
-
-  <!-- 모바일 하단 메뉴 -->
-  <div class="mobile-bottom-nav">
-    <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
-    <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
-    <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
-    <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
-    <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
 </body>
 </html>
