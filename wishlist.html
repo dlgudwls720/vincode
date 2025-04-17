@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vincode - 찜한 상품</title>
   <style>
     * {
@@ -32,13 +32,28 @@
       border-bottom: 1px solid #ddd;
     }
 
-    .logo {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #000;
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 40px;
     }
 
-    .menu, .auth {
+    .menu {
+      display: flex;
+      gap: 20px;
+    }
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .auth {
       display: flex;
       gap: 20px;
     }
@@ -57,7 +72,8 @@
     h1 {
       text-align: center;
       font-size: 2.5em;
-      margin-bottom: 30px;
+      margin-top: 30px;
+      margin-bottom: 20px;
     }
 
     .grid {
@@ -69,7 +85,7 @@
     }
 
     .product {
-      background-color: #f5f5f5;
+      background-color: #f1f1f1;
       padding: 20px;
       border-radius: 10px;
       text-align: center;
@@ -84,26 +100,28 @@
 
     .product h3 {
       margin: 10px 0 5px;
-      color: #000;
     }
 
     .product p {
       font-size: 0.9em;
       opacity: 0.8;
-      color: #000;
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">vincode</div>
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="wishlist.html">Wishlist</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+  <div class="nav-left">
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="logo">
+    <img src="91222CBA-A276-4E7F-9BF9-4B1122CFC496.jpeg" alt="vincode logo">
   </div>
   <div class="auth">
     <a href="login.html">Login</a>
@@ -116,25 +134,20 @@
 
 <script>
   const allProducts = {
-    hoodiezipup1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200" },
-    hoodie2: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200" },
-    mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200" },
-    short1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200" },
-    pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200" },
-    keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200" }
+    hoodiezipup: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200" },
+    hoodie: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200" },
+    mtm: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200" },
+    shorts: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200" },
+    pants: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200" },
+    keyring: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200" }
   };
 
-  const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
   const container = document.getElementById("wishlist-container");
 
-  function renderProducts() {
-    container.innerHTML = "";
-
-    if (favorites.length === 0) {
-      container.innerHTML = "<p style='text-align:center;'>찜한 상품이 없습니다.</p>";
-      return;
-    }
-
+  if (favorites.length === 0) {
+    container.innerHTML = "<p style='text-align: center;'>찜한 상품이 없습니다.</p>";
+  } else {
     favorites.forEach(id => {
       const item = allProducts[id];
       if (item) {
@@ -149,8 +162,6 @@
       }
     });
   }
-
-  renderProducts();
 </script>
 
 </body>
