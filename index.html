@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode - Home</title>
+  <title>vincode - 제품 목록</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * {
@@ -20,10 +20,9 @@
 
     nav {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
+      padding: 20px 40px;
       background-color: white;
       border-bottom: 1px solid #ddd;
       position: relative;
@@ -31,16 +30,14 @@
 
     .nav-left, .auth {
       display: flex;
-      gap: 15px;
+      gap: 20px;
       font-weight: bold;
-      flex-wrap: wrap;
     }
 
     .nav-left a, .auth a {
       text-decoration: none;
       color: black;
       transition: 0.3s;
-      font-size: 0.95em;
     }
 
     .nav-left a:hover, .auth a:hover {
@@ -54,104 +51,271 @@
     }
 
     .nav-center img {
-      height: 30px;
+      height: 40px;
     }
 
-    .main {
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin: 40px 0 10px;
+    }
+
+    .search-filter {
+      max-width: 1000px;
+      margin: 0 auto 30px;
+      padding: 0 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 80vh;
-      text-align: center;
-      padding: 20px;
     }
 
-    .main h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      animation: fadeIn 1s ease-out forwards;
+    .filters {
+      margin-bottom: 10px;
     }
 
-    .main p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-      opacity: 0.8;
-      animation: fadeIn 1.5s ease-out forwards;
-    }
-
-    .main a {
-      display: inline-block;
-      padding: 12px 24px;
-      background-color: black;
-      color: white;
+    .filters button {
+      background-color: #eee;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin: 5px;
+      color: black;
+      cursor: pointer;
       font-weight: bold;
-      text-decoration: none;
-      border-radius: 30px;
-      transition: background-color 0.3s, color 0.3s;
-      animation: fadeIn 2s ease-out forwards;
     }
 
-    .main a:hover {
+    .filters button.active, .filters button:hover {
       background-color: #ffcc00;
+    }
+
+    .search-box input {
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    .product {
+      background-color: #f1f1f1;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+
+    .product p {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    .favorite {
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      margin-top: 10px;
+      color: #888;
+      transition: color 0.3s;
+    }
+
+    .favorite.active {
+      color: #ff3366;
+    }
+
+    /* 다크모드 스타일 */
+    body.dark {
+      background-color: #0e0e0e;
+      color: white;
+    }
+
+    body.dark nav,
+    body.dark .signup-container,
+    body.dark .login-container,
+    body.dark .product {
+      background-color: #1a1a1a;
+      color: white;
+    }
+
+    body.dark input,
+    body.dark textarea {
+      background-color: #333;
+      color: white;
+      border-color: #555;
+    }
+
+    body.dark button {
+      background-color: white;
       color: black;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .nav-center {
-        position: static;
-        transform: none;
-        align-self: center;
-        margin-top: 10px;
-      }
-
-      .main h1 {
-        font-size: 2em;
-      }
+    body.dark #toTop {
+      background-color: white;
+      color: black;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-left">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-center">
-      <img src="images/logo-nav.jpeg" alt="vincode logo" />
-    </div>
-    <div class="auth">
-      <a href="login.html"><i class="fas fa-user"></i></a>
-      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
-    </div>
-  </nav>
-
-  <div class="main">
-    <h1>vincode</h1>
-    <p>Unlock Your Code</p>
-    <a href="products.html">쇼핑 시작하기</a>
+<nav>
+  <div class="nav-left">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </div>
+  <div class="nav-center">
+    <img src="images/logo-nav.jpeg" alt="vincode logo" />
+  </div>
+  <div class="auth">
+    <a href="login.html"><i class="fas fa-user"></i></a>
+    <a href="signup.html"><i class="fas fa-user-plus"></i></a>
+  </div>
+</nav>
+
+<h1>vincode 제품 목록</h1>
+<div class="search-filter">
+  <div class="filters">
+    <button onclick="filterCategory('전체')" class="active">전체</button>
+    <button onclick="filterCategory('후드티')">후드티</button>
+    <button onclick="filterCategory('반바지')">반바지</button>
+    <button onclick="filterCategory('긴바지')">긴바지</button>
+    <button onclick="filterCategory('키링')">키링</button>
+  </div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." />
+  </div>
+</div>
+
+<div class="grid" id="product-grid"></div>
+
+<!-- 다크모드 토글 버튼 -->
+<button id="darkToggle" style="position: fixed; top: 20px; right: 70px; background: none; border: none; font-size: 1.2em; cursor: pointer; z-index: 9999;"><i class="fas fa-moon"></i></button>
+
+<!-- 위로가기 버튼 -->
+<button onclick="scrollToTop()" id="toTop" style="position: fixed; bottom: 30px; right: 30px; background-color: black; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 18px; cursor: pointer; display: none; z-index: 9999;">↑</button>
+
+<script>
+  const allProducts = [
+    { id: "hoodiezipup", name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+    { id: "hoodie", name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+    { id: "mtm", name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
+    { id: "shorts", name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
+    { id: "pants", name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
+    { id: "keyring", name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
+  ];
+
+  let selectedCategory = "전체";
+
+  function renderProducts() {
+    const keyword = document.getElementById("searchInput").value.toLowerCase();
+    const filtered = allProducts.filter(item => {
+      const matchKeyword = item.name.toLowerCase().includes(keyword);
+      const matchCategory = selectedCategory === "전체" || item.category === selectedCategory;
+      return matchKeyword && matchCategory;
+    });
+
+    const container = document.getElementById("product-grid");
+    container.innerHTML = "";
+
+    if (filtered.length === 0) {
+      container.innerHTML = "<p>검색 결과가 없습니다.</p>";
+      return;
+    }
+
+    filtered.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.setAttribute("data-id", item.id);
+      div.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" />
+        <h3>${item.name}</h3>
+        <p>${item.price}</p>
+        <button class="favorite" onclick="toggleFavorite(this, '${item.id}')">♡</button>
+      `;
+      container.appendChild(div);
+    });
+
+    applyFavorites();
+  }
+
+  function toggleFavorite(element, productId) {
+    element.classList.toggle('active');
+    const isActive = element.classList.contains('active');
+    element.textContent = isActive ? '❤️' : '♡';
+
+    let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+    if (isActive) {
+      if (!favorites.includes(productId)) favorites.push(productId);
+    } else {
+      favorites = favorites.filter(id => id !== productId);
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }
+
+  function applyFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    document.querySelectorAll('.product').forEach(product => {
+      const id = product.getAttribute('data-id');
+      if (favorites.includes(id)) {
+        const fav = product.querySelector('.favorite');
+        fav.classList.add('active');
+        fav.textContent = '❤️';
+      }
+    });
+  }
+
+  function filterCategory(category) {
+    selectedCategory = category;
+    document.querySelectorAll(".filters button").forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
+    renderProducts();
+  }
+
+  document.getElementById("searchInput").addEventListener("input", renderProducts);
+
+  window.addEventListener("DOMContentLoaded", () => {
+    renderProducts();
+  });
+
+  // 다크모드 토글
+  const toggle = document.getElementById("darkToggle");
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+  });
+
+  // 위로가기 버튼
+  const toTop = document.getElementById("toTop");
+  window.onscroll = function () {
+    toTop.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+  };
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 
 </body>
 </html>
