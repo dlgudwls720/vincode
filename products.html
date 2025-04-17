@@ -42,36 +42,6 @@
       margin-bottom: 20px;
     }
 
-    .search-container input {
-      padding: 10px;
-      width: 250px;
-      border-radius: 25px;
-      border: none;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .filter-buttons {
-      margin-bottom: 30px;
-    }
-
-    .filter-buttons button {
-      margin: 5px;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 20px;
-      background-color: #333;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .filter-buttons button.active,
-    .filter-buttons button:hover {
-      background-color: #ffcc00;
-      color: #000;
-    }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -122,98 +92,80 @@
 <nav class="navbar">
   <a href="index.html">Home</a>
   <a href="products.html">Products</a>
+  <a href="wishlist.html">찜한 상품</a>
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
 </nav>
 
 <h1>vincode 제품 목록</h1>
 
-<div class="search-container">
-  <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." onkeyup="filterSearch()" />
-</div>
-
-<div class="filter-buttons">
-  <button class="active" onclick="filterCategory('all')">전체</button>
-  <button onclick="filterCategory('후드티')">후드티</button>
-  <button onclick="filterCategory('맨투맨')">맨투맨</button>
-  <button onclick="filterCategory('반바지')">반바지</button>
-  <button onclick="filterCategory('긴바지')">긴바지</button>
-  <button onclick="filterCategory('키링')">키링</button>
-</div>
-
-<div class="grid" id="productGrid">
-
-  <div class="product" data-category="후드티">
+<div class="grid">
+  <div class="product" data-id="hoodie1">
     <img src="https://via.placeholder.com/300x200" alt="후드집업" />
     <h3>후드집업</h3>
     <p>₩69,000</p>
-    <span class="favorite" onclick="toggleFavorite(this)">♡</span>
+    <span class="favorite" onclick="toggleFavorite(this, 'hoodie1')">♡</span>
   </div>
-
-  <div class="product" data-category="후드티">
+  <div class="product" data-id="hoodie2">
     <img src="https://via.placeholder.com/300x200" alt="후드티" />
     <h3>후드티</h3>
     <p>₩47,000</p>
-    <span class="favorite" onclick="toggleFavorite(this)">♡</span>
+    <span class="favorite" onclick="toggleFavorite(this, 'hoodie2')">♡</span>
   </div>
-
-  <div class="product" data-category="맨투맨">
+  <div class="product" data-id="mtm1">
     <img src="https://via.placeholder.com/300x200" alt="맨투맨" />
     <h3>맨투맨</h3>
     <p>₩34,000</p>
-    <span class="favorite" onclick="toggleFavorite(this)">♡</span>
+    <span class="favorite" onclick="toggleFavorite(this, 'mtm1')">♡</span>
   </div>
-
-  <div class="product" data-category="반바지">
+  <div class="product" data-id="short1">
     <img src="https://via.placeholder.com/300x200" alt="반바지" />
     <h3>반바지</h3>
     <p>₩30,000</p>
-    <span class="favorite" onclick="toggleFavorite(this)">♡</span>
+    <span class="favorite" onclick="toggleFavorite(this, 'short1')">♡</span>
   </div>
-
-  <div class="product" data-category="긴바지">
+  <div class="product" data-id="pants1">
     <img src="https://via.placeholder.com/300x200" alt="긴바지" />
     <h3>긴바지</h3>
     <p>₩37,000</p>
-    <span class="favorite" onclick="toggleFavorite(this)">♡</span>
+    <span class="favorite" onclick="toggleFavorite(this, 'pants1')">♡</span>
   </div>
-
-  <div class="product" data-category="키링">
+  <div class="product" data-id="keyring1">
     <img src="https://via.placeholder.com/300x200" alt="키링" />
     <h3>키링</h3>
     <p>₩15,000</p>
-    <span class="favorite" onclick="toggleFavorite(this)">♡</span>
+    <span class="favorite" onclick="toggleFavorite(this, 'keyring1')">♡</span>
   </div>
-
 </div>
 
 <script>
-  function toggleFavorite(element) {
+  function toggleFavorite(element, productId) {
     element.classList.toggle('active');
-    element.textContent = element.classList.contains('active') ? '❤️' : '♡';
+    const isActive = element.classList.contains('active');
+    element.textContent = isActive ? '❤️' : '♡';
+
+    let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+    if (isActive) {
+      if (!favorites.includes(productId)) favorites.push(productId);
+    } else {
+      favorites = favorites.filter(id => id !== productId);
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   }
 
-  function filterCategory(category) {
-    const buttons = document.querySelectorAll(".filter-buttons button");
-    buttons.forEach(btn => btn.classList.remove("active"));
-    event.target.classList.add("active");
-
-    const keyword = document.getElementById("searchInput").value.toLowerCase();
-    const products = document.querySelectorAll(".product");
-
-    products.forEach(product => {
-      const productCategory = product.getAttribute("data-category");
-      const productName = product.querySelector("h3").textContent.toLowerCase();
-      const matchSearch = productName.includes(keyword);
-      const matchCategory = category === "all" || productCategory === category;
-      product.style.display = matchSearch && matchCategory ? "block" : "none";
+  window.addEventListener('DOMContentLoaded', () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    document.querySelectorAll('.product').forEach(product => {
+      const id = product.getAttribute('data-id');
+      if (favorites.includes(id)) {
+        const fav = product.querySelector('.favorite');
+        fav.classList.add('active');
+        fav.textContent = '❤️';
+      }
     });
-  }
-
-  function filterSearch() {
-    const activeCategory = document.querySelector(".filter-buttons .active").textContent;
-    filterCategory(activeCategory);
-  }
+  });
 </script>
 
 </body>
