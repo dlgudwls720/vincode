@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>결제 - vincode</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: white;
+      color: black;
+      padding: 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      flex-wrap: wrap;
+    }
+
+    .nav-left, .auth {
+      display: flex;
+      gap: 15px;
+      font-weight: bold;
+      flex-wrap: wrap;
+    }
+
+    .nav-left a, .auth a {
+      text-decoration: none;
+      color: black;
+      transition: 0.3s;
+    }
+
+    .nav-left a:hover, .auth a:hover {
+      color: black;
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-center img {
+      height: 35px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 2em;
+    }
+
+    .checkout-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .checkout-container h2 {
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .payment-methods label {
+      margin-right: 20px;
+    }
+
+    .order-summary ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .order-summary li {
+      margin-bottom: 10px;
+    }
+
+    .checkout-button {
+      width: 100%;
+      padding: 12px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .checkout-button:hover {
+      background-color: #222;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-center {
+        position: static;
+        transform: none;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="checkout.html">Checkout</a>
+  </div>
+  <div class="nav-center">
+    <img src="images/logo-nav.jpeg" alt="vincode logo" />
+  </div>
+  <div class="auth">
+    <a href="login.html"><i class="fas fa-user"></i></a>
+    <a href="signup.html"><i class="fas fa-user-plus"></i></a>
+  </div>
+</nav>
+
+<h1>결제하기</h1>
+<div class="checkout-container">
+  <h2>배송 정보</h2>
+  <div class="form-group">
+    <label>이름</label>
+    <input type="text" placeholder="홍길동" />
+  </div>
+  <div class="form-group">
+    <label>주소</label>
+    <input type="text" placeholder="서울시 강남구 ..." />
+  </div>
+  <div class="form-group">
+    <label>연락처</label>
+    <input type="text" placeholder="010-1234-5678" />
+  </div>
+  <div class="form-group">
+    <label>이메일</label>
+    <input type="email" placeholder="example@email.com" />
+  </div>
+
+  <h2>결제 수단</h2>
+  <div class="form-group payment-methods">
+    <label><input type="radio" name="payment" checked /> 카드 결제</label>
+    <label><input type="radio" name="payment" /> 카카오페이</label>
+    <label><input type="radio" name="payment" /> 네이버페이</label>
+  </div>
+
+  <div class="order-summary">
+    <h2>주문 상품</h2>
+    <ul>
+      <li>후드집업 - ₩69,000</li>
+      <li>키링 - ₩15,000</li>
+    </ul>
+    <p><strong>총합계: ₩84,000</strong></p>
+  </div>
+
+  <button class="checkout-button">결제하기</button>
+</div>
+
+</body>
+</html>
