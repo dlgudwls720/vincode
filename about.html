@@ -16,31 +16,35 @@
       background-color: white;
       color: black;
       font-family: 'Arial', sans-serif;
+      line-height: 1.6;
     }
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 15px 20px;
       background-color: white;
       border-bottom: 1px solid #ddd;
       position: relative;
     }
 
-    .nav-left, .auth {
+    .nav-left {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       font-weight: bold;
+      flex-wrap: wrap;
     }
 
-    .nav-left a, .auth a {
+    .nav-left a {
       text-decoration: none;
       color: black;
       transition: 0.3s;
+      font-size: 0.95em;
     }
 
-    .nav-left a:hover, .auth a:hover {
+    .nav-left a:hover {
       color: black;
     }
 
@@ -51,36 +55,59 @@
     }
 
     .nav-center img {
-      height: 40px;
+      height: 30px;
+    }
+
+    .auth a {
+      display: inline-block;
+      margin-left: 10px;
+      color: black;
+      font-size: 1.2em;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
     h1 {
       text-align: center;
       font-size: 2.5em;
-      margin: 40px 0 10px;
-    }
-
-    .about-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px 40px;
-      text-align: center;
-    }
-
-    .about-container p {
-      font-size: 1.1em;
       margin-bottom: 20px;
     }
 
-    .about-container a {
-      text-decoration: none;
-      color: #ffcc00;
-      font-weight: bold;
+    p {
+      text-align: center;
+      font-size: 1.1em;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .nav-center {
+        position: static;
+        transform: none;
+        align-self: center;
+        margin-top: 10px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      p {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <div class="nav-left">
       <a href="index.html">Home</a>
@@ -93,26 +120,16 @@
       <img src="images/logo-nav.jpeg" alt="vincode logo" />
     </div>
     <div class="auth">
-      <a href="login.html">
-        <i class="fas fa-user"></i> 로그인
-      </a>
-      <a href="signup.html">
-        <i class="fas fa-user-plus"></i> 회원가입
-      </a>
+      <a href="login.html"><i class="fas fa-user"></i></a>
+      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
     </div>
   </nav>
 
-  <h1>브랜드 소개</h1>
-
-  <div class="about-container">
-    <p>
-      vincode는 ‘스트릿 아이템’을 해방시키는 브랜드입니다. <br />
-      단순한 옷이 아닌, 거리에서의 존재감과 스타일을 표현할 수 있는 도구를 만듭니다. <br />
-      10대 후반부터 20대 중반까지의 세대를 위한 감각적이고 과감한 디자인, 그리고 개선을 중시하는 철학을 담고 있습니다.
-    </p>
-
-    <p>vincode는 자신만의 색을 가진 이들을 위해 존재합니다.</p>
-  </div>
-
+  <main>
+    <h1>vincode</h1>
+    <p>우리는 개성과 창의성을 중시하는 스트릿웨어 브랜드입니다. 
+       10대 후반에서 20대 중반을 위한 유니크한 감성과 트렌디한 디자인을 담아, 
+       나만의 코드를 패션으로 표현할 수 있도록 도와드립니다.</p>
+  </main>
 </body>
 </html>
