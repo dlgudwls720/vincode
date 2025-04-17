@@ -2,8 +2,8 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>vincode - 홈</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,9 +13,8 @@
 
     body {
       background-color: #ffffff;
+      color: #000000;
       font-family: 'Arial', sans-serif;
-      color: #000;
-      overflow-x: hidden;
     }
 
     nav {
@@ -32,114 +31,86 @@
       border-bottom: 1px solid #ddd;
     }
 
-    .logo {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #000;
-    }
-
-    .menu, .auth {
+    .menu {
       display: flex;
       gap: 20px;
     }
 
     nav a {
       text-decoration: none;
-      color: #000;
+      color: black;
       font-weight: bold;
       transition: 0.3s;
     }
 
     nav a:hover {
-      color: #000;
+      color: black;
     }
 
-    .hero {
-      height: 100vh;
+    .auth {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      gap: 20px;
+    }
+
+    .main {
+      margin-top: 120px;
       text-align: center;
-      background-color: #ffffff;
-      position: relative;
     }
 
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: bold;
-      opacity: 0;
-      color: #000;
-      animation: fadeIn 1s ease-in-out 0.5s forwards;
+    .main img {
+      width: 180px;
+      height: auto;
     }
 
-    .hero h1 span {
-      color: #000;
-    }
-
-    .hero p {
-      margin-top: 20px;
-      font-size: 1.2rem;
-      opacity: 0;
-      color: #000;
-      animation: fadeIn 1s ease-in-out 1s forwards;
-    }
-
-    .start-button {
+    .main h1 {
+      font-size: 2.5em;
       margin-top: 30px;
+    }
+
+    .main p {
+      margin-top: 10px;
+      font-size: 1.1em;
+    }
+
+    .main button {
+      margin-top: 25px;
       padding: 12px 28px;
-      font-size: 1rem;
       background-color: #ffcc00;
-      color: #000;
       border: none;
       border-radius: 30px;
-      cursor: pointer;
-      font-weight: bold;
-      opacity: 0;
-      animation: fadeIn 1s ease-in-out 1.5s forwards;
-    }
-
-    .start-button:hover {
-      background-color: #ffcc00;
       color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .main button:hover {
+      background-color: #e6b800;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="logo">vincode</div>
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="auth">
-      <a href="login.html">Login</a>
-      <a href="signup.html">Signup</a>
-    </div>
-  </nav>
-
-  <div class="hero">
-    <div>
-      <h1><span>Feel</span> The Street <span>Vibe</span></h1>
-      <p>Unlock Your Code</p>
-      <button class="start-button" onclick="location.href='products.html'">쇼핑 시작</button>
-    </div>
+<nav>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </div>
+  <div class="auth">
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+  </div>
+</nav>
+
+<div class="main">
+  <img src="91222CBA-A276-4E7F-9BF9-4B1122CFC496.jpeg" alt="Vincode Logo" />
+  <h1>Feel The Street Vibe</h1>
+  <p>Unlock Your Code</p>
+  <button onclick="location.href='products.html'">쇼핑 시작</button>
+</div>
 
 </body>
 </html>
-
