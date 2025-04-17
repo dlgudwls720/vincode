@@ -5,116 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode - 제품 목록</title>
   <style>
-    body {
-      background-color: #0e0e0e;
-      color: white;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .navbar {
-      background-color: #1a1a1a;
-      padding: 10px 0;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .navbar a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1em;
-      transition: color 0.3s;
-    }
-
-    .navbar a:hover {
-      color: #ffcc00;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .product {
-      background-color: #1c1c1c;
-      padding: 20px;
-      border-radius: 10px;
-      position: relative;
-    }
-
-    .product img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-
-    .product h3 {
-      margin: 10px 0 5px;
-    }
-
-    .product p {
-      font-size: 0.9em;
-      opacity: 0.8;
-    }
-
-    .favorite {
-      cursor: pointer;
-      font-size: 1.5em;
-      color: #888;
-      transition: color 0.3s;
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    .favorite.active {
-      color: #ff3366;
-    }
-  </style>
-</head>
-<body>
-
-<nav class="navbar">
-  <a href="index.html">Home</a>
-  <a href="products.html">Products</a>
-  <a href="wishlist.html">찜한 상품</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</nav>
-
-<h1>vincode 제품 목록</h1>
-
-<div class="grid">
-  <div class="product" data-id="hoodie1">
-    <img src="https://via.placeholder.com/300x200" alt="후드집업" />
-    <h3>후드집업</h3>
-    <p>₩69,000</p>
-    <span class="favorite" onclick="toggleFavorite(this, 'hoodie1')">♡</span>
-  </div>
-  <div class="product" data-id="hoodie2">
-    <img src="https://via.placeholder.com/300x200" alt="후드티" />
-    <h3>후드티</h3>
-    <p>₩47,000</p>
-    <span class="favorite" onclick="toggleFavorite(this, 'hoodie2')">♡</span>
-  </div>
-  <div class="product" data-id="mtm1">
-    <img src="https://via.placeholder.com/300x200" alt="맨투맨" />
-    <h3>맨투맨</h3>
+    body { background-color: #0e0e0e; color: white; font-family: 'Arial', sans-serif; margin: 0; padding: 40px 20px; text-align: center; }
+    .navbar { background-color: #1a1a1a; padding: 10px 0; display: flex; justify-content: center; gap: 30px; position: sticky; top: 0; z-index: 999; }
+    .navbar a { color: white; text-decoration: none; font-weight: bold; font-size: 1em; transition: color 0.3s; }
+    .navbar a:hover { color: #ffcc00; }
+    h1 { font-size: 2.5em; margin-bottom: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+    .product { background-color: #1c1c1c; padding: 20px; border-radius: 10px; position: relative; }
+    .product img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; }
+    .product h3 { margin: 10px 0 5px; }
+    .product p { font-size: 0.9em; opacity: 0.8; }
+    .favorite { cursor: pointer; font-size: 1.5em; color: #888; transition: color 0.3s; display: inline-block; margin-top: 10px; }
+    .favorite.activ맨</h3>
     <p>₩34,000</p>
     <span class="favorite" onclick="toggleFavorite(this, 'mtm1')">♡</span>
   </div>
@@ -125,7 +27,7 @@
     <span class="favorite" onclick="toggleFavorite(this, 'short1')">♡</span>
   </div>
   <div class="product" data-id="pants1">
-    <img src="https://via.placeholder.com/300x200" alt="긴바지" />
+    <img src="https://via.placeholder.com/300x200" alt="길바지" />
     <h3>긴바지</h3>
     <p>₩37,000</p>
     <span class="favorite" onclick="toggleFavorite(this, 'pants1')">♡</span>
@@ -145,13 +47,11 @@
     element.textContent = isActive ? '❤️' : '♡';
 
     let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-
     if (isActive) {
       if (!favorites.includes(productId)) favorites.push(productId);
     } else {
       favorites = favorites.filter(id => id !== productId);
     }
-
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }
 
