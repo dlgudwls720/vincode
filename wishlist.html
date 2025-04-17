@@ -146,18 +146,21 @@
       keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
     };
 
+    // localStorage에서 찜한 상품을 가져옵니다.
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     const container = document.getElementById("wishlist-container");
 
     function renderProducts() {
-      container.innerHTML = "";
+      container.innerHTML = "";  // 처음에 비워두기
+
       if (favorites.length === 0) {
         container.innerHTML = "<p>찜한 상품이 없습니다.</p>";
         return;
       }
 
+      // 찜한 상품들을 보여줍니다.
       favorites.forEach(id => {
-        const item = allProducts[id];
+        const item = allProducts[id];  // 상품 정보를 찾기
         if (item) {
           const div = document.createElement("div");
           div.className = "product";
@@ -172,7 +175,7 @@
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-      renderProducts();
+      renderProducts();  // 페이지 로딩 시 찜한 상품 렌더링
     });
   </script>
 
