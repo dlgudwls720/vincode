@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>문의하기 - vincode</title>
+  <title>Contact - vincode</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -59,50 +60,26 @@
       margin: 40px 0 10px;
     }
 
-    .contact-form {
-      width: 100%;
-      max-width: 600px;
+    .contact-container {
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 20px;
-      background-color: #f1f1f1;
-      border-radius: 10px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    .contact-form button {
-      background-color: #ffcc00;
-      padding: 10px 20px;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .contact-form button:hover {
-      background-color: #e6b800;
-    }
-
-    .contact-info {
+      padding: 0 20px 40px;
       text-align: center;
-      margin-top: 20px;
     }
 
-    .contact-info p {
+    .contact-container p {
       font-size: 1.1em;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
-    .contact-info a {
-      color: #ffcc00;
+    .contact-container a {
       text-decoration: none;
+      color: #ffcc00;
+      font-weight: bold;
+    }
+
+    .contact-container .auth {
+      margin-top: 30px;
     }
   </style>
 </head>
@@ -131,16 +108,23 @@
 
   <h1>문의하기</h1>
 
-  <div class="contact-form">
-    <input type="text" placeholder="이름" />
-    <input type="email" placeholder="이메일" />
-    <textarea placeholder="문의 내용을 작성하세요..."></textarea>
-    <button>문의하기</button>
+  <div class="contact-container">
+    <p>
+      궁금한 점이 있으신가요? <br />
+      아래 연락처로 언제든지 문의해 주세요!
+    </p>
+
+    <p>이메일: vincodebrand@gmail.com</p>
+    <p>인스타그램: @vincode.official</p>
   </div>
 
-  <div class="contact-info">
-    <p>이메일: vincode@example.com</p>
-    <p>인스타그램: <a href="https://www.instagram.com/vincode_official">@vincode_official</a></p>
+  <div class="auth">
+    <a href="login.html">
+      <i class="fas fa-user"></i> 로그인
+    </a>
+    <a href="signup.html">
+      <i class="fas fa-user-plus"></i> 회원가입
+    </a>
   </div>
 
 </body>
