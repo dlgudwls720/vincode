@@ -1,77 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode - 제품 목록</title>
   <style>
-    body {
-      background-color: #ffffff;
-      color: #000000;
-      font-family: 'Arial', sans-serif;
+    * {
       margin: 0;
-      padding: 40px 20px;
-      text-align: center;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .navbar {
-      background-color: #ffffff;
-      padding: 10px 0;
+    body {
+      background-color: white;
+      color: black;
+      font-family: 'Arial', sans-serif;
+    }
+
+    nav {
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      position: sticky;
-      top: 0;
-      z-index: 999;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: white;
       border-bottom: 1px solid #ddd;
+      position: relative;
     }
 
-    .navbar a {
-      color: #000000;
-      text-decoration: none;
+    .nav-left, .auth {
+      display: flex;
+      gap: 20px;
       font-weight: bold;
-      font-size: 1em;
-      transition: color 0.3s;
     }
 
-    .navbar a:hover {
-      color: #000000;
+    .nav-left a, .auth a {
+      text-decoration: none;
+      color: black;
+      transition: 0.3s;
+    }
+
+    .nav-left a:hover, .auth a:hover {
+      color: black;
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-center img {
+      height: 40px;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-
-    .filters, .search-container {
-      margin: 20px 0;
-    }
-
-    .filters button {
-      background-color: #ffffff;
-      border: 1px solid #000000;
-      border-radius: 20px;
-      padding: 10px 20px;
-      margin: 5px;
-      color: #000000;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .filters button.active, .filters button:hover {
-      background-color: #000000;
-      color: #ffffff;
-    }
-
-    .search-container input {
-      padding: 12px;
-      width: 80%;
-      max-width: 400px;
-      border-radius: 30px;
-      border: 1px solid #000000;
-      font-size: 1em;
       text-align: center;
-      color: #000;
+      font-size: 2.5em;
+      margin: 40px 0 20px;
     }
 
     .grid {
@@ -80,12 +65,14 @@
       gap: 20px;
       max-width: 1000px;
       margin: 0 auto;
+      padding: 0 20px 40px;
     }
 
     .product {
-      background-color: #f2f2f2;
+      background-color: #f1f1f1;
       padding: 20px;
       border-radius: 10px;
+      text-align: center;
     }
 
     .product img {
@@ -95,17 +82,23 @@
       border-radius: 5px;
     }
 
-    .product h3, .product p {
-      color: #000;
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+
+    .product p {
+      font-size: 0.9em;
+      opacity: 0.8;
     }
 
     .favorite {
-      cursor: pointer;
+      background: none;
+      border: none;
       font-size: 1.5em;
+      cursor: pointer;
+      margin-top: 10px;
       color: #888;
       transition: color 0.3s;
-      display: inline-block;
-      margin-top: 10px;
     }
 
     .favorite.active {
@@ -115,91 +108,81 @@
 </head>
 <body>
 
-<nav class="navbar">
-  <a href="index.html">Home</a>
-  <a href="products.html">Products</a>
-  <a href="wishlist.html">Wishlist</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
+<nav>
+  <div class="nav-left">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-center">
+    <img src="images/logo-nav.jpeg" alt="vincode logo" />
+  </div>
+  <div class="auth">
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+  </div>
 </nav>
 
 <h1>vincode 제품 목록</h1>
-
-<div class="search-container">
-  <input type="text" id="searchInput" placeholder="제품명을 검색하세요...">
+<div class="grid">
+  <div class="product" data-id="hoodiezipup">
+    <img src="https://via.placeholder.com/300x200" alt="후드집업" />
+    <h3>후드집업</h3>
+    <p>₩69,000</p>
+    <button class="favorite" onclick="toggleFavorite(this, 'hoodiezipup')">♡</button>
+  </div>
+  <div class="product" data-id="hoodie">
+    <img src="https://via.placeholder.com/300x200" alt="후드티" />
+    <h3>후드티</h3>
+    <p>₩47,000</p>
+    <button class="favorite" onclick="toggleFavorite(this, 'hoodie')">♡</button>
+  </div>
+  <div class="product" data-id="mtm">
+    <img src="https://via.placeholder.com/300x200" alt="맨투맨" />
+    <h3>맨투맨</h3>
+    <p>₩34,000</p>
+    <button class="favorite" onclick="toggleFavorite(this, 'mtm')">♡</button>
+  </div>
+  <div class="product" data-id="shorts">
+    <img src="https://via.placeholder.com/300x200" alt="반바지" />
+    <h3>반바지</h3>
+    <p>₩30,000</p>
+    <button class="favorite" onclick="toggleFavorite(this, 'shorts')">♡</button>
+  </div>
+  <div class="product" data-id="pants">
+    <img src="https://via.placeholder.com/300x200" alt="긴바지" />
+    <h3>긴바지</h3>
+    <p>₩37,000</p>
+    <button class="favorite" onclick="toggleFavorite(this, 'pants')">♡</button>
+  </div>
+  <div class="product" data-id="keyring">
+    <img src="https://via.placeholder.com/300x200" alt="키링" />
+    <h3>키링</h3>
+    <p>₩15,000</p>
+    <button class="favorite" onclick="toggleFavorite(this, 'keyring')">♡</button>
+  </div>
 </div>
-
-<div class="filters">
-  <button onclick="filterProducts('전체')" class="active">전체</button>
-  <button onclick="filterProducts('후드집업')">후드집업</button>
-  <button onclick="filterProducts('후드티')">후드티</button>
-  <button onclick="filterProducts('맨투맨')">맨투맨</button>
-  <button onclick="filterProducts('반바지')">반바지</button>
-  <button onclick="filterProducts('긴바지')">긴바지</button>
-  <button onclick="filterProducts('키링')">키링</button>
-</div>
-
-<div class="grid" id="productGrid"></div>
 
 <script>
-  const allProducts = {
-    hoodiezipup1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드집업" },
-    hoodie2: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-    mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
-    short1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
-    pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
-    keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
-  };
-
-  let selectedCategory = '전체';
-
-  function renderProducts() {
-    const container = document.getElementById('productGrid');
-    const searchValue = document.getElementById('searchInput').value.toLowerCase();
-    container.innerHTML = '';
-
-    Object.entries(allProducts).forEach(([id, item]) => {
-      if ((selectedCategory === '전체' || item.category === selectedCategory) && item.name.toLowerCase().includes(searchValue)) {
-        const div = document.createElement('div');
-        div.className = 'product';
-        div.innerHTML = `
-          <img src="${item.img}" alt="${item.name}" />
-          <h3>${item.name}</h3>
-          <p>${item.price}</p>
-          <span class="favorite" onclick="toggleFavorite(this, '${id}')">♡</span>
-        `;
-        container.appendChild(div);
-      }
-    });
-  }
-
-  function filterProducts(category) {
-    selectedCategory = category;
-    document.querySelectorAll('.filters button').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    renderProducts();
-  }
-
   function toggleFavorite(element, productId) {
+    element.classList.toggle('active');
+    const isActive = element.classList.contains('active');
+    element.textContent = isActive ? '❤️' : '♡';
+
     let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
 
-    if (favorites.includes(productId)) {
-      favorites = favorites.filter(id => id !== productId);
-      element.classList.remove('active');
-      element.textContent = '♡';
+    if (isActive) {
+      if (!favorites.includes(productId)) favorites.push(productId);
     } else {
-      favorites.push(productId);
-      element.classList.add('active');
-      element.textContent = '❤️';
+      favorites = favorites.filter(id => id !== productId);
     }
 
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }
 
-  document.getElementById('searchInput').addEventListener('input', renderProducts);
-
   window.addEventListener('DOMContentLoaded', () => {
-    renderProducts();
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     document.querySelectorAll('.product').forEach(product => {
       const id = product.getAttribute('data-id');
