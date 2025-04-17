@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>찜한 상품 - vincode</title>
+  <title>vincode - Home</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * {
@@ -57,48 +57,55 @@
       height: 30px;
     }
 
-    h1 {
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
       text-align: center;
-      font-size: 2em;
-      margin: 30px 0 15px;
+      padding: 20px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 15px 40px;
+    .main h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-out forwards;
     }
 
-    .product {
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      transition: box-shadow 0.3s;
-    }
-
-    .product:hover {
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .product img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-
-    .product h3 {
-      margin: 10px 0 5px;
-      font-size: 1em;
-    }
-
-    .product p {
-      font-size: 0.9em;
+    .main p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
       opacity: 0.8;
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    .main a {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background-color 0.3s, color 0.3s;
+      animation: fadeIn 2s ease-out forwards;
+    }
+
+    .main a:hover {
+      background-color: #ffcc00;
+      color: black;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 480px) {
@@ -115,13 +122,8 @@
         margin-top: 10px;
       }
 
-      h1 {
-        font-size: 1.8em;
-        margin: 25px 0 10px;
-      }
-
-      .product img {
-        height: 150px;
+      .main h1 {
+        font-size: 2em;
       }
     }
   </style>
@@ -145,49 +147,11 @@
     </div>
   </nav>
 
-  <h1>찜한 상품</h1>
-
-  <div class="grid" id="wishlist-container">
-    <!-- 찜한 상품 동적으로 표시 -->
+  <div class="main">
+    <h1>vincode</h1>
+    <p>Unlock Your Code</p>
+    <a href="products.html">쇼핑 시작하기</a>
   </div>
-
-  <script>
-    const allProducts = {
-      hoodiezipup1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-      hoodie1: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-      mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
-      shorts1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
-      pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
-      keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
-    };
-
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const container = document.getElementById("wishlist-container");
-
-    function renderProducts() {
-      container.innerHTML = "";
-      if (favorites.length === 0) {
-        container.innerHTML = "<p style='text-align:center;'>찜한 상품이 없습니다.</p>";
-        return;
-      }
-
-      favorites.forEach(id => {
-        const item = allProducts[id];
-        if (item) {
-          const div = document.createElement("div");
-          div.className = "product";
-          div.innerHTML = `
-            <img src="${item.img}" alt="${item.name}" />
-            <h3>${item.name}</h3>
-            <p>${item.price}</p>
-          `;
-          container.appendChild(div);
-        }
-      });
-    }
-
-    window.addEventListener("DOMContentLoaded", renderProducts);
-  </script>
 
 </body>
 </html>
