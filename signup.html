@@ -4,147 +4,75 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>회원가입 - vincode</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       background-color: white;
       color: black;
-      font-family: 'Arial', sans-serif;
-    }
-
-    nav {
+      font-family: Arial, sans-serif;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: white;
-      border-bottom: 1px solid #ddd;
-      position: relative;
-    }
-
-    .nav-left, .auth {
-      display: flex;
-      gap: 20px;
-      font-weight: bold;
-    }
-
-    .nav-left a, .auth a {
-      text-decoration: none;
-      color: black;
-      transition: 0.3s;
-    }
-
-    .nav-left a:hover, .auth a:hover {
-      color: black;
-    }
-
-    .nav-center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .nav-center img {
-      height: 40px;
-    }
-
-    .signup-container {
-      display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      text-align: center;
     }
 
-    .signup-container h2 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
+    .signup-container {
+      width: 350px;
+      padding: 20px;
+      background-color: #f8f8f8;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
 
     .signup-container input {
-      padding: 10px;
       width: 100%;
-      max-width: 400px;
-      margin-bottom: 20px;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-      text-align: center;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 1em;
     }
 
     .signup-container button {
-      padding: 12px 28px;
+      width: 100%;
+      padding: 12px;
       background-color: #ffcc00;
-      color: black;
-      font-weight: bold;
       border: none;
-      border-radius: 30px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      color: white;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
 
     .signup-container button:hover {
       background-color: #e6b800;
     }
 
-    .auth-link {
-      margin-top: 20px;
-      font-size: 1em;
+    .signup-container p {
+      font-size: 0.9em;
+      margin-top: 10px;
     }
 
-    .auth-link a {
+    .signup-container p a {
       text-decoration: none;
-      color: black;
-    }
-
-    .auth-link a:hover {
       color: #ffcc00;
     }
 
+    .signup-container p a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-left">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-center">
-      <img src="images/logo-nav.jpeg" alt="vincode logo" />
-    </div>
-    <div class="auth">
-      <a href="login.html">
-        <i class="fas fa-user"></i> 로그인
-      </a>
-      <a href="signup.html">
-        <i class="fas fa-user-plus"></i> 회원가입
-      </a>
-    </div>
-  </nav>
-
   <div class="signup-container">
     <h2>회원가입</h2>
-    <form action="" method="POST">
+    <form>
       <input type="email" placeholder="이메일" required />
       <input type="password" placeholder="비밀번호" required />
       <input type="password" placeholder="비밀번호 확인" required />
-      <button type="submit">
-        <i class="fas fa-user-plus"></i> 회원가입
-      </button>
+      <button type="submit">회원가입</button>
     </form>
-
-    <div class="auth-link">
-      <p>이미 계정이 있으신가요? <a href="login.html">로그인</a></p>
-    </div>
+    <p><a href="login.html">이미 계정이 있으신가요? 로그인</a></p>
   </div>
 </body>
 </html>
