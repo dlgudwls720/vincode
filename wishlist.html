@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>찜한 상품 - vincode</title>
+  <title>Wishlist - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * {
@@ -20,27 +20,25 @@
 
     nav {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
+      padding: 20px 40px;
       background-color: white;
       border-bottom: 1px solid #ddd;
       position: relative;
+      flex-wrap: wrap;
     }
 
     .nav-left, .auth {
       display: flex;
-      gap: 15px;
+      gap: 20px;
       font-weight: bold;
-      flex-wrap: wrap;
     }
 
     .nav-left a, .auth a {
       text-decoration: none;
       color: black;
       transition: 0.3s;
-      font-size: 0.95em;
     }
 
     .nav-left a:hover, .auth a:hover {
@@ -54,46 +52,40 @@
     }
 
     .nav-center img {
-      height: 30px;
+      height: 40px;
     }
 
     h1 {
       text-align: center;
-      font-size: 2em;
-      margin: 30px 0 15px;
+      font-size: 2.5em;
+      margin: 40px 0 10px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 0 15px 40px;
+      padding: 0 20px 80px;
     }
 
     .product {
-      background-color: #f9f9f9;
-      padding: 15px;
+      background-color: #f1f1f1;
+      padding: 20px;
       border-radius: 10px;
       text-align: center;
-      transition: box-shadow 0.3s;
-    }
-
-    .product:hover {
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .product img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
       border-radius: 5px;
     }
 
     .product h3 {
       margin: 10px 0 5px;
-      font-size: 1em;
     }
 
     .product p {
@@ -101,93 +93,116 @@
       opacity: 0.8;
     }
 
-    @media (max-width: 480px) {
+    .mobile-bottom-nav {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
       nav {
+        display: none;
+      }
+
+      .mobile-bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-top: 1px solid #ccc;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px 0;
+        z-index: 1000;
+      }
+
+      .mobile-bottom-nav a {
+        text-decoration: none;
+        color: black;
+        font-size: 0.8em;
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        align-items: center;
       }
 
-      .nav-center {
-        position: static;
-        transform: none;
-        align-self: center;
-        margin-top: 10px;
-      }
-
-      h1 {
-        font-size: 1.8em;
-        margin: 25px 0 10px;
-      }
-
-      .product img {
-        height: 150px;
+      .mobile-bottom-nav i {
+        font-size: 1.2em;
+        margin-bottom: 2px;
       }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-left">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-center">
-      <img src="images/logo-nav.jpeg" alt="vincode logo" />
-    </div>
-    <div class="auth">
-      <a href="login.html"><i class="fas fa-user"></i></a>
-      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
-    </div>
-  </nav>
-
-  <h1>찜한 상품</h1>
-
-  <div class="grid" id="wishlist-container">
-    <!-- 찜한 상품 동적으로 표시 -->
+<nav>
+  <div class="nav-left">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </div>
+  <div class="nav-center">
+    <img src="images/logo-nav.jpeg" alt="vincode logo" />
+  </div>
+  <div class="auth">
+    <a href="login.html"><i class="fas fa-user"></i></a>
+    <a href="signup.html"><i class="fas fa-user-plus"></i></a>
+  </div>
+</nav>
 
-  <script>
-    const allProducts = {
-      hoodiezipup1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-      hoodie1: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-      mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
-      shorts1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
-      pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
-      keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
-    };
+<h1>찜한 상품</h1>
 
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const container = document.getElementById("wishlist-container");
+<div class="grid" id="wishlist-container"></div>
 
-    function renderProducts() {
-      container.innerHTML = "";
-      if (favorites.length === 0) {
-        container.innerHTML = "<p style='text-align:center;'>찜한 상품이 없습니다.</p>";
-        return;
-      }
+<!-- 모바일 하단 메뉴 -->
+<div class="mobile-bottom-nav">
+  <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
+  <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
+  <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
+  <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
+  <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
+</div>
 
-      favorites.forEach(id => {
-        const item = allProducts[id];
-        if (item) {
-          const div = document.createElement("div");
-          div.className = "product";
-          div.innerHTML = `
-            <img src="${item.img}" alt="${item.name}" />
-            <h3>${item.name}</h3>
-            <p>${item.price}</p>
-          `;
-          container.appendChild(div);
-        }
-      });
+<script>
+  const allProducts = {
+    hoodiezipup: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+    hoodie: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+    mtm: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
+    shorts: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
+    pants: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
+    keyring: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
+  };
+
+  const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+  const container = document.getElementById("wishlist-container");
+
+  function renderProducts() {
+    container.innerHTML = "";
+    if (favorites.length === 0) {
+      container.innerHTML = "<p>찜한 상품이 없습니다.</p>";
+      return;
     }
 
-    window.addEventListener("DOMContentLoaded", renderProducts);
-  </script>
+    favorites.forEach(id => {
+      const item = allProducts[id];
+      if (item) {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.name}" />
+          <h3>${item.name}</h3>
+          <p>${item.price}</p>
+        `;
+        container.appendChild(div);
+      }
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    renderProducts();
+  });
+</script>
 
 </body>
 </html>
