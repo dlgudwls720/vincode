@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vincode</title>
   <style>
     body {
@@ -36,7 +36,14 @@
     }
 
     @keyframes fadeIn {
-      to {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+      100% {
         opacity: 1;
         transform: translateY(0);
       }
@@ -45,17 +52,42 @@
 </head>
 <body>
 
-  <h1 style="animation: fadeIn 1s ease-out forwards; animation-delay: 0.1s; opacity: 0; transform: translateY(20px);">
+  <h1 style="
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+    
+  ">
     vincode
   </h1>
 
-  <p style="animation: fadeIn 1s ease-out forwards; animation-delay: 0.3s; opacity: 0; transform: translateY(20px);">
+  <p style="
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+  ">
     Unlock your street identity.
   </p>
 
-  <a href="products.html" class="button" style="animation: fadeIn 1s ease-out forwards; animation-delay: 0.5s; opacity: 0; transform: translateY(20px);">
+  <a href="products.html" class="button" style="
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+  ">
     제품 확인하기
   </a>
+
+  <script>
+    // 트리거를 보장하기 위해 JS로 강제 리페인트 처리
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('h1, p, a.button').forEach(el => {
+        el.style.willChange = 'opacity, transform';
+        el.style.animationPlayState = 'running';
+      });
+    });
+  </script>
 
 </body>
 </html>
