@@ -4,50 +4,88 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #ffffff;
+      color: #000;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      z-index: 1000;
+    }
+
+    nav .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    nav .menu, nav .auth {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
     .hero {
       height: 100vh;
-      background-color: #333;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      background-color: #333;
       color: white;
+      padding-top: 100px;
     }
 
     .hero h1 {
       font-size: 3em;
-      animation: fadeIn 2s ease-out;
+      margin: 0;
+    }
+
+    .hero h1 span {
+      color: #ffcc00;
     }
 
     .hero p {
       font-size: 1.2em;
-      margin-top: 10px;
-      animation: fadeIn 2s ease-out 0.5s forwards;
+      margin: 20px 0;
     }
 
     .hero a.button {
-      margin-top: 30px;
-      padding: 12px 24px;
+      display: inline-block;
+      padding: 14px 30px;
       background-color: #ffcc00;
-      color: black;
+      color: #000;
       font-weight: bold;
-      text-decoration: none;
       border-radius: 30px;
-      transition: background-color 0.3s, color 0.3s;
-      animation: fadeIn 2s ease-out 1s forwards;
+      text-decoration: none;
+      transition: background-color 0.3s;
     }
 
     .hero a.button:hover {
       background-color: #000;
-      color: white;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      color: #fff;
     }
   </style>
 </head>
@@ -64,15 +102,4 @@
     </div>
     <div class="auth">
       <a href="login.html">Login</a>
-      <a href="signup.html">Signup</a>
-    </div>
-  </nav>
-
-  <section class="hero">
-    <h1>Feel <span style="color: #ffcc00;">The Street</span> Vibe</h1>
-    <p>너만의 스트릿 감각을 풀어봐</p>
-    <a href="products.html" class="button">쇼핑 시작</a>
-  </section>
-
-</body>
-</html>
+      <a href="signup.html
