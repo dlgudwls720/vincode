@@ -56,12 +56,33 @@
       border-radius: 12px;
       overflow: hidden;
       height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .swiper-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .special-slide {
+      background-color: #000;
+    }
+
+    .special-slide a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2em;
+      font-weight: bold;
+      padding: 20px;
+      display: block;
+    }
+
+    .special-slide a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 600px) {
@@ -87,6 +108,9 @@
       <div class="swiper-slide"><img src="https://via.placeholder.com/300x200?text=Item+2" alt="Item 2"></div>
       <div class="swiper-slide"><img src="https://via.placeholder.com/300x200?text=Item+3" alt="Item 3"></div>
       <div class="swiper-slide"><img src="https://via.placeholder.com/300x200?text=Item+4" alt="Item 4"></div>
+      <div class="swiper-slide special-slide">
+        <a href="products.html">+ 신제품 보러가기</a>
+      </div>
     </div>
   </div>
 
