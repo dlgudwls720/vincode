@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode</title>
   <style>
     body {
@@ -19,26 +19,6 @@
       text-align: center;
     }
 
-    h1, p, a.button {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1s ease-out forwards;
-      animation-fill-mode: both;
-    }
-
-    h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-      animation-delay: 0.1s;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-      opacity: 0.8;
-      animation-delay: 0.3s;
-    }
-
     a.button {
       display: inline-block;
       padding: 12px 24px;
@@ -48,7 +28,6 @@
       text-decoration: none;
       border-radius: 30px;
       transition: background-color 0.3s, color 0.3s;
-      animation-delay: 0.5s;
     }
 
     a.button:hover {
@@ -66,9 +45,17 @@
 </head>
 <body>
 
-  <h1>vincode</h1>
-  <p>Unlock your street identity.</p>
-  <a href="products.html" class="button">제품 확인하기</a>
+  <h1 style="animation: fadeIn 1s ease-out forwards; animation-delay: 0.1s; opacity: 0; transform: translateY(20px);">
+    vincode
+  </h1>
+
+  <p style="animation: fadeIn 1s ease-out forwards; animation-delay: 0.3s; opacity: 0; transform: translateY(20px);">
+    Unlock your street identity.
+  </p>
+
+  <a href="products.html" class="button" style="animation: fadeIn 1s ease-out forwards; animation-delay: 0.5s; opacity: 0; transform: translateY(20px);">
+    제품 확인하기
+  </a>
 
 </body>
 </html>
