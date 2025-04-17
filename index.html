@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode</title>
   <style>
     body {
@@ -19,25 +19,27 @@
       text-align: center;
     }
 
-    nav {
-      position: absolute;
-      top: 0;
-      width: 100%;
+    .navbar {
       background-color: #1a1a1a;
+      padding: 10px 20px;
       display: flex;
       justify-content: center;
       gap: 30px;
-      padding: 10px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
     }
 
-    nav a {
+    .navbar a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1em;
       transition: color 0.3s;
     }
 
-    nav a:hover {
+    .navbar a:hover {
       color: #ffcc00;
     }
 
@@ -81,20 +83,26 @@
         transform: translateY(0);
       }
     }
+
+    .content {
+      margin-top: 100px;
+    }
   </style>
 </head>
 <body>
 
-  <nav>
+  <nav class="navbar">
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
-    <a href="#">About</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <h1>vincode</h1>
-  <p>Unlock your street identity.</p>
-  <a href="products.html" class="button">제품 확인하기</a>
+  <div class="content">
+    <h1>vincode</h1>
+    <p>Unlock your street identity.</p>
+    <a href="products.html" class="button">제품 확인하기</a>
+  </div>
 
 </body>
 </html>
