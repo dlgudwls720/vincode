@@ -18,46 +18,9 @@
       color: black;
     }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: white;
-      border-bottom: 1px solid #ddd;
-      position: relative;
-      flex-wrap: wrap;
-    }
-
-    .nav-left, .auth {
-      display: flex;
-      gap: 20px;
-      font-weight: bold;
-    }
-
-    .nav-left a, .auth a {
-      text-decoration: none;
-      color: black;
-      transition: 0.3s;
-    }
-
-    .nav-left a:hover, .auth a:hover {
-      color: black;
-    }
-
-    .nav-center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .nav-center img {
-      height: 40px;
-    }
-
     .container {
       max-width: 400px;
-      margin: 80px auto;
+      margin: 100px auto;
       padding: 20px;
       text-align: center;
     }
@@ -91,15 +54,21 @@
       background-color: #333;
     }
 
+    .signup-link {
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    .signup-link a {
+      color: black;
+      text-decoration: underline;
+    }
+
     .mobile-bottom-nav {
       display: none;
     }
 
     @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
-
       .mobile-bottom-nav {
         position: fixed;
         bottom: 0;
@@ -131,28 +100,14 @@
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-left">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-center">
-      <img src="images/logo-nav.jpeg" alt="vincode logo" />
-    </div>
-    <div class="auth">
-      <a href="login.html"><i class="fas fa-user"></i></a>
-      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
-    </div>
-  </nav>
-
   <div class="container">
     <h1>로그인</h1>
     <input type="text" placeholder="아이디" required />
     <input type="password" placeholder="비밀번호" required />
     <button>로그인</button>
+    <div class="signup-link">
+      계정이 없으신가요? <a href="signup.html">회원가입</a>
+    </div>
   </div>
 
   <!-- 모바일 하단 메뉴 -->
