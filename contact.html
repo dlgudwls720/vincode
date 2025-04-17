@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>문의하기 - vincode</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -60,54 +59,51 @@
       margin: 40px 0 10px;
     }
 
-    .contact-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .contact-form {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
       padding: 20px;
+      background-color: #f1f1f1;
+      border-radius: 10px;
     }
 
-    .contact-container input,
-    .contact-container textarea {
+    .contact-form input,
+    .contact-form textarea {
       width: 100%;
-      max-width: 500px;
       padding: 10px;
       margin-bottom: 20px;
-      border-radius: 10px;
+      border-radius: 5px;
       border: 1px solid #ccc;
-      font-size: 1em;
     }
 
-    .contact-container button {
-      padding: 12px 28px;
+    .contact-form button {
       background-color: #ffcc00;
-      color: black;
-      font-weight: bold;
+      padding: 10px 20px;
+      font-size: 1.1em;
       border: none;
-      border-radius: 30px;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
 
-    .contact-container button:hover {
+    .contact-form button:hover {
       background-color: #e6b800;
     }
 
     .contact-info {
-      font-size: 1.1em;
-      margin-top: 20px;
       text-align: center;
+      margin-top: 20px;
+    }
+
+    .contact-info p {
+      font-size: 1.1em;
+      margin-bottom: 10px;
     }
 
     .contact-info a {
-      color: black;
+      color: #ffcc00;
       text-decoration: none;
     }
-
-    .contact-info a:hover {
-      color: #ffcc00;
-    }
-
   </style>
 </head>
 <body>
@@ -135,18 +131,16 @@
 
   <h1>문의하기</h1>
 
-  <div class="contact-container">
-    <form action="" method="POST">
-      <input type="text" placeholder="이름" required />
-      <input type="email" placeholder="이메일" required />
-      <textarea placeholder="문의 내용을 작성하세요..." rows="5" required></textarea>
-      <button type="submit">문의하기</button>
-    </form>
+  <div class="contact-form">
+    <input type="text" placeholder="이름" />
+    <input type="email" placeholder="이메일" />
+    <textarea placeholder="문의 내용을 작성하세요..."></textarea>
+    <button>문의하기</button>
   </div>
 
   <div class="contact-info">
-    <p>이메일: <a href="mailto:vincode@example.com">vincode@example.com</a></p>
-    <p>인스타그램: <a href="https://www.instagram.com/vincode_official" target="_blank">@vincode_official</a></p>
+    <p>이메일: vincode@example.com</p>
+    <p>인스타그램: <a href="https://www.instagram.com/vincode_official">@vincode_official</a></p>
   </div>
 
 </body>
