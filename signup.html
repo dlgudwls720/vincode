@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>회원가입 - vincode</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup - vincode</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
+      font-family: 'Arial', sans-serif;
       background-color: white;
       color: black;
-      font-family: 'Arial', sans-serif;
     }
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 15px 20px;
       background-color: white;
       border-bottom: 1px solid #ddd;
       position: relative;
     }
 
-    .nav-left, .auth {
+    .nav-left {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       font-weight: bold;
+      flex-wrap: wrap;
     }
 
-    .nav-left a, .auth a {
+    .nav-left a {
       text-decoration: none;
       color: black;
+      font-size: 0.95em;
       transition: 0.3s;
     }
 
-    .nav-left a:hover, .auth a:hover {
+    .nav-left a:hover {
       color: black;
     }
 
@@ -44,68 +54,70 @@
     }
 
     .nav-center img {
-      height: 40px;
+      height: 30px;
     }
 
-    h1 {
-      text-align: center;
-      font-size: 2.5em;
-      margin: 40px 0 10px;
-    }
-
-    .form-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 60vh;
-    }
-
-    .form-box {
-      background-color: #f8f8f8;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      width: 300px;
-    }
-
-    .form-box input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-
-    .form-box button {
-      width: 100%;
-      padding: 12px;
-      background-color: #ffcc00;
+    .auth a {
+      margin-left: 10px;
       color: black;
+      font-size: 1.2em;
+    }
+
+    .signup-container {
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .signup-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .signup-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .signup-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
       border: none;
       border-radius: 5px;
+      cursor: pointer;
     }
 
-    .form-box button:hover {
-      background-color: #e6b800;
+    .signup-container button:hover {
+      background-color: #ffcc00;
+      color: black;
     }
 
-    .form-box p {
-      font-size: 0.9em;
-    }
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
 
-    .form-box p a {
-      text-decoration: none;
-      color: #ffcc00;
-    }
-
-    .form-box p a:hover {
-      text-decoration: underline;
+      .nav-center {
+        position: static;
+        transform: none;
+        align-self: center;
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <div class="nav-left">
       <a href="index.html">Home</a>
@@ -115,31 +127,35 @@
       <a href="contact.html">Contact</a>
     </div>
     <div class="nav-center">
-      <img src="images/logo-nav.jpeg" alt="vincode logo" />
+      <img src="images/logo-nav.jpeg" alt="vincode logo">
     </div>
     <div class="auth">
-      <a href="login.html">
-        <i class="fas fa-user"></i> 로그인
-      </a>
-      <a href="signup.html">
-        <i class="fas fa-user-plus"></i> 회원가입
-      </a>
+      <a href="login.html"><i class="fas fa-user"></i></a>
+      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
     </div>
   </nav>
 
-  <h1>회원가입</h1>
-
-  <div class="form-container">
-    <div class="form-box">
-      <form action="" method="POST">
-        <input type="email" placeholder="이메일" required />
-        <input type="password" placeholder="비밀번호" required />
-        <input type="password" placeholder="비밀번호 확인" required />
-        <button type="submit">회원가입</button>
-      </form>
-      <p><a href="login.html">이미 계정이 있으신가요? 로그인</a></p>
-    </div>
+  <div class="signup-container">
+    <h2>회원가입</h2>
+    <form onsubmit="return checkPasswordsMatch()">
+      <input type="text" placeholder="이름" required>
+      <input type="email" placeholder="이메일" required>
+      <input type="password" id="password" placeholder="비밀번호" required>
+      <input type="password" id="confirmPassword" placeholder="비밀번호 확인" required>
+      <button type="submit">가입하기</button>
+    </form>
   </div>
 
+  <script>
+    function checkPasswordsMatch() {
+      const pw = document.getElementById("password").value;
+      const confirm = document.getElementById("confirmPassword").value;
+      if (pw !== confirm) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return false;
+      }
+      return true;
+    }
+  </script>
 </body>
 </html>
