@@ -137,13 +137,14 @@
 
   function filterAndSearch() {
     const keyword = document.getElementById('searchInput').value.toLowerCase();
-    const selectedCategory = document.querySelector('.filter-btn.active').getAttribute('data-category');
+    const activeBtn = document.querySelector('.filter-btn.active');
+    const selectedCategory = activeBtn ? activeBtn.getAttribute('data-category') : '전체';
     document.querySelectorAll('.product').forEach(product => {
-      const name = product.getAttribute('data-name').toLowerCase();
+      const name = product.getAttribute('data-name')?.toLowerCase() || "";
       const category = product.getAttribute('data-category');
       const matchCategory = selectedCategory === '전체' || category === selectedCategory;
       const matchKeyword = name.includes(keyword);
-      product.style.display = matchCategory && matchKeyword ? 'block' : 'none';
+      product.style.display = matchCategory && matchKeyword ? '' : 'none';
     });
   }
 </script>
