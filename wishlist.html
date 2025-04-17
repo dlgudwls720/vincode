@@ -42,36 +42,6 @@
       margin-bottom: 20px;
     }
 
-    .filters, .search-container {
-      margin: 20px 0;
-    }
-
-    .filters button {
-      background-color: #2c2c2c;
-      border: none;
-      border-radius: 20px;
-      padding: 10px 20px;
-      margin: 5px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .filters button.active, .filters button:hover {
-      background-color: #ffcc00;
-      color: black;
-    }
-
-    .search-container input {
-      padding: 12px;
-      width: 80%;
-      max-width: 400px;
-      border-radius: 30px;
-      border: none;
-      font-size: 1em;
-      text-align: center;
-    }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -108,83 +78,44 @@
 <nav class="navbar">
   <a href="index.html">Home</a>
   <a href="products.html">Products</a>
+  <a href="wishlist.html">찜한 상품</a>
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
 </nav>
 
 <h1>찜한 상품</h1>
-
-<div class="search-container">
-  <input type="text" id="searchInput" placeholder="제품명을 입력하세요...">
-</div>
-
-<div class="filters">
-  <button onclick="filterProducts('전체')" class="active">전체</button>
-  <button onclick="filterProducts('후드티')">후드티</button>
-  <button onclick="filterProducts('반팔')">반팔</button>
-  <button onclick="filterProducts('반바지')">반바지</button>
-  <button onclick="filterProducts('긴바지')">긴바지</button>
-  <button onclick="filterProducts('키링')">키링</button>
-</div>
-
 <div class="grid" id="wishlist-container"></div>
 
 <script>
   const allProducts = {
-    hoodie1: { name: "스트릿 후드티", price: "₩59,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-    hoodiezipup1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-    mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
-    shorts1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
-    pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
-    keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
+    hoodie1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200" },
+    hoodie2: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200" },
+    mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200" },
+    short1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200" },
+    pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200" },
+    keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200" }
   };
 
   const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
   const container = document.getElementById("wishlist-container");
 
-  function renderProducts(filtered = [], keyword = '') {
-    container.innerHTML = "";
-    let results = favorites.filter(id => {
+  if (favorites.length === 0) {
+    container.innerHTML = '<p>찜한 상품이 없습니다.</p>';
+  } else {
+    favorites.forEach(id => {
       const item = allProducts[id];
-      return item && item.name.includes(keyword) && (filtered.length === 0 || filtered.includes(item.category));
-    });
-
-    if (results.length === 0) {
-      container.innerHTML = "<p>찜한 상품이 없거나 검색 결과가 없습니다.</p>";
-      return;
-    }
-
-    results.forEach(id => {
-      const item = allProducts[id];
-      const div = document.createElement("div");
-      div.className = "product";
-      div.innerHTML = `
-        <img src="${item.img}" alt="${item.name}" />
-        <h3>${item.name}</h3>
-        <p>${item.price}</p>
-      `;
-      container.appendChild(div);
+      if (item) {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <h3>${item.name}</h3>
+          <p>${item.price}</p>
+        `;
+        container.appendChild(div);
+      }
     });
   }
-
-  let selectedCategory = "전체";
-
-  function filterProducts(category) {
-    selectedCategory = category;
-    document.querySelectorAll('.filters button').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    const keyword = document.getElementById("searchInput").value;
-    const filtered = category === "전체" ? [] : [category];
-    renderProducts(filtered, keyword);
-  }
-
-  document.getElementById("searchInput").addEventListener("input", () => {
-    const keyword = document.getElementById("searchInput").value;
-    const filtered = selectedCategory === "전체" ? [] : [selectedCategory];
-    renderProducts(filtered, keyword);
-  });
-
-  renderProducts();
 </script>
 
 </body>
