@@ -54,9 +54,9 @@
     }
 
     .login-container {
-      max-width: 400px;
+      max-width: 500px;
       margin: 80px auto;
-      background-color: #f5f5f5;
+      background-color: #f1f1f1;
       padding: 40px;
       border-radius: 10px;
       text-align: center;
@@ -65,6 +65,8 @@
 
     .login-container h2 {
       margin-bottom: 20px;
+      font-size: 2em;
+      font-weight: bold;
     }
 
     .login-container input {
@@ -73,11 +75,11 @@
       margin: 10px 0;
       border-radius: 6px;
       border: 1px solid #ccc;
-      font-size: 1em;
+      font-size: 1.1em;
     }
 
     .login-container button {
-      padding: 12px 20px;
+      padding: 14px 24px;
       background-color: black;
       color: white;
       border: none;
@@ -89,6 +91,30 @@
 
     .login-container button:hover {
       background-color: #333;
+    }
+
+    .password-link {
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+
+    .password-link a {
+      text-decoration: none;
+      color: #ffcc00;
+    }
+
+    .password-link a:hover {
+      color: #ff9900;
+    }
+
+    .signup-link {
+      margin-top: 20px;
+      font-size: 1em;
+    }
+
+    .signup-link a {
+      text-decoration: none;
+      color: black;
     }
   </style>
 </head>
@@ -113,9 +139,15 @@
 
 <div class="login-container">
   <h2>로그인</h2>
-  <input type="text" placeholder="닉네임 또는 이메일" required />
+  <input type="email" placeholder="이메일" required />
   <input type="password" placeholder="비밀번호" required />
   <button>로그인</button>
+  <div class="password-link">
+    <a href="#">비밀번호를 잊으셨나요?</a>
+  </div>
+  <div class="signup-link">
+    <p>계정이 없으신가요? <a href="signup.html">계정 생성</a></p>
+  </div>
 </div>
 
 </body>
