@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vincode - 문의하기</title>
+  <title>vincode - 찜한 상품</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,9 +13,10 @@
 
     body {
       background-color: #ffffff;
-      color: #000;
+      color: black;
       font-family: 'Arial', sans-serif;
       padding: 100px 20px 40px;
+      text-align: center;
     }
 
     nav {
@@ -60,77 +61,49 @@
 
     nav a {
       text-decoration: none;
-      color: #000;
+      color: black;
       font-weight: bold;
       transition: 0.3s;
     }
 
     nav a:hover {
-      color: #000;
+      color: black;
     }
 
     h1 {
-      text-align: center;
       font-size: 2.5em;
-      margin-top: 30px;
-      margin-bottom: 20px;
+      margin: 40px 0 20px;
     }
 
-    .info {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 1.1em;
-    }
-
-    .form-wrapper {
-      max-width: 600px;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
       margin: 0 auto;
-      background-color: #f9f9f9;
-      padding: 30px;
+    }
+
+    .product {
+      background-color: #f1f1f1;
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input, textarea {
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1em;
-    }
-
-    button {
-      padding: 12px;
-      background-color: #000;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background-color: #333;
-    }
-
-    .logo-section {
       text-align: center;
-      margin-top: 60px;
     }
 
-    .logo-section img {
-      height: 120px;
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
     }
 
-    .logo-section h2 {
-      margin-top: 20px;
-      font-size: 2em;
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+
+    .product p {
+      font-size: 0.9em;
+      opacity: 0.8;
     }
   </style>
 </head>
@@ -155,24 +128,40 @@
   </div>
 </nav>
 
-<div class="logo-section">
-  <img src="images/logo-nav.jpeg" alt="Main Logo">
-  <h2>문의하기</h2>
-</div>
+<h1>찜한 상품</h1>
+<div class="grid" id="wishlist-container"></div>
 
-<div class="info">
-  <p>📧 이메일: <strong>vincode.official@gmail.com</strong></p>
-  <p>📸 인스타그램: <strong>@vincode_official</strong></p>
-</div>
+<script>
+  const allProducts = {
+    hoodiezipup: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200" },
+    hoodie: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200" },
+    mtm: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200" },
+    shorts: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200" },
+    pants: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200" },
+    keyring: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200" }
+  };
 
-<div class="form-wrapper">
-  <form action="#" method="post">
-    <input type="text" name="name" placeholder="이름" required />
-    <input type="email" name="email" placeholder="이메일 주소" required />
-    <textarea name="message" rows="6" placeholder="문의 내용을 입력하세요..." required></textarea>
-    <button type="submit">보내기</button>
-  </form>
-</div>
+  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+  const container = document.getElementById("wishlist-container");
+
+  if (favorites.length === 0) {
+    container.innerHTML = "<p style='text-align: center;'>찜한 상품이 없습니다.</p>";
+  } else {
+    favorites.forEach(id => {
+      const item = allProducts[id];
+      if (item) {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.name}" />
+          <h3>${item.name}</h3>
+          <p>${item.price}</p>
+        `;
+        container.appendChild(div);
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
