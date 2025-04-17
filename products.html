@@ -13,9 +13,32 @@
       padding: 40px 20px;
     }
 
+    .navbar {
+      background-color: #1a1a1a;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #ffcc00;
+    }
+
     h1 {
       text-align: center;
-      margin-bottom: 40px;
+      margin: 40px 0;
       opacity: 0;
       animation: fadeIn 1s ease-out forwards;
     }
@@ -30,6 +53,7 @@
     }
 
     .product {
+      background-color: #1c1c1c;
       padding: 20px;
       border-radius: 10px;
       text-align: center;
@@ -37,18 +61,6 @@
       transform: translateY(20px);
       animation: fadeIn 1s ease-out forwards;
       animation-delay: 0.3s;
-    }
-
-    .product:nth-child(1) {
-      background-color: #ff4444;
-    }
-
-    .product:nth-child(2) {
-      background-color: #44ff44;
-    }
-
-    .product:nth-child(3) {
-      background-color: #4444ff;
     }
 
     .product img {
@@ -64,7 +76,7 @@
 
     .product p {
       font-size: 0.9em;
-      opacity: 0.9;
+      opacity: 0.7;
     }
 
     @keyframes fadeIn {
@@ -76,6 +88,13 @@
   </style>
 </head>
 <body>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
   <h1>vincode 제품 목록</h1>
   <div class="grid">
     <div class="product">
@@ -85,14 +104,15 @@
     </div>
     <div class="product">
       <img src="https://via.placeholder.com/300x200" alt="제품2">
-      <h3>반팔티</h3>
-      <p>₩29,000</p>
+      <h3>빈티지 반팔티</h3>
+      <p>₩27,000</p>
     </div>
     <div class="product">
       <img src="https://via.placeholder.com/300x200" alt="제품3">
-      <h3>후드티</h3>
-      <p>₩49,000</p>
+      <h3>스트릿 후드티</h3>
+      <p>₩39,000</p>
     </div>
   </div>
 </body>
 </html>
+
