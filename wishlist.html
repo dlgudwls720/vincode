@@ -138,46 +138,41 @@
 
   <script>
     const allProducts = {
+      hoodie1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
       hoodiezipup1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-      hoodie1: { name: "스트릿 후드티", price: "₩59,000", img: "https://via.placeholder.com/300x200", category: "후드티" }, // 이 상품은 제외할 것입니다.
       mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
       shorts1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
       pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
       keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
     };
 
-    // 찜한 상품을 localStorage에서 가져옵니다.
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     const container = document.getElementById("wishlist-container");
 
     function renderProducts() {
-      container.innerHTML = ""; // 초기화
-
+      container.innerHTML = "";
       if (favorites.length === 0) {
         container.innerHTML = "<p>찜한 상품이 없습니다.</p>";
         return;
       }
 
-      // 찜한 상품들을 불러오고 "스트릿 후드티"를 제외합니다.
       favorites.forEach(id => {
-        if (id !== "hoodie1") {  // "스트릿 후드티"의 ID는 'hoodie1'로 설정되어 있습니다.
-          const item = allProducts[id];  // 찜한 상품을 찾습니다.
-          if (item) {
-            const div = document.createElement("div");
-            div.className = "product";
-            div.innerHTML = `
-              <img src="${item.img}" alt="${item.name}" />
-              <h3>${item.name}</h3>
-              <p>${item.price}</p>
-            `;
-            container.appendChild(div);
-          }
+        const item = allProducts[id];
+        if (item) {
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" />
+            <h3>${item.name}</h3>
+            <p>${item.price}</p>
+          `;
+          container.appendChild(div);
         }
       });
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-      renderProducts();  // 찜한 상품 렌더링
+      renderProducts();
     });
   </script>
 
