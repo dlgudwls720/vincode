@@ -3,13 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About - vincode</title>
+  <title>브랜드 소개 - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    /* 기존 스타일은 그대로 유지 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: white;
+      color: black;
+      font-family: 'Arial', sans-serif;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+
+    .nav-left, .auth {
+      display: flex;
+      gap: 20px;
+      font-weight: bold;
+    }
+
+    .nav-left a, .auth a {
+      text-decoration: none;
+      color: black;
+      transition: 0.3s;
+    }
+
+    .nav-left a:hover, .auth a:hover {
+      color: black;
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-center img {
+      height: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin: 40px 0 10px;
+    }
+
+    .about-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .about-container h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .about-container p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    .about-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="nav-left">
       <a href="index.html">Home</a>
@@ -32,6 +110,14 @@
   </nav>
 
   <h1>브랜드 소개</h1>
-  <!-- 소개 내용 추가 -->
+
+  <div class="about-container">
+    <h2>vincode</h2>
+    <p>우리는 스타일을 통해 자신만의 고유한 코드(unlock your code)를 찾을 수 있는 브랜드입니다. 다양한 스트릿 패션을 제공합니다.</p>
+    <p>우리의 미션은 모든 사람들이 자기 자신을 표현하고 스타일을 통해 자신감을 느끼도록 돕는 것입니다.</p>
+
+    <img src="https://via.placeholder.com/800x400" alt="브랜드 이미지" />
+  </div>
+
 </body>
 </html>
