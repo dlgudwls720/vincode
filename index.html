@@ -2,48 +2,44 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode - 홈</title>
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      background-color: #ffffff;
-      color: #000000;
+      background-color: white;
+      color: black;
       font-family: 'Arial', sans-serif;
+      text-align: center;
     }
 
     nav {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background-color: white;
-      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
+      padding: 20px 40px;
+      background-color: white;
       border-bottom: 1px solid #ddd;
     }
 
-    .menu {
+    .nav-left {
       display: flex;
       gap: 20px;
+      font-weight: bold;
     }
 
-    nav a {
+    .nav-left a {
       text-decoration: none;
       color: black;
-      font-weight: bold;
       transition: 0.3s;
     }
 
-    nav a:hover {
+    .nav-left a:hover {
       color: black;
     }
 
@@ -52,39 +48,50 @@
       gap: 20px;
     }
 
-    .main {
-      margin-top: 120px;
-      text-align: center;
+    .auth a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
     }
 
-    .main img {
-      width: 180px;
-      height: auto;
+    .auth a:hover {
+      color: black;
     }
 
-    .main h1 {
+    .logo-section {
+      margin-top: 100px;
+    }
+
+    .logo-section img {
+      height: 120px;
+    }
+
+    .headline {
+      margin-top: 20px;
       font-size: 2.5em;
-      margin-top: 30px;
+      font-weight: bold;
     }
 
-    .main p {
+    .subtext {
       margin-top: 10px;
-      font-size: 1.1em;
+      font-size: 1.2em;
+      color: #333;
     }
 
-    .main button {
-      margin-top: 25px;
-      padding: 12px 28px;
-      background-color: #ffcc00;
+    .start-btn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #ffc800;
+      color: black;
       border: none;
       border-radius: 30px;
-      color: #000;
-      font-weight: bold;
+      font-size: 1em;
       cursor: pointer;
       transition: background-color 0.3s;
+      font-weight: bold;
     }
 
-    .main button:hover {
+    .start-btn:hover {
       background-color: #e6b800;
     }
   </style>
@@ -92,7 +99,7 @@
 <body>
 
 <nav>
-  <div class="menu">
+  <div class="nav-left">
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
     <a href="wishlist.html">Wishlist</a>
@@ -105,12 +112,13 @@
   </div>
 </nav>
 
-<div class="main">
-  <img src="91222CBA-A276-4E7F-9BF9-4B1122CFC496.jpeg" alt="Vincode Logo" />
-  <h1>Feel The Street Vibe</h1>
-  <p>Unlock Your Code</p>
-  <button onclick="location.href='products.html'">쇼핑 시작</button>
+<div class="logo-section">
+  <img src="images/logo-nav.jpeg" alt="vincode logo">
+  <div class="headline">Feel The Street Vibe</div>
+  <div class="subtext">Unlock Your Code</div>
+  <button class="start-btn" onclick="location.href='products.html'">쇼핑 시작</button>
 </div>
 
 </body>
 </html>
+
