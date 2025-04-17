@@ -19,6 +19,28 @@
       text-align: center;
     }
 
+    nav {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      background-color: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
@@ -62,6 +84,13 @@
   </style>
 </head>
 <body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="#">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
   <h1>vincode</h1>
   <p>Unlock your street identity.</p>
