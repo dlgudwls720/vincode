@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vincode</title>
   <style>
     body {
       background-color: #0e0e0e;
       color: white;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       height: 100vh;
@@ -20,14 +20,14 @@
     }
 
     .navbar {
-      background-color: #1a1a1a;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
       position: fixed;
       top: 0;
       width: 100%;
+      background-color: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px 0;
       z-index: 999;
     }
 
@@ -35,7 +35,6 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1em;
       transition: color 0.3s;
     }
 
@@ -46,42 +45,27 @@
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
-      animation: fadeIn 1s ease-out forwards;
     }
 
     p {
       font-size: 1.2em;
       margin-bottom: 30px;
       opacity: 0.8;
-      animation: fadeIn 1.5s ease-out forwards;
     }
 
     a.button {
-      display: inline-block;
       padding: 12px 24px;
-      background-color: #ffffff;
+      background-color: white;
       color: #0e0e0e;
+      border-radius: 30px;
       font-weight: bold;
       text-decoration: none;
-      border-radius: 30px;
       transition: background-color 0.3s, color 0.3s;
-      animation: fadeIn 2s ease-out forwards;
     }
 
     a.button:hover {
       background-color: #ffcc00;
-      color: #000;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      color: black;
     }
 
     .content {
