@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode - 제품 목록</title>
+  <title>vincode - 홈</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -55,8 +56,8 @@
 
     h1 {
       text-align: center;
-      font-size: 2.5em;
-      margin: 40px 0 10px;
+      font-size: 3em;
+      margin-bottom: 10px;
     }
 
     .search-filter {
@@ -144,125 +145,127 @@
   </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-center">
+      <img src="images/logo-nav.jpeg" alt="vincode logo" />
+    </div>
+    <div class="auth">
+      <a href="login.html">
+        <i class="fas fa-user"></i> 로그인
+      </a>
+      <a href="signup.html">
+        <i class="fas fa-user-plus"></i> 회원가입
+      </a>
+    </div>
+  </nav>
 
-<nav>
-  <div class="nav-left">
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="wishlist.html">Wishlist</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+  <h1>vincode 제품 목록</h1>
+  <div class="search-filter">
+    <div class="filters">
+      <button onclick="filterCategory('전체')" class="active">전체</button>
+      <button onclick="filterCategory('후드티')">후드티</button>
+      <button onclick="filterCategory('반바지')">반바지</button>
+      <button onclick="filterCategory('긴바지')">긴바지</button>
+      <button onclick="filterCategory('키링')">키링</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." />
+    </div>
   </div>
-  <div class="nav-center">
-    <img src="images/logo-nav.jpeg" alt="vincode logo" />
-  </div>
-  <div class="auth">
-    <a href="login.html">Login</a>
-    <a href="signup.html">Signup</a>
-  </div>
-</nav>
 
-<h1>vincode 제품 목록</h1>
-<div class="search-filter">
-  <div class="filters">
-    <button onclick="filterCategory('전체')" class="active">전체</button>
-    <button onclick="filterCategory('후드티')">후드티</button>
-    <button onclick="filterCategory('반바지')">반바지</button>
-    <button onclick="filterCategory('긴바지')">긴바지</button>
-    <button onclick="filterCategory('키링')">키링</button>
-  </div>
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." />
-  </div>
-</div>
+  <div class="grid" id="product-grid"></div>
 
-<div class="grid" id="product-grid"></div>
+  <script>
+    const allProducts = [
+      { id: "hoodiezipup", name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+      { id: "hoodie", name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+      { id: "mtm", name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
+      { id: "shorts", name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
+      { id: "pants", name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
+      { id: "keyring", name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
+    ];
 
-<script>
-  const allProducts = [
-    { id: "hoodiezipup", name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-    { id: "hoodie", name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-    { id: "mtm", name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
-    { id: "shorts", name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
-    { id: "pants", name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
-    { id: "keyring", name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
-  ];
+    let selectedCategory = "전체";
 
-  let selectedCategory = "전체";
+    function renderProducts() {
+      const keyword = document.getElementById("searchInput").value.toLowerCase();
+      const filtered = allProducts.filter(item => {
+        const matchKeyword = item.name.toLowerCase().includes(keyword);
+        const matchCategory = selectedCategory === "전체" || item.category === selectedCategory;
+        return matchKeyword && matchCategory;
+      });
 
-  function renderProducts() {
-    const keyword = document.getElementById("searchInput").value.toLowerCase();
-    const filtered = allProducts.filter(item => {
-      const matchKeyword = item.name.toLowerCase().includes(keyword);
-      const matchCategory = selectedCategory === "전체" || item.category === selectedCategory;
-      return matchKeyword && matchCategory;
-    });
+      const container = document.getElementById("product-grid");
+      container.innerHTML = "";
 
-    const container = document.getElementById("product-grid");
-    container.innerHTML = "";
-
-    if (filtered.length === 0) {
-      container.innerHTML = "<p>검색 결과가 없습니다.</p>";
-      return;
-    }
-
-    filtered.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "product";
-      div.setAttribute("data-id", item.id);
-      div.innerHTML = `
-        <img src="${item.img}" alt="${item.name}" />
-        <h3>${item.name}</h3>
-        <p>${item.price}</p>
-        <button class="favorite" onclick="toggleFavorite(this, '${item.id}')">♡</button>
-      `;
-      container.appendChild(div);
-    });
-
-    applyFavorites();
-  }
-
-  function toggleFavorite(element, productId) {
-    element.classList.toggle('active');
-    const isActive = element.classList.contains('active');
-    element.textContent = isActive ? '❤️' : '♡';
-
-    let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-
-    if (isActive) {
-      if (!favorites.includes(productId)) favorites.push(productId);
-    } else {
-      favorites = favorites.filter(id => id !== productId);
-    }
-
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  }
-
-  function applyFavorites() {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    document.querySelectorAll('.product').forEach(product => {
-      const id = product.getAttribute('data-id');
-      if (favorites.includes(id)) {
-        const fav = product.querySelector('.favorite');
-        fav.classList.add('active');
-        fav.textContent = '❤️';
+      if (filtered.length === 0) {
+        container.innerHTML = "<p>검색 결과가 없습니다.</p>";
+        return;
       }
+
+      filtered.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.setAttribute("data-id", item.id);
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.name}" />
+          <h3>${item.name}</h3>
+          <p>${item.price}</p>
+          <button class="favorite" onclick="toggleFavorite(this, '${item.id}')">♡</button>
+        `;
+        container.appendChild(div);
+      });
+
+      applyFavorites();
+    }
+
+    function toggleFavorite(element, productId) {
+      element.classList.toggle('active');
+      const isActive = element.classList.contains('active');
+      element.textContent = isActive ? '❤️' : '♡';
+
+      let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+      if (isActive) {
+        if (!favorites.includes(productId)) favorites.push(productId);
+      } else {
+        favorites = favorites.filter(id => id !== productId);
+      }
+
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+
+    function applyFavorites() {
+      const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+      document.querySelectorAll('.product').forEach(product => {
+        const id = product.getAttribute('data-id');
+        if (favorites.includes(id)) {
+          const fav = product.querySelector('.favorite');
+          fav.classList.add('active');
+          fav.textContent = '❤️';
+        }
+      });
+    }
+
+    function filterCategory(category) {
+      selectedCategory = category;
+      document.querySelectorAll(".filters button").forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+      renderProducts();
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderProducts);
+
+    window.addEventListener("DOMContentLoaded", () => {
+      renderProducts();
     });
-  }
-
-  function filterCategory(category) {
-    selectedCategory = category;
-    document.querySelectorAll(".filters button").forEach(btn => btn.classList.remove("active"));
-    event.target.classList.add("active");
-    renderProducts();
-  }
-
-  document.getElementById("searchInput").addEventListener("input", renderProducts);
-
-  window.addEventListener("DOMContentLoaded", () => {
-    renderProducts();
-  });
-</script>
-
+  </script>
 </body>
 </html>
