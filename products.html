@@ -37,14 +37,17 @@
       font-size: 2.5em;
       margin-bottom: 20px;
       opacity: 0;
+      transform: translateY(20px);
       animation: fadeIn 1s ease-out forwards;
     }
-    .search-container, .filter-container {
-      margin-bottom: 20px;
+    .search-container, .filter-container, .grid {
       opacity: 0;
-      animation: fadeIn 1.5s ease-out forwards;
-      animation-delay: 0.3s;
+      transform: translateY(20px);
+      animation: fadeIn 1s ease-out forwards;
     }
+    .search-container { animation-delay: 0.3s; }
+    .filter-container { animation-delay: 0.5s; }
+    .grid { animation-delay: 0.7s; }
     .search-container input {
       padding: 10px;
       border-radius: 20px;
@@ -73,9 +76,6 @@
       gap: 20px;
       max-width: 1000px;
       margin: 0 auto;
-      opacity: 0;
-      animation: fadeIn 2s ease-out forwards;
-      animation-delay: 0.6s;
     }
     .product {
       background-color: #1c1c1c;
@@ -108,10 +108,6 @@
       color: #ff3366;
     }
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
       to {
         opacity: 1;
         transform: translateY(0);
