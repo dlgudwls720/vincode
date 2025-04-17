@@ -43,10 +43,34 @@
       font-size: 2.5em;
     }
 
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 10px 20px 30px;
+    }
+
+    .filter-buttons button {
+      background-color: #1a1a1a;
+      border: 1px solid #444;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .filter-buttons button:hover,
+    .filter-buttons button.active {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
     .search-container {
       display: flex;
       justify-content: center;
-      margin: 10px 20px 40px;
+      margin: 0 20px 30px;
       position: relative;
     }
 
@@ -117,12 +141,6 @@
       font-size: 0.95em;
       opacity: 0.75;
     }
-
-    @media (max-width: 500px) {
-      .product img {
-        height: 180px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -136,37 +154,71 @@
 
   <h1>vincode 제품 목록</h1>
 
+  <!-- 필터 버튼 -->
+  <div class="filter-buttons">
+    <button class="active" onclick="filterCategory('all')">전체</button>
+    <button onclick="filterCategory('후드티')">후드티</button>
+    <button onclick="filterCategory('반팔')">반팔</button>
+    <button onclick="filterCategory('반바지')">반바지</button>
+    <button onclick="filterCategory('긴바지')">긴바지</button>
+  </div>
+
+  <!-- 검색창 -->
   <div class="search-container">
     <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." />
     <span class="search-icon">🔍</span>
   </div>
 
+  <!-- 제품 목록 -->
   <div class="grid" id="productList">
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200" alt="제품1">
-      <h3>니트</h3>
-      <p>₩79,000</p>
+    <div class="product" data-category="후드티">
+      <img src="https://via.placeholder.com/300x200" alt="후드티">
+      <h3>스트릿 후드티</h3>
+      <p>₩59,000</p>
     </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200" alt="제품2">
+    <div class="product" data-category="반팔">
+      <img src="https://via.placeholder.com/300x200" alt="반팔">
       <h3>빈티지 반팔티</h3>
       <p>₩39,000</p>
     </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200" alt="제품3">
-      <h3>스트릿 후드티</h3>
-      <p>₩59,000</p>
+    <div class="product" data-category="반바지">
+      <img src="https://via.placeholder.com/300x200" alt="반바지">
+      <h3>데님 반바지</h3>
+      <p>₩34,000</p>
+    </div>
+    <div class="product" data-category="긴바지">
+      <img src="https://via.placeholder.com/300x200" alt="긴바지">
+      <h3>카고 긴바지</h3>
+      <p>₩52,000</p>
     </div>
   </div>
 
   <script>
-    document.getElementById('searchInput').addEventListener('input', function () {
-      const keyword = this.value.toLowerCase();
-      const products = document.querySelectorAll('.product');
+    const filterButtons = document.querySelectorAll('.filter-buttons button');
+    const products = document.querySelectorAll('.product');
+    const searchInput = document.getElementById('searchInput');
+
+    function filterCategory(category) {
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
       products.forEach(product => {
+        const productCategory = product.getAttribute('data-category');
         const title = product.querySelector('h3').textContent.toLowerCase();
-        product.style.display = title.includes(keyword) ? 'block' : 'none';
+        const keyword = searchInput.value.toLowerCase();
+        const matchSearch = title.includes(keyword);
+
+        if ((category === 'all' || productCategory === category) && matchSearch) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
       });
+    }
+
+    searchInput.addEventListener('input', () => {
+      const category = document.querySelector('.filter-buttons .active').textContent;
+      filterCategory(category);
     });
   </script>
 
