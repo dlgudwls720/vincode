@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <title>vincode - 찜한 상품</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
       background-color: #0e0e0e;
       color: white;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
     }
 
     nav {
@@ -40,56 +41,39 @@
       color: #ffcc00;
     }
 
-    .swiper {
-      width: 100%;
-      height: 100vh;
-    }
-
-    .swiper-slide {
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    .slide-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-    }
-
-    .slide-content h1 {
-      font-size: 3em;
+    h1 {
+      font-size: 2.5em;
       margin-bottom: 20px;
-      animation: fadeIn 1s ease-out forwards;
     }
 
-    .slide-content a {
-      padding: 12px 24px;
-      background-color: white;
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 30px;
-      transition: background 0.3s, color 0.3s;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
-    .slide-content a:hover {
-      background-color: #ffcc00;
-      color: #000;
+    .product {
+      background-color: #1c1c1c;
+      padding: 20px;
+      border-radius: 10px;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+
+    .product p {
+      font-size: 0.9em;
+      opacity: 0.8;
     }
   </style>
 </head>
@@ -105,44 +89,39 @@
     </div>
   </nav>
 
-  <div class="swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1612423284934-ff9815b8ea4d?auto=format&fit=crop&w=1350&q=80');">
-        <div class="slide-content">
-          <h1>Unlock Your Street Identity</h1>
-          <a href="products.html">제품 보러가기</a>
-        </div>
-      </div>
-      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1533113354174-09f4736aa7c7?auto=format&fit=crop&w=1350&q=80');">
-        <div class="slide-content">
-          <h1>New Season Arrivals</h1>
-          <a href="products.html">바로 보기</a>
-        </div>
-      </div>
-      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1618354691414-2308ebd6cd6d?auto=format&fit=crop&w=1350&q=80');">
-        <div class="slide-content">
-          <h1>Feel The Street Vibe</h1>
-          <a href="products.html">쇼핑 시작</a>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
+  <h1>찜한 상품</h1>
+  <div class="grid" id="wishlist-container"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
-    const swiper = new Swiper('.swiper', {
-      loop: true,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
+    const allProducts = {
+      hoodie1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200" },
+      hoodie2: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200" },
+      mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200" },
+      short1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200" },
+      pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200" },
+      keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200" }
+    };
+
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const container = document.getElementById("wishlist-container");
+
+    if (favorites.length === 0) {
+      container.innerHTML = '<p>찜한 상품이 없습니다.</p>';
+    } else {
+      favorites.forEach(id => {
+        const item = allProducts[id];
+        if (item) {
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `
+            <img src="${item.img}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p>${item.price}</p>
+          `;
+          container.appendChild(div);
+        }
+      });
+    }
   </script>
 </body>
 </html>
