@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - vincode</title>
+  <style>
+    body {
+      background-color: #0e0e0e;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .navbar {
+      background-color: #1a1a1a;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #ffcc00;
+    }
+
+    h1 {
+      margin-top: 40px;
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .description {
+      margin-top: 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1em;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <h1>브랜드 소개</h1>
+
+  <div class="description">
+    <p><strong>vincode</strong>는 '스트릿 아이덴티티'를 해방시키는 브랜드입니다.</p>
+    <p>단순한 옷이 아닌, 거리에서의 존재감과 스타일을 표현할 수 있는 도구를 만듭니다.</p>
+    <p>10대 후반부터 20대 중반까지의 세대를 위한 감각적이고 과감한 디자인,  
+       그리고 개성을 존중하는 철학을 담고 있습니다.</p>
+    <p>vincode는 자신만의 색을 가진 이들을 위해 존재합니다.</p>
+  </div>
+
+</body>
+</html>
