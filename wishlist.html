@@ -2,33 +2,44 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode - 관심 상품</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>찜한 상품 - vincode</title>
   <style>
     body {
       background-color: #0e0e0e;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
       padding: 40px 20px;
       text-align: center;
     }
 
     .navbar {
       background-color: #1a1a1a;
-      padding: 10px 20px;
+      padding: 10px 0;
       display: flex;
       justify-content: center;
       gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
 
     .navbar a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #ffcc00;
     }
 
     h1 {
-      margin-bottom: 30px;
+      font-size: 2.5em;
+      margin-bottom: 20px;
     }
 
     .grid {
@@ -58,7 +69,7 @@
 
     .product p {
       font-size: 0.9em;
-      opacity: 0.7;
+      opacity: 0.8;
     }
   </style>
 </head>
@@ -67,25 +78,28 @@
 <nav class="navbar">
   <a href="index.html">Home</a>
   <a href="products.html">Products</a>
-  <a href="wishlist.html">찜한 상품</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
 </nav>
 
 <h1>찜한 상품</h1>
-
-<div class="grid" id="wishlistContainer">
-  <!-- JavaScript로 상품 불러오기 -->
-</div>
+<div class="grid" id="wishlist-container"></div>
 
 <script>
   const allProducts = {
     hoodie1: {
-      name: "후드집업",
-      price: "₩69,000",
+      name: "스트릿 후드티",
+      price: "₩59,000",
       img: "https://via.placeholder.com/300x200"
     },
-    hoodie2: {
-      name: "후드티",
-      price: "₩47,000",
+    t1: {
+      name: "반팔티",
+      price: "₩25,000",
+      img: "https://via.placeholder.com/300x200"
+    },
+    zipup1: {
+      name: "후드집업",
+      price: "₩69,000",
       img: "https://via.placeholder.com/300x200"
     },
     mtm1: {
@@ -93,14 +107,14 @@
       price: "₩34,000",
       img: "https://via.placeholder.com/300x200"
     },
-    short1: {
-      name: "반바지",
-      price: "₩30,000",
-      img: "https://via.placeholder.com/300x200"
-    },
     pants1: {
       name: "긴바지",
       price: "₩37,000",
+      img: "https://via.placeholder.com/300x200"
+    },
+    shorts1: {
+      name: "반바지",
+      price: "₩30,000",
       img: "https://via.placeholder.com/300x200"
     },
     keyring1: {
@@ -110,16 +124,16 @@
     }
   };
 
-  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-  const container = document.getElementById("wishlistContainer");
+  const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+  const container = document.getElementById('wishlist-container');
 
   favorites.forEach(id => {
     const item = allProducts[id];
     if (item) {
-      const div = document.createElement("div");
-      div.className = "product";
+      const div = document.createElement('div');
+      div.className = 'product';
       div.innerHTML = `
-        <img src="${item.img}" alt="${item.name}" />
+        <img src="${item.img}" alt="${item.name}">
         <h3>${item.name}</h3>
         <p>${item.price}</p>
       `;
