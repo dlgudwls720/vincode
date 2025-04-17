@@ -1,160 +1,153 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vincode - 문의하기</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>문의하기 - vincode</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      background-color: #ffffff;
-      color: #000;
+      background-color: white;
+      color: black;
       font-family: 'Arial', sans-serif;
-      padding: 100px 20px 40px;
     }
 
     nav {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background-color: white;
-      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
+      padding: 20px 40px;
+      background-color: white;
       border-bottom: 1px solid #ddd;
+      position: relative;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .menu {
+    .nav-left, .auth {
       display: flex;
       gap: 20px;
+      font-weight: bold;
     }
 
-    .logo {
+    .nav-left a, .auth a {
+      text-decoration: none;
+      color: black;
+      transition: 0.3s;
+    }
+
+    .nav-left a:hover, .auth a:hover {
+      color: black;
+    }
+
+    .nav-center {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
     }
 
-    .logo img {
+    .nav-center img {
       height: 40px;
-    }
-
-    .auth {
-      display: flex;
-      gap: 20px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #000;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #000;
     }
 
     h1 {
       text-align: center;
       font-size: 2.5em;
-      margin-top: 30px;
-      margin-bottom: 20px;
+      margin: 40px 0 10px;
     }
 
-    .info {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 1.1em;
-    }
-
-    .form-wrapper {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: #f9f9f9;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    form {
+    .contact-container {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      align-items: center;
+      padding: 20px;
     }
 
-    input, textarea {
-      padding: 12px;
+    .contact-container input,
+    .contact-container textarea {
+      width: 100%;
+      max-width: 500px;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 10px;
       border: 1px solid #ccc;
-      border-radius: 6px;
       font-size: 1em;
     }
 
-    button {
-      padding: 12px;
-      background-color: #000;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+    .contact-container button {
+      padding: 12px 28px;
+      background-color: #ffcc00;
+      color: black;
       font-weight: bold;
-      transition: 0.3s;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
 
-    button:hover {
-      background-color: #333;
+    .contact-container button:hover {
+      background-color: #e6b800;
     }
+
+    .contact-info {
+      font-size: 1.1em;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .contact-info a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      color: #ffcc00;
+    }
+
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-left">
-    <div class="menu">
+  <nav>
+    <div class="nav-left">
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
       <a href="wishlist.html">Wishlist</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </div>
-  </div>
-  <div class="logo">
-    <img src="91222CBA-A276-4E7F-9BF9-4B1122CFC496.jpeg" alt="vincode logo">
-  </div>
-  <div class="auth">
-    <a href="login.html">Login</a>
-    <a href="signup.html">Signup</a>
-  </div>
-</nav>
+    <div class="nav-center">
+      <img src="images/logo-nav.jpeg" alt="vincode logo" />
+    </div>
+    <div class="auth">
+      <a href="login.html">
+        <i class="fas fa-user"></i> 로그인
+      </a>
+      <a href="signup.html">
+        <i class="fas fa-user-plus"></i> 회원가입
+      </a>
+    </div>
+  </nav>
 
-<h1>문의하기</h1>
-<div class="info">
-  <p>📧 이메일: <strong>vincode.official@gmail.com</strong></p>
-  <p>📸 인스타그램: <strong>@vincode_official</strong></p>
-</div>
+  <h1>문의하기</h1>
 
-<div class="form-wrapper">
-  <form action="#" method="post">
-    <input type="text" name="name" placeholder="이름" required />
-    <input type="email" name="email" placeholder="이메일 주소" required />
-    <textarea name="message" rows="6" placeholder="문의 내용을 입력하세요..." required></textarea>
-    <button type="submit">보내기</button>
-  </form>
-</div>
+  <div class="contact-container">
+    <form action="" method="POST">
+      <input type="text" placeholder="이름" required />
+      <input type="email" placeholder="이메일" required />
+      <textarea placeholder="문의 내용을 작성하세요..." rows="5" required></textarea>
+      <button type="submit">문의하기</button>
+    </form>
+  </div>
+
+  <div class="contact-info">
+    <p>이메일: <a href="mailto:vincode@example.com">vincode@example.com</a></p>
+    <p>인스타그램: <a href="https://www.instagram.com/vincode_official" target="_blank">@vincode_official</a></p>
+  </div>
 
 </body>
 </html>
