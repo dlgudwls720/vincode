@@ -8,7 +8,7 @@
     body {
       background-color: #0e0e0e;
       color: white;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 40px 20px;
       text-align: center;
@@ -38,9 +38,16 @@
     }
 
     h1 {
-      margin: 40px 0;
-      animation: fadeIn 1s ease-out forwards;
-      opacity: 0;
+      margin-top: 40px;
+    }
+
+    #searchInput {
+      margin: 20px auto;
+      padding: 10px;
+      width: 250px;
+      border-radius: 20px;
+      border: none;
+      font-size: 1em;
     }
 
     .grid {
@@ -55,11 +62,6 @@
       background-color: #1c1c1c;
       padding: 20px;
       border-radius: 10px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1s ease-out forwards;
-      animation-delay: 0.3s;
     }
 
     .product img {
@@ -77,13 +79,6 @@
       font-size: 0.9em;
       opacity: 0.7;
     }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
   </style>
 </head>
 <body>
@@ -96,24 +91,38 @@
   </nav>
 
   <h1>vincode 제품 목록</h1>
+  <input type="text" id="searchInput" placeholder="제품 검색 (예: 후드, 반팔 등)" />
 
-  <div class="grid">
-    <div class="product">
+  <div class="grid" id="productGrid">
+    <div class="product" data-name="니트">
       <img src="https://via.placeholder.com/300x200" alt="제품1">
       <h3>니트</h3>
       <p>₩79,000</p>
     </div>
-    <div class="product">
+    <div class="product" data-name="빈티지 반팔티">
       <img src="https://via.placeholder.com/300x200" alt="제품2">
       <h3>빈티지 반팔티</h3>
       <p>₩39,000</p>
     </div>
-    <div class="product">
+    <div class="product" data-name="스트릿 후드티">
       <img src="https://via.placeholder.com/300x200" alt="제품3">
       <h3>스트릿 후드티</h3>
       <p>₩59,000</p>
     </div>
   </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const products = document.querySelectorAll('.product');
+
+    searchInput.addEventListener('input', function () {
+      const keyword = this.value.toLowerCase();
+      products.forEach(product => {
+        const name = product.getAttribute('data-name').toLowerCase();
+        product.style.display = name.includes(keyword) ? 'block' : 'none';
+      });
+    });
+  </script>
 
 </body>
 </html>
