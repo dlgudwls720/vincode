@@ -16,31 +16,35 @@
       background-color: white;
       color: black;
       font-family: 'Arial', sans-serif;
+      line-height: 1.6;
     }
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 15px 20px;
       background-color: white;
       border-bottom: 1px solid #ddd;
       position: relative;
     }
 
-    .nav-left, .auth {
+    .nav-left {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       font-weight: bold;
+      flex-wrap: wrap;
     }
 
-    .nav-left a, .auth a {
+    .nav-left a {
       text-decoration: none;
       color: black;
       transition: 0.3s;
+      font-size: 0.95em;
     }
 
-    .nav-left a:hover, .auth a:hover {
+    .nav-left a:hover {
       color: black;
     }
 
@@ -51,75 +55,91 @@
     }
 
     .nav-center img {
-      height: 40px;
+      height: 30px;
+    }
+
+    .auth a {
+      display: inline-block;
+      margin-left: 10px;
+      color: black;
+      font-size: 1.2em;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
     h1 {
       text-align: center;
       font-size: 2.5em;
-      margin: 40px 0 10px;
-    }
-
-    .contact-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px 40px;
-      text-align: center;
-    }
-
-    .contact-container p {
-      font-size: 1.1em;
       margin-bottom: 20px;
     }
 
-    .contact-form {
+    p {
+      text-align: center;
+      font-size: 1.1em;
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    form {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      max-width: 600px;
-      margin: 0 auto;
+      gap: 15px;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
     }
 
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 15px;
+    input, textarea {
+      padding: 10px;
+      border-radius: 5px;
       border: 1px solid #ccc;
-      border-radius: 10px;
       font-size: 1em;
-      margin-bottom: 10px;
-      box-sizing: border-box;
     }
 
-    .contact-form button {
-      padding: 15px 30px;
+    button {
+      padding: 10px;
+      background-color: black;
+      color: white;
       border: none;
-      border-radius: 10px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
       background-color: #ffcc00;
       color: black;
-      font-size: 1.2em;
-      cursor: pointer;
-      font-weight: bold;
     }
 
-    .contact-form button:hover {
-      background-color: #e6b800;
-    }
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
 
-    .contact-info {
-      margin-top: 20px;
-      font-size: 1.2em;
-    }
+      .nav-center {
+        position: static;
+        transform: none;
+        align-self: center;
+        margin-top: 10px;
+      }
 
-    .contact-info a {
-      text-decoration: none;
-      color: #ffcc00;
-      font-weight: bold;
+      h1 {
+        font-size: 2em;
+      }
+
+      p {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <div class="nav-left">
       <a href="index.html">Home</a>
@@ -132,35 +152,22 @@
       <img src="images/logo-nav.jpeg" alt="vincode logo" />
     </div>
     <div class="auth">
-      <a href="login.html">
-        <i class="fas fa-user"></i> 로그인
-      </a>
-      <a href="signup.html">
-        <i class="fas fa-user-plus"></i> 회원가입
-      </a>
+      <a href="login.html"><i class="fas fa-user"></i></a>
+      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
     </div>
   </nav>
 
-  <h1>문의하기</h1>
+  <main>
+    <h1>문의하기</h1>
+    <p>궁금한 점이 있으시면 아래 양식 또는 인스타 DM으로 연락 주세요.</p>
+    <p>Email: vincodeofficial@gmail.com<br>Instagram: @vincode.official</p>
 
-  <div class="contact-container">
-    <p>
-      궁금한 점이 있으신가요? <br />
-      아래 양식에 맞춰서 문의를 남겨주세요!
-    </p>
-
-    <div class="contact-form">
+    <form>
+      <input type="text" placeholder="이름" required />
       <input type="email" placeholder="이메일" required />
-      <input type="text" placeholder="인스타그램 아이디" required />
-      <textarea placeholder="문의 사항을 작성해주세요..." rows="6" required></textarea>
-      <button type="submit">보내기</button>
-    </div>
-
-    <div class="contact-info">
-      <p>이메일: <a href="mailto:vincodebrand@gmail.com">vincodebrand@gmail.com</a></p>
-      <p>인스타그램: <a href="https://instagram.com/vincode.official" target="_blank">@vincode.official</a></p>
-    </div>
-  </div>
-
+      <textarea rows="5" placeholder="문의 내용을 입력하세요..." required></textarea>
+      <button type="submit">문의 보내기</button>
+    </form>
+  </main>
 </body>
 </html>
