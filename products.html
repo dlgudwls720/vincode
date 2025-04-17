@@ -34,12 +34,14 @@
       color: #ffcc00;
     }
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1s ease-out forwards;
-    }
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease-out forwards;
+  animation-fill-mode: both;
+  animation-delay: 0.1s;
+}
     
   animation-fill-mode: both;
     .search-container { animation-delay: 0.3s; }
@@ -138,7 +140,42 @@
 </div>
 
 <div class="grid" id="productGrid">
-  <!-- 제품 목록 생략 (유지됨) -->
+  <div class="product" data-id="hoodie1" data-name="후드집업" data-category="후드집업">
+    <img src="https://via.placeholder.com/300x200" alt="후드집업">
+    <h3>후드집업</h3>
+    <p>₩69,000</p>
+    <span class="favorite" onclick="toggleFavorite(this, 'hoodie1')">♡</span>
+  </div>
+  <div class="product" data-id="hoodie2" data-name="후드티" data-category="후드티">
+    <img src="https://via.placeholder.com/300x200" alt="후드티">
+    <h3>후드티</h3>
+    <p>₩47,000</p>
+    <span class="favorite" onclick="toggleFavorite(this, 'hoodie2')">♡</span>
+  </div>
+  <div class="product" data-id="mtm1" data-name="맨투맨" data-category="맨투맨">
+    <img src="https://via.placeholder.com/300x200" alt="맨투맨">
+    <h3>맨투맨</h3>
+    <p>₩34,000</p>
+    <span class="favorite" onclick="toggleFavorite(this, 'mtm1')">♡</span>
+  </div>
+  <div class="product" data-id="short1" data-name="반바지" data-category="반바지">
+    <img src="https://via.placeholder.com/300x200" alt="반바지">
+    <h3>반바지</h3>
+    <p>₩30,000</p>
+    <span class="favorite" onclick="toggleFavorite(this, 'short1')">♡</span>
+  </div>
+  <div class="product" data-id="pants1" data-name="긴바지" data-category="긴바지">
+    <img src="https://via.placeholder.com/300x200" alt="긴바지">
+    <h3>긴바지</h3>
+    <p>₩37,000</p>
+    <span class="favorite" onclick="toggleFavorite(this, 'pants1')">♡</span>
+  </div>
+  <div class="product" data-id="keyring1" data-name="키링" data-category="키링">
+    <img src="https://via.placeholder.com/300x200" alt="키링">
+    <h3>키링</h3>
+    <p>₩15,000</p>
+    <span class="favorite" onclick="toggleFavorite(this, 'keyring1')">♡</span>
+  </div>
 </div>
 
 <script>
