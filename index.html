@@ -4,109 +4,91 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vincode - 홈</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAhv2a1tLo9Q0QOrdFtjPO1sSnOYRwsZms",
-      authDomain: "vincode-login-34967.firebaseapp.com",
-      projectId: "vincode-login-34967",
-      storageBucket: "vincode-login-34967.appspot.com",
-      messagingSenderId: "579894494271",
-      appId: "1:579894494271:web:99cd95f65230eabf3e248a"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #000;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: white;
+      color: black;
       text-align: center;
     }
-    header {
-      padding: 20px;
-    }
+
     .logo {
+      margin: 30px 0 10px;
+    }
+
+    .logo img {
       height: 80px;
     }
-    .content {
-      padding: 40px 20px;
+
+    .brand-name {
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 10px;
     }
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
+
+    .slogan {
+      font-size: 1em;
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    .slider {
+      position: relative;
       width: 100%;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 10px 0;
-      border-top: 1px solid #ccc;
-      background: white;
-      z-index: 1000;
+      max-width: 100%;
+      height: 300px;
+      overflow: hidden;
+      margin-bottom: 40px;
     }
-    .bottom-nav a {
-      text-decoration: none;
-      color: black;
-      font-size: 0.8em;
+
+    .slides {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      width: 300%;
+      animation: slide 9s infinite;
     }
-    .bottom-nav i {
-      font-size: 1.3em;
-      margin-bottom: 3px;
+
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes slide {
+      0%   { transform: translateX(0); }
+      33%  { transform: translateX(-100%); }
+      66%  { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="images/IMG_1276.jpeg" alt="vincode logo" class="logo" />
-    <h1>환영합니다, vincode</h1>
-  </header>
-
-  <div class="content">
-    <p>여기에 홈페이지 콘텐츠가 들어갑니다.</p>
+  <div class="logo">
+    <img src="images/IMG_1276.jpeg" alt="vincode logo" />
   </div>
 
-  <div class="bottom-nav">
-    <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
-    <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
-    <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
-    <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
-    <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
-    <a href="login.html" id="account-link"><i class="fas fa-user"></i><span>계정</span></a>
+  <div class="brand-name">vincode</div>
+  <div class="slogan">Unlock your code</div>
+
+  <div class="slider">
+    <div class="slides">
+      <div class="slide"><img src="images/banner1.jpg" alt="배너1" /></div>
+      <div class="slide"><img src="images/banner2.jpg" alt="배너2" /></div>
+      <div class="slide"><img src="images/banner3.jpg" alt="배너3" /></div>
+    </div>
   </div>
-
-  <!-- 로그인 상태 확인 및 로그아웃 스크립트 -->
-  <script>
-    firebase.auth().onAuthStateChanged((user) => {
-      const accountLink = document.getElementById('account-link');
-
-      if (user) {
-        console.log("로그인 중:", user.email);
-        accountLink.innerHTML = `<i class="fas fa-sign-out-alt"></i><span>로그아웃</span>`;
-        accountLink.href = "#";
-        accountLink.onclick = function () {
-          firebase.auth().signOut().then(() => {
-            alert("로그아웃 되었습니다.");
-            location.reload();
-          });
-        };
-      } else {
-        console.log("로그인 안됨");
-        accountLink.innerHTML = `<i class="fas fa-user"></i><span>계정</span>`;
-        accountLink.href = "login.html";
-        accountLink.onclick = null;
-      }
-    });
-  </script>
 
 </body>
 </html>
