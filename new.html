@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>신제품 - vincode</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: white;
+      color: black;
+    }
+    .logo-center {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .logo-center img {
+      height: 40px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .favorite {
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      margin-top: 10px;
+      color: #888;
+    }
+    .favorite.active {
+      color: #ff3366;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      font-size: 0.8em;
+    }
+    .bottom-nav a {
+      text-decoration: none;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bottom-nav i {
+      font-size: 1.4em;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-center">
+    <img src="images/IMG_1276.jpeg" alt="vincode logo">
+  </div>
+
+  <h1>신제품</h1>
+
+  <div class="grid">
+    <div class="product">
+      <img src="images/sample1.jpg" alt="신제품1">
+      <h3>NEW 스트릿 셋업</h3>
+      <p>₩79,000</p>
+      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
+      <button class="favorite" onclick="toggleFavorite(this)"><i class="fas fa-heart"></i></button>
+    </div>
+    <div class="product">
+      <img src="images/sample2.jpg" alt="신제품2">
+      <h3>NEW 블랙 키링</h3>
+      <p>₩15,000</p>
+      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
+      <button class="favorite" onclick="toggleFavorite(this)"><i class="fas fa-heart"></i></button>
+    </div>
+    <div class="product">
+      <img src="images/sample3.jpg" alt="신제품3">
+      <h3>NEW 로고 맨투맨</h3>
+      <p>₩49,000</p>
+      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
+      <button class="favorite" onclick="toggleFavorite(this)"><i class="fas fa-heart"></i></button>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
+    <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
+    <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
+    <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
+    <a href="login.html"><i class="fas fa-user"></i><span>로그인/회원가입</span></a>
+  </div>
+
+  <script>
+    function toggleFavorite(btn) {
+      btn.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
