@@ -19,33 +19,12 @@
       text-align: center;
     }
 
-    .logo {
-      margin: 30px 0 10px;
-    }
-
-    .logo img {
-      height: 80px;
-    }
-
-    .brand-name {
-      font-size: 2em;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .slogan {
-      font-size: 1em;
-      color: #777;
-      margin-bottom: 30px;
-    }
-
     .slider {
       position: relative;
       width: 100%;
       max-width: 100%;
       height: 300px;
       overflow: hidden;
-      margin-bottom: 40px;
     }
 
     .slides {
@@ -71,16 +50,45 @@
       66%  { transform: translateX(-200%); }
       100% { transform: translateX(0); }
     }
+
+    .logo {
+      margin: 30px 0 10px;
+    }
+
+    .logo img {
+      height: 80px;
+    }
+
+    .brand-name {
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .slogan {
+      font-size: 1em;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .shop-button {
+      display: inline-block;
+      background-color: black;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .shop-button:hover {
+      background-color: #333;
+    }
   </style>
 </head>
 <body>
-
-  <div class="logo">
-    <img src="images/IMG_1276.jpeg" alt="vincode logo" />
-  </div>
-
-  <div class="brand-name">vincode</div>
-  <div class="slogan">Unlock your code</div>
 
   <div class="slider">
     <div class="slides">
@@ -89,6 +97,15 @@
       <div class="slide"><img src="images/banner3.jpg" alt="배너3" /></div>
     </div>
   </div>
+
+  <div class="logo">
+    <img src="images/IMG_1276.jpeg" alt="vincode logo" />
+  </div>
+
+  <div class="brand-name">vincode</div>
+  <div class="slogan">Unlock your code</div>
+
+  <a href="products.html" class="shop-button">쇼핑하기</a>
 
 </body>
 </html>
