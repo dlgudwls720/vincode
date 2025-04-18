@@ -103,7 +103,7 @@
     <button type="submit">가입하기</button>
   </form>
 
-  <div class="bottom-nav">
+  <div class="bottom-nav" id="bottomNav">
     <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
     <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
     <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
@@ -134,6 +134,17 @@
         .catch((error) => {
           alert("회원가입 실패: " + error.message);
         });
+    });
+
+    // 관리자 로그인 시 관리자 버튼 추가
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user && user.email === "vincodeofficial@gmail.com") {
+        const nav = document.getElementById('bottomNav');
+        const adminLink = document.createElement('a');
+        adminLink.href = 'admin.html';
+        adminLink.innerHTML = '<i class="fas fa-lock"></i><span>관리자</span>';
+        nav.appendChild(adminLink);
+      }
     });
   </script>
 </body>
