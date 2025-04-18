@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - vincode</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <title>로그인 - vincode</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -14,109 +14,127 @@
 
     body {
       font-family: 'Arial', sans-serif;
-      background-color: white;
-      color: black;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 20px;
+      background-color: #fff;
+      color: #000;
       text-align: center;
     }
 
-    h1 {
-      font-size: 2em;
+    .logo-container {
+      padding: 20px;
+    }
+
+    .logo-container img {
+      height: 80px;
+    }
+
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+
+    .form-group {
+      text-align: left;
       margin-bottom: 20px;
     }
 
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
     }
 
-    button {
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-button {
       width: 100%;
       padding: 12px;
-      background-color: black;
-      color: white;
+      background-color: #000;
+      color: #fff;
+      font-weight: bold;
       border: none;
-      border-radius: 8px;
-      font-size: 1em;
+      border-radius: 5px;
       cursor: pointer;
     }
 
-    button:hover {
+    .login-button:hover {
       background-color: #333;
     }
 
-    .signup-link {
-      margin-top: 15px;
-      font-size: 0.9em;
+    .mobile-nav {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #ccc;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
     }
 
-    .signup-link a {
-      color: black;
-      text-decoration: underline;
+    .mobile-nav a {
+      text-decoration: none;
+      color: #000;
+      font-size: 0.8em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .mobile-bottom-nav {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .mobile-bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        border-top: 1px solid #ccc;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 8px 0;
-        z-index: 1000;
-      }
-
-      .mobile-bottom-nav a {
-        text-decoration: none;
-        color: black;
-        font-size: 0.8em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .mobile-bottom-nav i {
-        font-size: 1.2em;
-        margin-bottom: 2px;
-      }
+    .mobile-nav i {
+      font-size: 1.4em;
+      margin-bottom: 3px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>로그인</h1>
-    <input type="text" placeholder="아이디" required />
-    <input type="password" placeholder="비밀번호" required />
-    <button>로그인</button>
-    <div class="signup-link">
-      계정이 없으신가요? <a href="signup.html">회원가입</a>
-    </div>
+  <div class="logo-container">
+    <img src="images/IMG_1276.jpeg" alt="vincode logo">
   </div>
 
-  <!-- 모바일 하단 메뉴 -->
-  <div class="mobile-bottom-nav">
-    <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
-    <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
-    <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
-    <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
-    <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
+  <div class="form-container">
+    <h2>로그인</h2>
+    <div class="form-group">
+      <label for="email">이메일</label>
+      <input type="email" id="email" placeholder="example@email.com">
+    </div>
+    <div class="form-group">
+      <label for="password">비밀번호</label>
+      <input type="password" id="password" placeholder="비밀번호">
+    </div>
+    <button class="login-button">로그인</button>
+  </div>
+
+  <div class="mobile-nav">
+    <a href="index.html">
+      <i class="fas fa-home"></i>
+      홈
+    </a>
+    <a href="products.html">
+      <i class="fas fa-shopping-bag"></i>
+      제품
+    </a>
+    <a href="new.html">
+      <i class="fas fa-star"></i>
+      신제품
+    </a>
+    <a href="wishlist.html">
+      <i class="fas fa-heart"></i>
+      찜
+    </a>
+    <a href="login.html">
+      <i class="fas fa-user"></i>
+      계정
+    </a>
   </div>
 </body>
 </html>
