@@ -1,52 +1,235 @@
-<!-- Mobile Bottom Navigation (모바일 전용 하단바) -->
-<style>
-  @media (max-width: 768px) {
-    .mobile-nav {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: white;
-      border-top: 1px solid #ddd;
-      padding: 10px 0;
-      z-index: 1000;
-    }
-    .mobile-nav a {
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vincode - 제품 목록</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: white;
       color: black;
-      font-size: 14px;
-      text-decoration: none;
+      font-family: 'Arial', sans-serif;
+    }
+    nav {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
+      padding: 20px 40px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      position: relative;
     }
-    .mobile-nav a i {
-      font-size: 18px;
-      margin-bottom: 4px;
+    .nav-left, .auth {
+      display: flex;
+      gap: 20px;
+      font-weight: bold;
     }
-  }
-</style>
+    .nav-left a, .auth a {
+      text-decoration: none;
+      color: black;
+      transition: 0.3s;
+    }
+    .nav-left a:hover, .auth a:hover {
+      color: black;
+    }
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-center img {
+      height: 40px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin: 40px 0 10px;
+    }
+    .search-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .search-container input {
+      padding: 12px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 30px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+    .product {
+      background-color: #f1f1f1;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+    }
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+    .product p {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    .favorite {
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      margin-top: 10px;
+      color: #888;
+      transition: color 0.3s;
+    }
+    .favorite.active {
+      color: #ff3366;
+    }
+    @media (max-width: 768px) {
+      .mobile-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        border-top: 1px solid #ddd;
+        padding: 10px 0;
+        z-index: 1000;
+      }
+      .mobile-nav a {
+        color: black;
+        font-size: 14px;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .mobile-nav a i {
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
 
-<div class="mobile-nav">
-  <a href="index.html">
-    <i class="fas fa-home"></i>
-    <span>홈</span>
-  </a>
-  <a href="products.html">
-    <i class="fas fa-th-large"></i>
-    <span>제품</span>
-  </a>
-  <a href="wishlist.html">
-    <i class="fas fa-heart"></i>
-    <span>찜</span>
-  </a>
-  <a href="login.html">
-    <i class="fas fa-user"></i>
-    <span>계정</span>
-  </a>
-</div>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-center">
+      <img src="images/logo-nav.jpeg" alt="vincode logo" />
+    </div>
+    <div class="auth">
+      <a href="login.html">
+        <i class="fas fa-user"></i>
+      </a>
+      <a href="signup.html">
+        <i class="fas fa-user-plus"></i>
+      </a>
+    </div>
+  </nav>
 
-<!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <h1>vincode 제품 목록</h1>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="제품명을 입력하세요...">
+  </div>
+
+  <div class="grid" id="product-list"></div>
+
+  <!-- 모바일 하단 네비게이션 -->
+  <div class="mobile-nav">
+    <a href="index.html">
+      <i class="fas fa-home"></i>
+      <span>홈</span>
+    </a>
+    <a href="products.html">
+      <i class="fas fa-th-large"></i>
+      <span>제품</span>
+    </a>
+    <a href="wishlist.html">
+      <i class="fas fa-heart"></i>
+      <span>찜</span>
+    </a>
+    <a href="login.html">
+      <i class="fas fa-user"></i>
+      <span>계정</span>
+    </a>
+  </div>
+
+  <script>
+    const allProducts = [
+      { id: "hoodie1", name: "후드집업", price: "₩69,000", img: "images/hoodie-green.jpeg" },
+      { id: "hoodie2", name: "후드티", price: "₩47,000", img: "images/sample2.jpg" },
+      { id: "mtm1", name: "맨투맨", price: "₩34,000", img: "images/sample3.jpg" },
+    ];
+
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+    function renderProducts(keyword = '') {
+      const container = document.getElementById("product-list");
+      container.innerHTML = "";
+      const filtered = allProducts.filter(p => p.name.includes(keyword));
+
+      filtered.forEach(product => {
+        const isFavorite = favorites.includes(product.id);
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `
+          <img src="${product.img}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p>${product.price}</p>
+          <button class="favorite ${isFavorite ? 'active' : ''}" onclick="toggleFavorite('${product.id}', this)">
+            ${isFavorite ? '❤️' : '♡'}
+          </button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function toggleFavorite(id, btn) {
+      let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+      const index = favorites.indexOf(id);
+      if (index > -1) {
+        favorites.splice(index, 1);
+        btn.classList.remove('active');
+        btn.textContent = '♡';
+      } else {
+        favorites.push(id);
+        btn.classList.add('active');
+        btn.textContent = '❤️';
+      }
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      renderProducts(e.target.value);
+    });
+
+    window.addEventListener("DOMContentLoaded", () => renderProducts());
+  </script>
+</body>
+</html>
