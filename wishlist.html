@@ -3,18 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>문의하기 - vincode</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>찜한 상품 - vincode</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Arial', sans-serif;
       background-color: white;
       color: black;
+      font-family: 'Arial', sans-serif;
     }
     nav {
       display: flex;
@@ -46,43 +42,37 @@
     .nav-center img {
       height: 40px;
     }
-    .contact-container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-    }
     h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
+      text-align: center;
+      font-size: 2.5em;
+      margin: 40px 0 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+    .product {
+      background-color: #f1f1f1;
+      padding: 20px;
+      border-radius: 10px;
       text-align: center;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
     }
-    input, textarea {
-      padding: 12px;
-      font-size: 1em;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+    .product h3 {
+      margin: 10px 0 5px;
     }
-    button {
-      padding: 12px;
-      background-color: black;
-      color: white;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #333;
-    }
-    .info {
-      margin-top: 30px;
-      text-align: center;
+    .product p {
       font-size: 0.9em;
+      opacity: 0.8;
     }
     .bottom-nav {
       position: fixed;
@@ -107,9 +97,15 @@
     .bottom-nav i {
       font-size: 1.4em;
     }
+    @media screen and (max-width: 768px) {
+      nav {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="nav-left">
       <a href="index.html">Home</a>
@@ -119,7 +115,7 @@
       <a href="contact.html">Contact</a>
     </div>
     <div class="nav-center">
-      <img src="images/logo-nav.jpeg" alt="vincode logo">
+      <img src="images/logo-nav.jpeg" alt="vincode logo" />
     </div>
     <div class="auth">
       <a href="login.html">
@@ -128,18 +124,10 @@
     </div>
   </nav>
 
-  <div class="contact-container">
-    <h1>문의하기</h1>
-    <form>
-      <input type="text" placeholder="이름" required>
-      <input type="email" placeholder="이메일" required>
-      <textarea placeholder="문의 내용을 입력하세요..." rows="5" required></textarea>
-      <button type="submit">문의 보내기</button>
-    </form>
-    <div class="info">
-      <p>이메일: vincode.help@gmail.com</p>
-      <p>Instagram: @vincode.official</p>
-    </div>
+  <h1>찜한 상품</h1>
+
+  <div class="grid" id="wishlist-container">
+    <!-- 찜한 상품은 여기에 동적으로 표시됩니다 -->
   </div>
 
   <div class="bottom-nav">
@@ -150,5 +138,46 @@
     <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
     <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
+
+  <script>
+    const allProducts = {
+      hoodie1: { name: "스트릿 후드티", price: "₩59,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+      hoodiezipup1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+      mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
+      shorts1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
+      pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
+      keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
+    };
+
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const container = document.getElementById("wishlist-container");
+
+    function renderProducts() {
+      container.innerHTML = "";
+      if (favorites.length === 0) {
+        container.innerHTML = "<p>찜한 상품이 없습니다.</p>";
+        return;
+      }
+
+      favorites.forEach(id => {
+        const item = allProducts[id];
+        if (item) {
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" />
+            <h3>${item.name}</h3>
+            <p>${item.price}</p>
+          `;
+          container.appendChild(div);
+        }
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      renderProducts();
+    });
+  </script>
+
 </body>
 </html>
