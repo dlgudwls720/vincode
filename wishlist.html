@@ -7,18 +7,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background-color: white; color: black; font-family: 'Arial', sans-serif; padding-bottom: 80px; }
-    .logo-container {
-      text-align: center;
-      padding: 20px;
+    body {
+      background-color: white;
+      color: black;
+      font-family: 'Arial', sans-serif;
+      padding-bottom: 80px;
     }
-    .logo-container img {
-      height: 60px;
+    .logo {
+      display: block;
+      margin: 20px auto 10px;
+      max-width: 120px;
     }
     h1 {
       text-align: center;
       font-size: 2em;
-      margin: 10px 0 20px;
+      margin-bottom: 20px;
     }
     .grid {
       display: grid;
@@ -26,7 +29,7 @@
       gap: 20px;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 20px 40px;
     }
     .product {
       background-color: #f1f1f1;
@@ -47,60 +50,47 @@
       font-size: 0.9em;
       opacity: 0.8;
     }
-    .favorite {
-      background: none;
-      border: none;
-      font-size: 1.5em;
-      cursor: pointer;
-      margin-top: 10px;
-      color: #888;
-      transition: color 0.3s;
-    }
-    .favorite.active {
-      color: #ff3366;
-    }
     .mobile-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       background-color: white;
       border-top: 1px solid #ccc;
-      display: flex;
-      justify-content: space-around;
       padding: 10px 0;
-      z-index: 100;
+      z-index: 1000;
     }
     .mobile-nav a {
-      text-align: center;
-      font-size: 0.75em;
-      color: black;
       text-decoration: none;
+      color: black;
+      font-size: 0.8em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .mobile-nav i {
       font-size: 1.2em;
-      display: block;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
   </style>
 </head>
 <body>
-  <div class="logo-container">
-    <img src="images/IMG_1276.jpeg" alt="vincode logo">
-  </div>
-
+  <img src="images/IMG_1276.jpeg" alt="vincode logo" class="logo">
   <h1>찜한 상품</h1>
-
   <div class="grid" id="wishlist-container">
-    <!-- 찜한 상품은 여기에 동적으로 표시됩니다 -->
+    <!-- 찜한 상품 표시 -->
   </div>
 
   <div class="mobile-nav">
-    <a href="index.html"><i class="fas fa-home"></i>홈</a>
-    <a href="products.html"><i class="fas fa-shopping-bag"></i>제품</a>
-    <a href="new.html"><i class="fas fa-star"></i>신제품</a>
-    <a href="wishlist.html"><i class="fas fa-heart"></i>찜</a>
-    <a href="contact.html"><i class="fas fa-envelope"></i>문의</a>
+    <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
+    <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
+    <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
+    <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
+    <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
 
   <script>
@@ -108,9 +98,6 @@
       hoodie1: { name: "그린 후드티", price: "₩59,000", img: "images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png" },
       hoodiezipup1: { name: "후드집업", price: "₩69,000", img: "images/sample2.jpg" },
       mtm1: { name: "맨투맨", price: "₩34,000", img: "images/sample3.jpg" },
-      shorts1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200" },
-      pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200" },
-      keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200" }
     };
 
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -119,7 +106,7 @@
     function renderProducts() {
       container.innerHTML = "";
       if (favorites.length === 0) {
-        container.innerHTML = "<p>찜한 상품이 없습니다.</p>";
+        container.innerHTML = "<p style='text-align:center;'>찜한 상품이 없습니다.</p>";
         return;
       }
 
@@ -138,9 +125,7 @@
       });
     }
 
-    window.addEventListener("DOMContentLoaded", () => {
-      renderProducts();
-    });
+    window.addEventListener("DOMContentLoaded", renderProducts);
   </script>
 </body>
 </html>
