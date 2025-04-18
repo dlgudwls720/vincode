@@ -71,18 +71,6 @@
     a.button:hover {
       background-color: #333;
     }
-    .preview-swiper {
-      padding: 20px;
-      background: #f1f1f1;
-    }
-    .preview-swiper .swiper-slide {
-      width: auto;
-      height: 150px;
-    }
-    .preview-swiper img {
-      height: 100%;
-      border-radius: 10px;
-    }
   </style>
 </head>
 <body>
@@ -99,14 +87,7 @@
     <h1>vincode</h1>
     <p>Unlock Your Code</p>
     <a href="products.html" class="button">쇼핑 시작하기</a>
-  </div>
-
-  <div class="swiper-container preview-swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><a href="products.html#new"><img src="images/hoodie-green.jpeg" alt="후드티"></a></div>
-      <div class="swiper-slide"><a href="products.html#new"><img src="images/sample2.jpg" alt="item2"></a></div>
-      <div class="swiper-slide"><a href="products.html#new"><img src="images/sample3.jpg" alt="item3"></a></div>
-    </div>
+    <img src="images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png" alt="후드티 미리보기" style="max-width: 300px; margin-top: 20px;">
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -121,21 +102,6 @@
       spaceBetween: 50,
       grabCursor: true,
       freeMode: true,
-    });
-
-    const previewSwiper = new Swiper('.preview-swiper', {
-      loop: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      slidesPerView: 2,
-      spaceBetween: 20,
-      breakpoints: {
-        768: {
-          slidesPerView: 3
-        }
-      }
     });
   </script>
 </body>
