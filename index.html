@@ -46,8 +46,13 @@
       }
     }
     .logo {
-      max-width: 200px;
+      width: 120px;
       margin-bottom: 20px;
+    }
+    .featured-hoodie {
+      max-width: 250px;
+      margin-top: 20px;
+      border-radius: 10px;
     }
     h1 {
       font-size: 2.5em;
@@ -71,21 +76,10 @@
     a.button:hover {
       background-color: #333;
     }
-    .preview-swiper {
-      padding: 20px;
-      background: #f1f1f1;
-    }
-    .preview-swiper .swiper-slide {
-      width: auto;
-      height: 150px;
-    }
-    .preview-swiper img {
-      height: 100%;
-      border-radius: 10px;
-    }
   </style>
 </head>
 <body>
+
   <div class="swiper-container swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">스트릿 감성의 정수, vincode의 새로운 컬렉션을 만나보세요.</div>
@@ -95,31 +89,11 @@
   </div>
 
   <div class="container">
-    <img src="images/logo-nav.jpeg" alt="vincode logo" class="logo">
+    <img src="images/A31209F9-7D30-41CD-8CF4-41342CCAC189.jpeg" alt="vincode logo" class="logo">
     <h1>vincode</h1>
     <p>Unlock Your Code</p>
     <a href="products.html" class="button">쇼핑 시작하기</a>
-  </div>
-
-  <!-- 제품 미리보기 슬라이더 -->
-  <div class="swiper-container preview-swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <a href="products.html#hoodie">
-          <img src="images/9BFF01D4-A5D0-45DC-BC35-F1EF0EF444B7.jpeg" alt="그린 후드티">
-        </a>
-      </div>
-      <div class="swiper-slide">
-        <a href="products.html#new">
-          <img src="images/sample2.jpg" alt="item2">
-        </a>
-      </div>
-      <div class="swiper-slide">
-        <a href="products.html#new">
-          <img src="images/sample3.jpg" alt="item3">
-        </a>
-      </div>
-    </div>
+    <img src="images/80DBF269-196E-4E5A-8518-1470F2ED9A0B.jpeg" alt="후드티 이미지" class="featured-hoodie">
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -134,21 +108,6 @@
       spaceBetween: 50,
       grabCursor: true,
       freeMode: true,
-    });
-
-    const previewSwiper = new Swiper('.preview-swiper', {
-      loop: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      slidesPerView: 2,
-      spaceBetween: 20,
-      breakpoints: {
-        768: {
-          slidesPerView: 3
-        }
-      }
     });
   </script>
 </body>
