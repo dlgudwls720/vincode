@@ -1,150 +1,119 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>문의하기 - vincode</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Arial', sans-serif;
-      background-color: white;
-      color: black;
+      background-color: #fff;
+      color: #000;
+      text-align: center;
     }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: white;
-      border-bottom: 1px solid #ddd;
-      position: relative;
-    }
-    .nav-left, .auth {
-      display: flex;
-      gap: 20px;
-      font-weight: bold;
-    }
-    .nav-left a, .auth a {
-      text-decoration: none;
-      color: black;
-      transition: 0.3s;
-    }
-    .nav-left a:hover, .auth a:hover {
-      color: black;
-    }
-    .nav-center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .nav-center img {
-      height: 40px;
-    }
-    .contact-container {
-      max-width: 600px;
-      margin: 50px auto;
+
+    .logo-container {
       padding: 20px;
     }
+
+    .logo-container img {
+      height: 80px;
+    }
+
     h1 {
-      font-size: 2em;
+      margin-top: 10px;
       margin-bottom: 20px;
-      text-align: center;
+      font-size: 2em;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+
+    .contact-info {
+      margin-bottom: 30px;
+      font-size: 0.95em;
+      color: #333;
     }
-    input, textarea {
+
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 0 20px 30px;
+    }
+
+    .form-container textarea,
+    .form-container input {
+      width: 100%;
       padding: 12px;
-      font-size: 1em;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
-      border-radius: 10px;
+      border-radius: 5px;
+      font-size: 1em;
     }
-    button {
+
+    .form-container button {
+      width: 100%;
       padding: 12px;
-      background-color: black;
-      color: white;
+      background-color: #000;
+      color: #fff;
       font-weight: bold;
       border: none;
-      border-radius: 10px;
+      border-radius: 5px;
       cursor: pointer;
+      font-size: 1em;
     }
-    button:hover {
+
+    .form-container button:hover {
       background-color: #333;
     }
-    .info {
-      margin-top: 30px;
-      text-align: center;
-      font-size: 0.9em;
-    }
+
     .bottom-nav {
       position: fixed;
       bottom: 0;
-      left: 0;
       width: 100%;
-      background-color: white;
-      border-top: 1px solid #ccc;
       display: flex;
       justify-content: space-around;
       align-items: center;
       padding: 10px 0;
-      font-size: 0.8em;
+      border-top: 1px solid #ccc;
+      background: white;
     }
+
     .bottom-nav a {
       text-decoration: none;
       color: black;
+      font-size: 0.75em;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .bottom-nav i {
-      font-size: 1.4em;
-    }
-    @media screen and (max-width: 768px) {
-      nav {
-        display: none;
-      }
+      font-size: 1.3em;
+      margin-bottom: 3px;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-left">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-center">
-      <img src="images/IMG_1276.jpeg" alt="vincode logo">
-    </div>
-    <div class="auth">
-      <a href="login.html">
-        <i class="fas fa-user"></i>
-      </a>
-    </div>
-  </nav>
+  <div class="logo-container">
+    <img src="images/IMG_1276.jpeg" alt="vincode logo">
+  </div>
 
-  <div class="contact-container">
-    <h1>문의하기</h1>
-    <form>
-      <input type="text" placeholder="이름" required>
-      <input type="email" placeholder="이메일" required>
-      <textarea placeholder="문의 내용을 입력하세요..." rows="5" required></textarea>
-      <button type="submit">문의 보내기</button>
-    </form>
-    <div class="info">
-      <p>이메일: vincode.help@gmail.com</p>
-      <p>Instagram: @vincode.official</p>
-    </div>
+  <h1>문의하기</h1>
+  <div class="contact-info">
+    이메일: vincode.help@gmail.com<br />
+    인스타그램: @vincode.official
+  </div>
+
+  <div class="form-container">
+    <input type="text" placeholder="이름" required />
+    <input type="email" placeholder="이메일" required />
+    <textarea rows="5" placeholder="문의 내용을 입력하세요" required></textarea>
+    <button>문의 보내기</button>
   </div>
 
   <div class="bottom-nav">
