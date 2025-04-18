@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>문의 관리 - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
@@ -40,6 +40,7 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
     import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -52,32 +53,45 @@
     };
 
     const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
     const db = getFirestore(app);
 
     const inquiryList = document.getElementById("inquiryList");
 
-    onSnapshot(collection(db, "inquiries"), (snapshot) => {
-      inquiryList.innerHTML = "";
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const sentAt = data.createdAt?.toDate?.();
-        const krTime = sentAt
-          ? new Date(sentAt.getTime() + 9 * 60 * 60 * 1000).toLocaleString()
-          : "시간 정보 없음";
+    // 관리자 이메일
+    const ADMIN_EMAIL = "vincodeofficial@gmail.com";
 
-        const div = document.createElement("div");
-        div.className = "inquiry";
-        div.innerHTML = `
-          <p><strong>이름:</strong> ${data.name}</p>
-          <p><strong>이메일:</strong> ${data.email}</p>
-          <p><strong>내용:</strong> ${data.message}</p>
-          <p class="timestamp"><strong>보낸 시간:</strong> ${krTime}</p>
-        `;
-        inquiryList.appendChild(div);
-      });
+    onAuthStateChanged(auth, (user) => {
+      if (user && user.email === ADMIN_EMAIL) {
+        // 관리자만 접근 가능
+        onSnapshot(collection(db, "inquiries"), (snapshot) => {
+          inquiryList.innerHTML = "";
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            const sentAt = data.createdAt?.toDate?.();
+            const krTime = sentAt
+              ? new Date(sentAt.getTime() + 9 * 60 * 60 * 1000).toLocaleString()
+              : "시간 정보 없음";
 
-      if (snapshot.empty) {
-        inquiryList.innerHTML = "<p>문의 내역이 없습니다.</p>";
+            const div = document.createElement("div");
+            div.className = "inquiry";
+            div.innerHTML = `
+              <p><strong>이름:</strong> ${data.name}</p>
+              <p><strong>이메일:</strong> ${data.email}</p>
+              <p><strong>내용:</strong> ${data.message}</p>
+              <p class="timestamp"><strong>보낸 시간:</strong> ${krTime}</p>
+            `;
+            inquiryList.appendChild(div);
+          });
+
+          if (snapshot.empty) {
+            inquiryList.innerHTML = "<p>문의 내역이 없습니다.</p>";
+          }
+        });
+
+      } else {
+        alert("관리자만 접근할 수 있습니다.");
+        window.location.href = "login.html";
       }
     });
   </script>
