@@ -124,9 +124,44 @@
     <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
     <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
     <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
-    <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
+    <a href="login.html" id="account-link"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
 
+  <!-- Firebase 로그인 상태 확인용 (auth) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script>
+    const authApp = firebase.initializeApp({
+      apiKey: "AIzaSyAhv2a1tLo9Q0QOrdFtjPO1sSnOYRwsZms",
+      authDomain: "vincode-login-34967.firebaseapp.com",
+      projectId: "vincode-login-34967",
+      storageBucket: "vincode-login-34967.appspot.com",
+      messagingSenderId: "579894494271",
+      appId: "1:579894494271:web:99cd95f65230eabf3e248a"
+    }, "authApp");
+
+    const auth = firebase.auth(authApp);
+
+    auth.onAuthStateChanged((user) => {
+      const accountLink = document.getElementById('account-link');
+      if (user) {
+        accountLink.innerHTML = `<i class="fas fa-sign-out-alt"></i><span>로그아웃</span>`;
+        accountLink.href = "#";
+        accountLink.onclick = function () {
+          auth.signOut().then(() => {
+            alert("로그아웃 되었습니다.");
+            location.reload();
+          });
+        };
+      } else {
+        accountLink.innerHTML = `<i class="fas fa-user"></i><span>계정</span>`;
+        accountLink.href = "login.html";
+        accountLink.onclick = null;
+      }
+    });
+  </script>
+
+  <!-- 문의 내용 Firestore 저장용 (module) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
