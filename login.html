@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>로그인 - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAhv2a1tLo9Q0QOrdFtjPO1sSnOYRwsZms",
+      authDomain: "vincode-login-34967.firebaseapp.com",
+      projectId: "vincode-login-34967",
+      storageBucket: "vincode-login-34967.appspot.com",
+      messagingSenderId: "579894494271",
+      appId: "1:579894494271:web:99cd95f65230eabf3e248a"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
   <style>
     * {
       margin: 0;
@@ -113,7 +129,7 @@
       <label for="password">비밀번호</label>
       <input type="password" id="password" placeholder="비밀번호">
     </div>
-    <button class="login-button">로그인</button>
+    <button class="login-button" onclick="login()">로그인</button>
   </div>
 
   <p style="margin-top: 20px; font-size: 0.9em;">
@@ -128,5 +144,21 @@
     <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
     <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("로그인 성공!");
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          alert("로그인 실패: " + error.message);
+        });
+    }
+  </script>
 </body>
 </html>
