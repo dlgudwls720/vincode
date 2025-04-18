@@ -23,24 +23,38 @@
     .logo-center img {
       height: 40px;
     }
-    .auth-icons {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-    .auth-icons a {
-      color: black;
-      margin-left: 10px;
-      font-size: 1.2em;
-    }
     h1 {
       text-align: center;
       font-size: 2em;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+    .filters, .search-container {
+      text-align: center;
+      margin: 10px 0;
+    }
+    .filters button {
+      background-color: #eee;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    .filters button.active {
+      background-color: #000;
+      color: #fff;
+    }
+    .search-container input {
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 30px;
+      border: 1px solid #ccc;
+      text-align: center;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
       padding: 20px;
     }
@@ -97,63 +111,91 @@
     <img src="images/IMG_1276.jpeg" alt="vincode logo">
   </div>
 
-  <div class="auth-icons">
-    <a href="login.html"><i class="fas fa-user"></i></a>
-    <a href="signup.html"><i class="fas fa-user-plus"></i></a>
+  <h1>전체 상품</h1>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="제품명을 입력하세요...">
   </div>
 
-  <h1>전체 상품</h1>
-  <div class="grid">
-    <div class="product">
-      <img src="images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png" alt="그린 후드티">
-      <h3>그린 후드티</h3>
-      <p><del>₩59,000</del></p>
-      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
-      <button class="favorite"><i class="fas fa-heart"></i></button>
-    </div>
-    <div class="product">
-      <img src="images/zipup.png" alt="후드집업">
-      <h3>후드집업</h3>
-      <p><del>₩69,000</del></p>
-      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
-      <button class="favorite"><i class="fas fa-heart"></i></button>
-    </div>
-    <div class="product">
-      <img src="images/mtm1.png" alt="맨투맨">
-      <h3>맨투맨</h3>
-      <p><del>₩34,000</del></p>
-      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
-      <button class="favorite"><i class="fas fa-heart"></i></button>
-    </div>
-    <div class="product">
-      <img src="images/shorts1.png" alt="반바지">
-      <h3>반바지</h3>
-      <p><del>₩30,000</del></p>
-      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
-      <button class="favorite"><i class="fas fa-heart"></i></button>
-    </div>
-    <div class="product">
-      <img src="images/pants1.png" alt="긴바지">
-      <h3>긴바지</h3>
-      <p><del>₩37,000</del></p>
-      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
-      <button class="favorite"><i class="fas fa-heart"></i></button>
-    </div>
-    <div class="product">
-      <img src="images/keyring1.png" alt="키링">
-      <h3>키링</h3>
-      <p><del>₩15,000</del></p>
-      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
-      <button class="favorite"><i class="fas fa-heart"></i></button>
-    </div>
+  <div class="filters">
+    <button onclick="filterProducts('전체')" class="active">전체</button>
+    <button onclick="filterProducts('후드티')">후드티</button>
+    <button onclick="filterProducts('맨투맨')">맨투맨</button>
+    <button onclick="filterProducts('반바지')">반바지</button>
+    <button onclick="filterProducts('긴바지')">긴바지</button>
+    <button onclick="filterProducts('키링')">키링</button>
   </div>
+
+  <div class="grid" id="productGrid"></div>
 
   <div class="bottom-nav">
     <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
     <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
+    <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
     <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
     <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
-    <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
+    <a href="login.html"><i class="fas fa-user"></i></a>
   </div>
+
+  <script>
+    const allProducts = {
+      hoodie1: { name: "그린 후드티", price: "₩59,000", category: "후드티", img: "images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png" },
+      hoodiezipup1: { name: "후드집업", price: "₩69,000", category: "후드티", img: "images/zipup.png" },
+      mtm1: { name: "맨투맨", price: "₩34,000", category: "맨투맨", img: "images/mtm1.png" },
+      shorts1: { name: "반바지", price: "₩30,000", category: "반바지", img: "images/shorts1.png" },
+      pants1: { name: "긴바지", price: "₩37,000", category: "긴바지", img: "images/pants1.png" },
+      keyring1: { name: "키링", price: "₩15,000", category: "키링", img: "images/keyring1.png" }
+    };
+
+    let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+    function renderProducts(filter = "전체", keyword = "") {
+      const container = document.getElementById("productGrid");
+      container.innerHTML = "";
+
+      Object.entries(allProducts).forEach(([id, product]) => {
+        if ((filter === "전체" || product.category === filter) && product.name.includes(keyword)) {
+          const div = document.createElement("div");
+          div.className = "product";
+          const isFav = favorites.includes(id);
+          div.innerHTML = `
+            <img src="${product.img}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.price}</p>
+            <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
+            <button class="favorite ${isFav ? 'active' : ''}" onclick="toggleFavorite('${id}', this)">
+              <i class="fas fa-heart"></i>
+            </button>
+          `;
+          container.appendChild(div);
+        }
+      });
+    }
+
+    function toggleFavorite(id, btn) {
+      if (favorites.includes(id)) {
+        favorites = favorites.filter(f => f !== id);
+        btn.classList.remove("active");
+      } else {
+        favorites.push(id);
+        btn.classList.add("active");
+      }
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+
+    function filterProducts(category) {
+      document.querySelectorAll('.filters button').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      renderProducts(category, document.getElementById("searchInput").value);
+    }
+
+    document.getElementById("searchInput").addEventListener("input", () => {
+      const keyword = document.getElementById("searchInput").value;
+      const activeCategory = document.querySelector(".filters button.active").textContent;
+      renderProducts(activeCategory, keyword);
+    });
+
+    renderProducts();
+  </script>
 </body>
 </html>
