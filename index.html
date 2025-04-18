@@ -3,105 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <title>vincode - 홈</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAhv2a1tLo9Q0QOrdFtjPO1sSnOYRwsZms",
+      authDomain: "vincode-login-34967.firebaseapp.com",
+      projectId: "vincode-login-34967",
+      storageBucket: "vincode-login-34967.appspot.com",
+      messagingSenderId: "579894494271",
+      appId: "1:579894494271:web:99cd95f65230eabf3e248a"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: white;
-      color: black;
-      font-family: 'Arial', sans-serif;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #000;
       text-align: center;
     }
-    .swiper-container {
-      width: 100%;
-      padding: 20px 0;
-      background: #f9f9f9;
-      border-bottom: 1px solid #ccc;
-    }
-    .swiper-slide {
-      font-size: 1em;
-      font-weight: bold;
-      padding: 10px;
-      white-space: nowrap;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: calc(100vh - 80px);
+    header {
       padding: 20px;
-      opacity: 0;
-      animation: fadeInUp 1.5s ease-out forwards;
-    }
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
     .logo {
-      max-width: 200px;
-      margin-bottom: 20px;
+      height: 80px;
     }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+    .content {
+      padding: 40px 20px;
     }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid #ccc;
+      background: white;
+      z-index: 1000;
     }
-    a.button {
-      display: inline-block;
-      padding: 12px 24px;
-      background-color: black;
-      color: white;
-      font-weight: bold;
+    .bottom-nav a {
       text-decoration: none;
-      border-radius: 30px;
-      transition: background-color 0.3s, color 0.3s;
-      margin-bottom: 40px;
+      color: black;
+      font-size: 0.8em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    a.button:hover {
-      background-color: #333;
+    .bottom-nav i {
+      font-size: 1.3em;
+      margin-bottom: 3px;
     }
   </style>
 </head>
 <body>
-  <div class="swiper-container swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">스트릿 감성의 정수, vincode의 새로운 컬렉션을 만나보세요.</div>
-      <div class="swiper-slide">지금 인기 제품을 확인하고 나만의 코드를 해제하세요.</div>
-      <div class="swiper-slide">한정 수량! 품절 전에 구매하세요.</div>
-    </div>
+
+  <header>
+    <img src="images/IMG_1276.jpeg" alt="vincode logo" class="logo" />
+    <h1>환영합니다, vincode</h1>
+  </header>
+
+  <div class="content">
+    <p>여기에 홈페이지 콘텐츠가 들어갑니다.</p>
   </div>
 
-  <div class="container">
-    <img src="images/IMG_1276.jpeg" alt="vincode logo" class="logo">
-    <h1>vincode</h1>
-    <p>Unlock Your Code</p>
-    <a href="products.html" class="button">쇼핑 시작하기</a>
+  <div class="bottom-nav">
+    <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
+    <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
+    <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
+    <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
+    <a href="login.html" id="account-link"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <!-- 로그인 상태 확인 및 로그아웃 스크립트 -->
   <script>
-    const swiper = new Swiper('.swiper', {
-      loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      slidesPerView: 'auto',
-      spaceBetween: 50,
-      grabCursor: true,
-      freeMode: true,
+    firebase.auth().onAuthStateChanged((user) => {
+      const accountLink = document.getElementById('account-link');
+
+      if (user) {
+        console.log("로그인 중:", user.email);
+        accountLink.innerHTML = `<i class="fas fa-sign-out-alt"></i><span>로그아웃</span>`;
+        accountLink.href = "#";
+        accountLink.onclick = function () {
+          firebase.auth().signOut().then(() => {
+            alert("로그아웃 되었습니다.");
+            location.reload();
+          });
+        };
+      } else {
+        console.log("로그인 안됨");
+        accountLink.innerHTML = `<i class="fas fa-user"></i><span>계정</span>`;
+        accountLink.href = "login.html";
+        accountLink.onclick = null;
+      }
     });
   </script>
+
 </body>
 </html>
