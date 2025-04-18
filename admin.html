@@ -3,95 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>문의 관리 - vincode</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <title>관리자 페이지 - vincode</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f5f5f5;
-      color: #333;
-    }
-    h1 {
+      padding: 40px;
       text-align: center;
-      margin-bottom: 30px;
     }
-    .inquiry {
-      background: white;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    .hidden {
+      display: none;
     }
-    .inquiry p {
-      margin: 5px 0;
-    }
-    .timestamp {
-      color: gray;
-      font-size: 0.9em;
+    .notice {
+      font-size: 1.2em;
+      color: red;
     }
   </style>
 </head>
 <body>
+  <h1>관리자 페이지</h1>
+  <p class="notice hidden" id="warning">관리자만 접근할 수 있습니다.</p>
 
-  <h1>문의 내역</h1>
-  <div id="inquiryList">불러오는 중...</div>
+  <div id="admin-content" class="hidden">
+    <h2>환영합니다, 관리자님!</h2>
+    <p>이곳에서 문의 내역 등을 확인할 수 있습니다.</p>
+    <!-- 추가 콘텐츠 들어가는 곳 -->
+  </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-    import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyC7kdoSzW8_KfBYnEwrTyA9m9f7sUkrzms",
-      authDomain: "vincode-5d7dc.firebaseapp.com",
-      projectId: "vincode-5d7dc",
-      storageBucket: "vincode-5d7dc.appspot.com",
-      messagingSenderId: "50341043073",
-      appId: "1:50341043073:web:f22ba9b080b4e40f4f2680"
+      apiKey: "AIzaSyAhv2a1tLo9Q0QOrdFtjPO1sSnOYRwsZms",
+      authDomain: "vincode-login-34967.firebaseapp.com",
+      projectId: "vincode-login-34967",
+      storageBucket: "vincode-login-34967.appspot.com",
+      messagingSenderId: "579894494271",
+      appId: "1:579894494271:web:99cd95f65230eabf3e248a"
     };
+    firebase.initializeApp(firebaseConfig);
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+    const adminEmail = "vincodeofficial@gmail.com";
 
-    const inquiryList = document.getElementById("inquiryList");
-
-    // 관리자 이메일
-    const ADMIN_EMAIL = "vincodeofficial@gmail.com";
-
-    onAuthStateChanged(auth, (user) => {
-      if (user && user.email === ADMIN_EMAIL) {
-        // 관리자만 접근 가능
-        onSnapshot(collection(db, "inquiries"), (snapshot) => {
-          inquiryList.innerHTML = "";
-          snapshot.forEach(doc => {
-            const data = doc.data();
-            const sentAt = data.createdAt?.toDate?.();
-            const krTime = sentAt
-              ? new Date(sentAt.getTime() + 9 * 60 * 60 * 1000).toLocaleString()
-              : "시간 정보 없음";
-
-            const div = document.createElement("div");
-            div.className = "inquiry";
-            div.innerHTML = `
-              <p><strong>이름:</strong> ${data.name}</p>
-              <p><strong>이메일:</strong> ${data.email}</p>
-              <p><strong>내용:</strong> ${data.message}</p>
-              <p class="timestamp"><strong>보낸 시간:</strong> ${krTime}</p>
-            `;
-            inquiryList.appendChild(div);
-          });
-
-          if (snapshot.empty) {
-            inquiryList.innerHTML = "<p>문의 내역이 없습니다.</p>";
-          }
-        });
-
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user && user.email === adminEmail) {
+        document.getElementById("admin-content").classList.remove("hidden");
       } else {
-        alert("관리자만 접근할 수 있습니다.");
-        window.location.href = "login.html";
+        document.getElementById("warning").classList.remove("hidden");
       }
     });
   </script>
