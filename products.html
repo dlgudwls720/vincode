@@ -167,12 +167,9 @@
 
   <script>
     const allProducts = [
-      { id: "hoodie1", name: "그린 후드티", price: "₩59,000", category: "후드티", img: "images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png" },
-      { id: "hoodiezipup1", name: "후드집업", price: "₩69,000", category: "후드티", img: "https://via.placeholder.com/300x200" },
-      { id: "mtm1", name: "맨투맨", price: "₩34,000", category: "맨투맨", img: "https://via.placeholder.com/300x200" },
-      { id: "shorts1", name: "반바지", price: "₩30,000", category: "반바지", img: "https://via.placeholder.com/300x200" },
-      { id: "pants1", name: "긴바지", price: "₩37,000", category: "긴바지", img: "https://via.placeholder.com/300x200" },
-      { id: "keyring1", name: "키링", price: "₩15,000", category: "키링", img: "https://via.placeholder.com/300x200" }
+      { id: "hoodie1", name: "그린 후드티", price: "₩59,000", category: "NEW", img: "images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png" },
+      { id: "hoodiezipup1", name: "후드집업", price: "₩69,000", category: "NEW", img: "https://via.placeholder.com/300x200" },
+      { id: "mtm1", name: "맨투맨", price: "₩34,000", category: "NEW", img: "https://via.placeholder.com/300x200" }
     ];
 
     const grid = document.getElementById("productGrid");
@@ -200,11 +197,8 @@
     }
 
     function filterCategory(category) {
-      if (category === "전체") {
-        renderProducts(allProducts, grid);
-      } else {
-        renderProducts(allProducts.filter(p => p.category === category), grid);
-      }
+      const filtered = category === "전체" ? allProducts : allProducts.filter(p => p.category === category);
+      renderProducts(filtered, grid);
     }
 
     function toggleFavorite(id, button) {
@@ -225,7 +219,7 @@
     });
 
     renderProducts(allProducts, grid);
-    renderProducts(allProducts.slice(0, 3), newGrid);
+    renderProducts(allProducts, newGrid);
   </script>
 </body>
 </html>
