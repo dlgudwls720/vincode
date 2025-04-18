@@ -9,27 +9,20 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
-      padding-bottom: 80px;
-      text-align: center;
       background-color: #fff;
       color: #000;
+      padding-bottom: 100px;
+      text-align: center;
     }
-
     h1 {
       font-size: 2em;
       margin-top: 40px;
     }
-
     .notice {
       font-size: 1.2em;
       color: red;
       margin-top: 20px;
     }
-
-    #admin-content {
-      margin-top: 30px;
-    }
-
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -42,7 +35,6 @@
       background: white;
       z-index: 1000;
     }
-
     .bottom-nav a {
       text-decoration: none;
       color: black;
@@ -51,14 +43,29 @@
       flex-direction: column;
       align-items: center;
     }
-
     .bottom-nav i {
       font-size: 1.3em;
       margin-bottom: 3px;
     }
-
     .hidden {
       display: none;
+    }
+    table {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 800px;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+    th {
+      background-color: #f1f1f1;
+    }
+    td {
+      word-break: break-word;
     }
   </style>
 </head>
@@ -67,9 +74,18 @@
   <p id="warning" class="notice hidden">관리자만 접근할 수 있습니다.</p>
 
   <div id="admin-content" class="hidden">
-    <h2>환영합니다, 관리자님!</h2>
-    <p>이곳에서 문의 내역 등을 확인할 수 있습니다.</p>
-    <!-- 여기에 문의 목록 같은 것들을 넣으면 됩니다 -->
+    <h2>문의 내역</h2>
+    <table id="inquiry-table">
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>이메일</th>
+          <th>문의 내용</th>
+          <th>날짜</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
 
   <div class="bottom-nav">
@@ -81,7 +97,7 @@
     <a href="login.html" id="account-link"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
 
-  <!-- Firebase 관리자 인증 -->
+  <!-- Firebase 로그인 인증 -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script>
@@ -97,7 +113,6 @@
 
     firebase.auth().onAuthStateChanged((user) => {
       const accountLink = document.getElementById('account-link');
-
       if (user) {
         accountLink.innerHTML = `<i class="fas fa-sign-out-alt"></i><span>로그아웃</span>`;
         accountLink.href = "#";
@@ -108,9 +123,9 @@
           });
         };
 
-        // 관리자 여부 확인
         if (user.email === "vincodeofficial@gmail.com") {
           document.getElementById("admin-content").classList.remove("hidden");
+          loadInquiries(); // 문의 내역 로드
         } else {
           document.getElementById("warning").classList.remove("hidden");
         }
@@ -118,6 +133,45 @@
         document.getElementById("warning").classList.remove("hidden");
       }
     });
+  </script>
+
+  <!-- Firestore에서 문의 가져오기 -->
+  <script type="module">
+    import { initializeApp as initFirestoreApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7kdoSzW8_KfBYnEwrTyA9m9f7sUkrzms",
+      authDomain: "vincode-5d7dc.firebaseapp.com",
+      projectId: "vincode-5d7dc",
+      storageBucket: "vincode-5d7dc.appspot.com",
+      messagingSenderId: "50341043073",
+      appId: "1:50341043073:web:f22ba9b080b4e40f4f2680"
+    };
+
+    const app = initFirestoreApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.loadInquiries = async function () {
+      const tableBody = document.querySelector("#inquiry-table tbody");
+      tableBody.innerHTML = "";
+
+      const q = query(collection(db, "inquiries"), orderBy("createdAt", "desc"));
+      const snapshot = await getDocs(q);
+
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const tr = document.createElement("tr");
+        const date = data.createdAt?.toDate().toLocaleString("ko-KR") || "";
+        tr.innerHTML = `
+          <td>${data.name}</td>
+          <td>${data.email}</td>
+          <td>${data.message}</td>
+          <td>${date}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    };
   </script>
 </body>
 </html>
