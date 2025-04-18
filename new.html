@@ -6,11 +6,7 @@
   <title>신제품 - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Arial', sans-serif;
       background-color: white;
@@ -39,12 +35,25 @@
       padding: 15px;
       border-radius: 10px;
       text-align: center;
+      position: relative;
     }
     .product img {
       width: 100%;
       height: 200px;
       object-fit: cover;
       border-radius: 5px;
+    }
+    .new-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background-color: black;
+      color: white;
+      font-size: 0.75em;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     .favorite {
       background: none;
@@ -91,24 +100,24 @@
 
   <div class="grid">
     <div class="product">
+      <span class="new-badge">NEW</span>
       <img src="images/sample1.jpg" alt="신제품1">
-      <h3>NEW 스트릿 셋업</h3>
+      <h3>NEW 후드티 반바지 셋업</h3>
       <p>₩79,000</p>
-      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
       <button class="favorite" onclick="toggleFavorite(this)"><i class="fas fa-heart"></i></button>
     </div>
     <div class="product">
+      <span class="new-badge">NEW</span>
       <img src="images/sample2.jpg" alt="신제품2">
-      <h3>NEW 블랙 키링</h3>
+      <h3>NEW 키링</h3>
       <p>₩15,000</p>
-      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
       <button class="favorite" onclick="toggleFavorite(this)"><i class="fas fa-heart"></i></button>
     </div>
     <div class="product">
+      <span class="new-badge">NEW</span>
       <img src="images/sample3.jpg" alt="신제품3">
-      <h3>NEW 로고 맨투맨</h3>
-      <p>₩49,000</p>
-      <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
+      <h3>NEW 맨투맨</h3>
+      <p>₩34,000</p>
       <button class="favorite" onclick="toggleFavorite(this)"><i class="fas fa-heart"></i></button>
     </div>
   </div>
@@ -122,7 +131,7 @@
     <a href="login.html" id="account-link"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
 
-  <!-- Firebase 연동 및 로그인 상태 확인 -->
+  <!-- Firebase 로그인 상태 확인 -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script>
