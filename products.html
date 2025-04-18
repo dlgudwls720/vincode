@@ -3,14 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products - vincode</title>
+  <title>제품 - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Arial', sans-serif;
       background-color: white;
@@ -137,7 +133,7 @@
     <a href="login.html" id="account-link"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
 
-  <!-- Firebase 연동 -->
+  <!-- Firebase 로그인 상태 확인 -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script>
@@ -151,10 +147,8 @@
     };
     firebase.initializeApp(firebaseConfig);
 
-    // 로그인 상태 확인 및 로그아웃 기능
     firebase.auth().onAuthStateChanged((user) => {
       const accountLink = document.getElementById('account-link');
-
       if (user) {
         accountLink.innerHTML = `<i class="fas fa-sign-out-alt"></i><span>로그아웃</span>`;
         accountLink.href = "#";
@@ -172,7 +166,6 @@
     });
   </script>
 
-  <!-- 제품 목록 렌더링 및 찜 기능 -->
   <script>
     const allProducts = {
       hoodie1: { name: "그린 후드티", price: "₩59,000", category: "후드티", img: "images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png" },
@@ -198,7 +191,6 @@
             <img src="${product.img}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>${product.price}</p>
-            <p>계좌: 농협 352-7561-6717-63 (이형진)</p>
             <button class="favorite ${isFav ? 'active' : ''}" onclick="toggleFavorite('${id}', this)">
               <i class="fas fa-heart"></i>
             </button>
