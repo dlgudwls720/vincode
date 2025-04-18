@@ -17,6 +17,7 @@
       background-color: white;
       color: black;
       text-align: center;
+      overflow-x: hidden;
     }
 
     .slider {
@@ -51,12 +52,49 @@
       100% { transform: translateX(0); }
     }
 
+    /* 애니메이션 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .fade-in.delay-1 {
+      animation-delay: 0.5s;
+    }
+
+    .fade-in.delay-2 {
+      animation-delay: 1s;
+    }
+
+    .fade-in.delay-3 {
+      animation-delay: 1.5s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .logo {
       margin: 30px 0 10px;
     }
 
     .logo img {
       height: 80px;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: dropIn 1s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes dropIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .brand-name {
@@ -102,10 +140,10 @@
     <img src="images/IMG_1276.jpeg" alt="vincode logo" />
   </div>
 
-  <div class="brand-name">vincode</div>
-  <div class="slogan">Unlock your code</div>
+  <div class="brand-name fade-in delay-1">vincode</div>
+  <div class="slogan fade-in delay-2">Unlock your code</div>
 
-  <a href="products.html" class="shop-button">쇼핑하기</a>
+  <a href="products.html" class="shop-button fade-in delay-3">쇼핑하기</a>
 
 </body>
 </html>
