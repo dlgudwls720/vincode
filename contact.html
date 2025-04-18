@@ -110,10 +110,12 @@
   </div>
 
   <div class="form-container">
-    <input type="text" placeholder="이름" required />
-    <input type="email" placeholder="이메일" required />
-    <textarea rows="5" placeholder="문의 내용을 입력하세요" required></textarea>
-    <button>문의 보내기</button>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="이름" required />
+      <input type="email" name="email" placeholder="이메일" required />
+      <textarea name="message" rows="5" placeholder="문의 내용을 입력하세요" required></textarea>
+      <button type="submit">문의 보내기</button>
+    </form>
   </div>
 
   <div class="bottom-nav">
@@ -124,5 +126,45 @@
     <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
     <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7kdoSzW8_KfBYnEwrTyA9m9f7sUkrzms",
+      authDomain: "vincode-5d7dc.firebaseapp.com",
+      projectId: "vincode-5d7dc",
+      storageBucket: "vincode-5d7dc.appspot.com",
+      messagingSenderId: "50341043073",
+      appId: "1:50341043073:web:f22ba9b080b4e40f4f2680"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = form.name.value;
+      const email = form.email.value;
+      const message = form.message.value;
+
+      try {
+        await addDoc(collection(db, "inquiries"), {
+          name,
+          email,
+          message,
+          createdAt: serverTimestamp()
+        });
+        alert("문의가 완료되었습니다.");
+        form.reset();
+      } catch (err) {
+        console.error("에러 발생:", err);
+        alert("문의를 전송하는 데 실패했습니다.");
+      }
+    });
+  </script>
 </body>
 </html>
