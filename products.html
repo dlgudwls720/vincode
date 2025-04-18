@@ -124,6 +124,13 @@
       font-size: 1.2em;
       margin-bottom: 4px;
     }
+
+    .section-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 30px 0 10px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -146,6 +153,9 @@
 
   <div class="grid" id="productGrid"></div>
 
+  <h2 class="section-title">신제품</h2>
+  <div class="grid" id="newProductGrid"></div>
+
   <div class="bottom-nav">
     <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
     <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
@@ -165,11 +175,12 @@
     ];
 
     const grid = document.getElementById("productGrid");
+    const newGrid = document.getElementById("newProductGrid");
     const searchInput = document.getElementById("searchInput");
     let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
-    function renderProducts(products) {
-      grid.innerHTML = "";
+    function renderProducts(products, container) {
+      container.innerHTML = "";
       products.forEach(product => {
         const div = document.createElement("div");
         div.className = "product";
@@ -183,15 +194,15 @@
             <i class="fas fa-heart"></i>
           </button>
         `;
-        grid.appendChild(div);
+        container.appendChild(div);
       });
     }
 
     function filterCategory(category) {
       if (category === "전체") {
-        renderProducts(allProducts);
+        renderProducts(allProducts, grid);
       } else {
-        renderProducts(allProducts.filter(p => p.category === category));
+        renderProducts(allProducts.filter(p => p.category === category), grid);
       }
     }
 
@@ -209,10 +220,11 @@
     searchInput.addEventListener("input", () => {
       const keyword = searchInput.value.toLowerCase();
       const filtered = allProducts.filter(p => p.name.toLowerCase().includes(keyword));
-      renderProducts(filtered);
+      renderProducts(filtered, grid);
     });
 
-    renderProducts(allProducts);
+    renderProducts(allProducts, grid);
+    renderProducts(allProducts.slice(0, 3), newGrid);
   </script>
 </body>
 </html>
