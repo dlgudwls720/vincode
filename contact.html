@@ -6,45 +6,34 @@
   <title>문의하기 - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Arial', sans-serif;
       background-color: #fff;
       color: #000;
       text-align: center;
     }
-
     .logo-container {
       padding: 20px;
     }
-
     .logo-container img {
       height: 80px;
     }
-
     h1 {
       margin-top: 10px;
       margin-bottom: 20px;
       font-size: 2em;
     }
-
     .contact-info {
       margin-bottom: 30px;
       font-size: 0.95em;
       color: #333;
     }
-
     .form-container {
       max-width: 400px;
       margin: 0 auto;
       padding: 0 20px 30px;
     }
-
     .form-container textarea,
     .form-container input {
       width: 100%;
@@ -54,7 +43,6 @@
       border-radius: 5px;
       font-size: 1em;
     }
-
     .form-container button {
       width: 100%;
       padding: 12px;
@@ -66,11 +54,9 @@
       cursor: pointer;
       font-size: 1em;
     }
-
     .form-container button:hover {
       background-color: #333;
     }
-
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -82,7 +68,6 @@
       border-top: 1px solid #ccc;
       background: white;
     }
-
     .bottom-nav a {
       text-decoration: none;
       color: black;
@@ -91,7 +76,6 @@
       flex-direction: column;
       align-items: center;
     }
-
     .bottom-nav i {
       font-size: 1.3em;
       margin-bottom: 3px;
@@ -157,6 +141,15 @@
         accountLink.innerHTML = `<i class="fas fa-user"></i><span>계정</span>`;
         accountLink.href = "login.html";
         accountLink.onclick = null;
+      }
+
+      // 관리자일 경우 관리자 버튼 추가
+      if (user && user.email === "vincodeofficial@gmail.com") {
+        const nav = document.querySelector('.bottom-nav');
+        const adminLink = document.createElement('a');
+        adminLink.href = 'admin.html';
+        adminLink.innerHTML = '<i class="fas fa-lock"></i><span>관리자</span>';
+        nav.appendChild(adminLink);
       }
     });
   </script>
