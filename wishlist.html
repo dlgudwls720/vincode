@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wishlist - vincode</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>찜한 상품 - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background-color: white;
       color: black;
       font-family: 'Arial', sans-serif;
     }
-
     nav {
       display: flex;
       justify-content: space-between;
@@ -26,183 +20,159 @@
       background-color: white;
       border-bottom: 1px solid #ddd;
       position: relative;
-      flex-wrap: wrap;
     }
-
     .nav-left, .auth {
       display: flex;
       gap: 20px;
       font-weight: bold;
     }
-
     .nav-left a, .auth a {
       text-decoration: none;
       color: black;
       transition: 0.3s;
     }
-
     .nav-left a:hover, .auth a:hover {
       color: black;
     }
-
     .nav-center {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
     }
-
     .nav-center img {
       height: 40px;
     }
-
     h1 {
       text-align: center;
       font-size: 2.5em;
       margin: 40px 0 10px;
     }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 0 20px 80px;
+      padding: 0 20px 40px;
     }
-
     .product {
       background-color: #f1f1f1;
       padding: 20px;
       border-radius: 10px;
       text-align: center;
     }
-
     .product img {
       width: 100%;
       height: 200px;
       object-fit: cover;
       border-radius: 5px;
     }
-
     .product h3 {
       margin: 10px 0 5px;
     }
-
     .product p {
       font-size: 0.9em;
       opacity: 0.8;
     }
-
-    .mobile-bottom-nav {
-      display: none;
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      font-size: 0.8em;
     }
-
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
-
-      .mobile-bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        border-top: 1px solid #ccc;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 8px 0;
-        z-index: 1000;
-      }
-
-      .mobile-bottom-nav a {
-        text-decoration: none;
-        color: black;
-        font-size: 0.8em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .mobile-bottom-nav i {
-        font-size: 1.2em;
-        margin-bottom: 2px;
-      }
+    .bottom-nav a {
+      text-decoration: none;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bottom-nav i {
+      font-size: 1.4em;
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-left">
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="wishlist.html">Wishlist</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-center">
+      <img src="images/logo-nav.jpeg" alt="vincode logo" />
+    </div>
+    <div class="auth">
+      <a href="login.html">
+        <i class="fas fa-user"></i>
+      </a>
+    </div>
+  </nav>
+
+  <h1>찜한 상품</h1>
+
+  <div class="grid" id="wishlist-container">
+    <!-- 찜한 상품은 여기에 동적으로 표시됩니다 -->
   </div>
-  <div class="nav-center">
-    <img src="images/logo-nav.jpeg" alt="vincode logo" />
+
+  <div class="bottom-nav">
+    <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
+    <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
+    <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
+    <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
+    <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
-  <div class="auth">
-    <a href="login.html"><i class="fas fa-user"></i></a>
-    <a href="signup.html"><i class="fas fa-user-plus"></i></a>
-  </div>
-</nav>
 
-<h1>찜한 상품</h1>
+  <script>
+    const allProducts = {
+      hoodie1: { name: "스트릿 후드티", price: "₩59,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+      hoodiezipup1: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
+      mtm1: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
+      shorts1: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
+      pants1: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
+      keyring1: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
+    };
 
-<div class="grid" id="wishlist-container"></div>
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const container = document.getElementById("wishlist-container");
 
-<!-- 모바일 하단 메뉴 -->
-<div class="mobile-bottom-nav">
-  <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
-  <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
-  <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
-  <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
-  <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
-</div>
+    function renderProducts() {
+      container.innerHTML = "";
+      if (favorites.length === 0) {
+        container.innerHTML = "<p>찜한 상품이 없습니다.</p>";
+        return;
+      }
 
-<script>
-  const allProducts = {
-    hoodiezipup: { name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-    hoodie: { name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200", category: "후드티" },
-    mtm: { name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200", category: "맨투맨" },
-    shorts: { name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200", category: "반바지" },
-    pants: { name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200", category: "긴바지" },
-    keyring: { name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200", category: "키링" }
-  };
-
-  const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-  const container = document.getElementById("wishlist-container");
-
-  function renderProducts() {
-    container.innerHTML = "";
-    if (favorites.length === 0) {
-      container.innerHTML = "<p>찜한 상품이 없습니다.</p>";
-      return;
+      favorites.forEach(id => {
+        const item = allProducts[id];
+        if (item) {
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" />
+            <h3>${item.name}</h3>
+            <p>${item.price}</p>
+          `;
+          container.appendChild(div);
+        }
+      });
     }
 
-    favorites.forEach(id => {
-      const item = allProducts[id];
-      if (item) {
-        const div = document.createElement("div");
-        div.className = "product";
-        div.innerHTML = `
-          <img src="${item.img}" alt="${item.name}" />
-          <h3>${item.name}</h3>
-          <p>${item.price}</p>
-        `;
-        container.appendChild(div);
-      }
+    window.addEventListener("DOMContentLoaded", () => {
+      renderProducts();
     });
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    renderProducts();
-  });
-</script>
+  </script>
 
 </body>
 </html>
