@@ -70,28 +70,30 @@
       background-color: #333;
     }
 
-    .mobile-nav {
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid #ccc;
-      padding: 10px 0;
+    .bottom-nav {
       position: fixed;
       bottom: 0;
       width: 100%;
-      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid #ccc;
+      background: white;
+      z-index: 1000;
     }
 
-    .mobile-nav a {
+    .bottom-nav a {
       text-decoration: none;
-      color: #000;
-      font-size: 0.8em;
+      color: black;
+      font-size: 0.75em;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    .mobile-nav i {
-      font-size: 1.4em;
+    .bottom-nav i {
+      font-size: 1.3em;
       margin-bottom: 3px;
     }
   </style>
@@ -112,35 +114,19 @@
       <input type="password" id="password" placeholder="비밀번호">
     </div>
     <button class="login-button">로그인</button>
-    <p style="margin-top: 20px; font-size: 0.9em;">
+  </div>
+
+  <p style="margin-top: 20px; font-size: 0.9em;">
     회원이 아니신가요? <a href="signup.html" style="color: #000; font-weight: bold; text-decoration: underline;">회원가입</a>
   </p>
 
-  <div class="mobile-nav">
-    <a href="index.html">
-      <i class="fas fa-home"></i>
-      홈
-    </a>
-    <a href="products.html">
-      <i class="fas fa-shopping-bag"></i>
-      제품
-    </a>
-    <a href="new.html">
-      <i class="fas fa-star"></i>
-      신제품
-    </a>
-    <a href="wishlist.html">
-      <i class="fas fa-heart"></i>
-      찜
-    </a>
-    <a href="contact.html">
-      <i class="fas fa-envelope"></i>
-      문의
-    </a>
-    <a href="login.html">
-      <i class="fas fa-user"></i>
-      계정
-    </a>
+  <div class="bottom-nav">
+    <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
+    <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
+    <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
+    <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i><span>문의</span></a>
+    <a href="login.html"><i class="fas fa-user"></i><span>계정</span></a>
   </div>
 </body>
 </html>
