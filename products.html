@@ -1,293 +1,52 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode - 제품 목록</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background-color: white;
-      color: black;
-      font-family: 'Arial', sans-serif;
-    }
-
-    nav {
+<!-- Mobile Bottom Navigation (모바일 전용 하단바) -->
+<style>
+  @media (max-width: 768px) {
+    .mobile-nav {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
-      padding: 20px 40px;
-      background-color: white;
-      border-bottom: 1px solid #ddd;
-      position: relative;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      border-top: 1px solid #ddd;
+      padding: 10px 0;
+      z-index: 1000;
     }
-
-    .nav-left, .auth {
-      display: flex;
-      gap: 20px;
-      font-weight: bold;
-    }
-
-    .nav-left a, .auth a {
+    .mobile-nav a {
+      color: black;
+      font-size: 14px;
       text-decoration: none;
-      color: black;
-      transition: 0.3s;
-    }
-
-    .nav-left a:hover, .auth a:hover {
-      color: black;
-    }
-
-    .nav-center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .nav-center img {
-      height: 40px;
-    }
-
-    h2 {
-      font-size: 1.8em;
-      margin: 40px 0 20px;
-      text-align: center;
-    }
-
-    .search-filter {
-      max-width: 1000px;
-      margin: 0 auto 30px;
-      padding: 0 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
-    .filters {
-      margin-bottom: 10px;
+    .mobile-nav a i {
+      font-size: 18px;
+      margin-bottom: 4px;
     }
+  }
+</style>
 
-    .filters button {
-      background-color: #eee;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
-      margin: 5px;
-      color: black;
-      cursor: pointer;
-      font-weight: bold;
-    }
+<div class="mobile-nav">
+  <a href="index.html">
+    <i class="fas fa-home"></i>
+    <span>홈</span>
+  </a>
+  <a href="products.html">
+    <i class="fas fa-th-large"></i>
+    <span>제품</span>
+  </a>
+  <a href="wishlist.html">
+    <i class="fas fa-heart"></i>
+    <span>찜</span>
+  </a>
+  <a href="login.html">
+    <i class="fas fa-user"></i>
+    <span>계정</span>
+  </a>
+</div>
 
-    .filters button.active, .filters button:hover {
-      background-color: #ffcc00;
-    }
-
-    .search-box input {
-      padding: 10px;
-      width: 100%;
-      max-width: 400px;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-      text-align: center;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px 40px;
-    }
-
-    .product {
-      background-color: #f1f1f1;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      position: relative;
-    }
-
-    .product img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-
-    .product h3 {
-      margin: 10px 0 5px;
-    }
-
-    .product p {
-      font-size: 0.9em;
-      opacity: 0.8;
-    }
-
-    .favorite {
-      background: none;
-      border: none;
-      font-size: 1.5em;
-      cursor: pointer;
-      margin-top: 10px;
-      color: #888;
-      transition: color 0.3s;
-    }
-
-    .favorite.active {
-      color: #ff3366;
-    }
-
-    .badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #ff0000;
-      color: white;
-      font-size: 0.75em;
-      font-weight: bold;
-      padding: 4px 8px;
-      border-radius: 12px;
-    }
-  </style>
-</head>
-<body>
-
-  <nav>
-    <div class="nav-left">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-center">
-      <img src="images/logo-nav.jpeg" alt="vincode logo" />
-    </div>
-    <div class="auth">
-      <a href="login.html"><i class="fas fa-user"></i></a>
-      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
-    </div>
-  </nav>
-
-  <div class="search-filter">
-    <div class="filters">
-      <button onclick="filterCategory('전체')" class="active">전체</button>
-      <button onclick="filterCategory('후드티')">후드티</button>
-      <button onclick="filterCategory('맨투맨')">맨투맨</button>
-      <button onclick="filterCategory('반바지')">반바지</button>
-      <button onclick="filterCategory('긴바지')">긴바지</button>
-      <button onclick="filterCategory('키링')">키링</button>
-      <button onclick="filterCategory('NEW')">NEW</button>
-    </div>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="제품명을 입력하세요..." />
-    </div>
-  </div>
-
-  <h2>신제품</h2>
-  <div class="grid">
-    <div class="product" data-id="hoodie2">
-      <span class="badge">NEW</span>
-      <img src="https://via.placeholder.com/300x200?text=후드티" alt="후드티">
-      <h3>후드티</h3>
-      <p>₩47,000</p>
-      <button class="favorite" onclick="toggleFavorite(this, 'hoodie2')">♡</button>
-    </div>
-    <div class="product" data-id="pants">
-      <span class="badge">NEW</span>
-      <img src="https://via.placeholder.com/300x200?text=긴바지" alt="긴바지">
-      <h3>긴바지</h3>
-      <p>₩37,000</p>
-      <button class="favorite" onclick="toggleFavorite(this, 'pants')">♡</button>
-    </div>
-  </div>
-
-  <h2>전체 제품</h2>
-  <div class="grid" id="product-grid"></div>
-
-  <script>
-    const allProducts = [
-      { id: "hoodiezipup", name: "후드집업", price: "₩69,000", img: "https://via.placeholder.com/300x200?text=후드집업", category: "후드티" },
-      { id: "hoodie2", name: "후드티", price: "₩47,000", img: "https://via.placeholder.com/300x200?text=후드티", category: "후드티", isNew: true },
-      { id: "mtm", name: "맨투맨", price: "₩34,000", img: "https://via.placeholder.com/300x200?text=맨투맨", category: "맨투맨" },
-      { id: "shorts", name: "반바지", price: "₩30,000", img: "https://via.placeholder.com/300x200?text=반바지", category: "반바지" },
-      { id: "pants", name: "긴바지", price: "₩37,000", img: "https://via.placeholder.com/300x200?text=긴바지", category: "긴바지", isNew: true },
-      { id: "keyring", name: "키링", price: "₩15,000", img: "https://via.placeholder.com/300x200?text=키링", category: "키링" }
-    ];
-
-    let selectedCategory = '전체';
-
-    function renderAllProducts() {
-      const keyword = document.getElementById("searchInput").value.toLowerCase();
-      const filtered = allProducts.filter(item => {
-        const matchKeyword = item.name.toLowerCase().includes(keyword);
-        const matchCategory =
-          selectedCategory === "전체" ||
-          (selectedCategory === "NEW" && item.isNew) ||
-          item.category === selectedCategory;
-        return matchKeyword && matchCategory;
-      });
-
-      const container = document.getElementById("product-grid");
-      container.innerHTML = "";
-
-      filtered.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "product";
-        div.setAttribute("data-id", item.id);
-        div.innerHTML = `
-          ${item.isNew ? '<span class="badge">NEW</span>' : ''}
-          <img src="${item.img}" alt="${item.name}" />
-          <h3>${item.name}</h3>
-          <p>${item.price}</p>
-          <button class="favorite" onclick="toggleFavorite(this, '${item.id}')">♡</button>
-        `;
-        container.appendChild(div);
-      });
-
-      applyFavorites();
-    }
-
-    function toggleFavorite(element, productId) {
-      element.classList.toggle('active');
-      const isActive = element.classList.contains('active');
-      element.textContent = isActive ? '❤️' : '♡';
-
-      let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-
-      if (isActive) {
-        if (!favorites.includes(productId)) favorites.push(productId);
-      } else {
-        favorites = favorites.filter(id => id !== productId);
-      }
-
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-    }
-
-    function applyFavorites() {
-      const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-      document.querySelectorAll('.product').forEach(product => {
-        const id = product.getAttribute('data-id');
-        if (favorites.includes(id)) {
-          const fav = product.querySelector('.favorite');
-          fav.classList.add('active');
-          fav.textContent = '❤️';
-        }
-      });
-    }
-
-    function filterCategory(category) {
-      selectedCategory = category;
-      document.querySelectorAll(".filters button").forEach(btn => btn.classList.remove("active"));
-      event.target.classList.add("active");
-      renderAllProducts();
-    }
-
-    document.getElementById("searchInput").addEventListener("input", renderAllProducts);
-    window.addEventListener("DOMContentLoaded", renderAllProducts);
-  </script>
-
-</body>
-</html>
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
