@@ -30,7 +30,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: calc(100vh - 80px);
+      height: auto;
+      min-height: 100vh;
       padding: 20px;
       opacity: 0;
       animation: fadeInUp 1.5s ease-out forwards;
@@ -76,10 +77,23 @@
     a.button:hover {
       background-color: #333;
     }
+    .preview-swiper {
+      padding: 20px;
+      background: #f1f1f1;
+    }
+    .preview-swiper .swiper-slide {
+      width: auto;
+      height: 150px;
+    }
+    .preview-swiper img {
+      height: 100%;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- 텍스트 배너 -->
   <div class="swiper-container swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">스트릿 감성의 정수, vincode의 새로운 컬렉션을 만나보세요.</div>
@@ -88,6 +102,7 @@
     </div>
   </div>
 
+  <!-- 메인 브랜드 영역 -->
   <div class="container">
     <img src="images/A31209F9-7D30-41CD-8CF4-41342CCAC189.jpeg" alt="vincode logo" class="logo">
     <h1>vincode</h1>
@@ -96,6 +111,16 @@
     <img src="images/80DBF269-196E-4E5A-8518-1470F2ED9A0B.jpeg" alt="후드티 이미지" class="featured-hoodie">
   </div>
 
+  <!-- 하단 제품 미리보기 -->
+  <div class="swiper-container preview-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><a href="products.html#new"><img src="images/hoodie-green.jpeg" alt="후드티"></a></div>
+      <div class="swiper-slide"><a href="products.html#new"><img src="images/sample2.jpg" alt="item2"></a></div>
+      <div class="swiper-slide"><a href="products.html#new"><img src="images/sample3.jpg" alt="item3"></a></div>
+    </div>
+  </div>
+
+  <!-- 스크립트 -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
     const swiper = new Swiper('.swiper', {
@@ -108,6 +133,21 @@
       spaceBetween: 50,
       grabCursor: true,
       freeMode: true,
+    });
+
+    const previewSwiper = new Swiper('.preview-swiper', {
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      slidesPerView: 2,
+      spaceBetween: 20,
+      breakpoints: {
+        768: {
+          slidesPerView: 3
+        }
+      }
     });
   </script>
 </body>
