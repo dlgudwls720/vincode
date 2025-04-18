@@ -3,140 +3,145 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode - 제품</title>
+  <title>Products - vincode</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Arial', sans-serif;
-      background-color: white;
-      color: black;
-      padding-bottom: 80px;
+      background-color: #fff;
+      color: #000;
+      padding-bottom: 70px; /* 하단바 공간 확보 */
     }
-    .top-bar {
+
+    header {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 15px 20px;
+      padding: 10px;
       border-bottom: 1px solid #ddd;
+      position: relative;
     }
-    .top-bar img {
+
+    header img.logo {
       height: 40px;
-      margin: 0 auto;
     }
-    .auth-icons {
+
+    .search-filter {
       display: flex;
-      gap: 15px;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
-    .auth-icons a {
-      color: black;
-      font-size: 1.2em;
+
+    .search-filter input {
+      padding: 8px;
+      margin-bottom: 10px;
+      width: 80%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
+
     .categories {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 10px;
-      padding: 10px 20px;
+      margin-bottom: 20px;
     }
+
     .categories button {
-      background: #f1f1f1;
+      padding: 8px 16px;
       border: none;
-      padding: 8px 14px;
+      background: #000;
+      color: #fff;
       border-radius: 20px;
       cursor: pointer;
     }
-    .search {
-      padding: 10px 20px;
-    }
-    .search input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-    }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 0 20px;
     }
+
     .product {
-      border: 1px solid #ddd;
-      border-radius: 10px;
+      background: #f7f7f7;
       padding: 10px;
+      border-radius: 10px;
       text-align: center;
     }
+
     .product img {
       width: 100%;
       height: 180px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 5px;
     }
-    .product h3 {
-      font-size: 1em;
-      margin: 10px 0 5px;
-    }
-    .product p {
-      font-size: 0.9em;
-    }
+
     .favorite {
-      margin-top: 8px;
       background: none;
       border: none;
-      font-size: 1.3em;
+      font-size: 1.5em;
       cursor: pointer;
-      color: #888;
+      color: #ccc;
     }
+
     .favorite.active {
       color: #ff3366;
     }
+
+    .account {
+      font-size: 0.85em;
+      color: #444;
+      margin-top: 8px;
+    }
+
     .bottom-nav {
       position: fixed;
       bottom: 0;
-      left: 0;
       width: 100%;
+      background: white;
+      border-top: 1px solid #ccc;
       display: flex;
       justify-content: space-around;
-      background: white;
-      border-top: 1px solid #ddd;
       padding: 10px 0;
+      z-index: 1000;
     }
+
     .bottom-nav a {
-      color: black;
       text-decoration: none;
-      font-size: 0.8em;
+      color: black;
       display: flex;
       flex-direction: column;
       align-items: center;
+      font-size: 0.8em;
     }
+
     .bottom-nav i {
-      font-size: 1.5em;
+      font-size: 1.2em;
+      margin-bottom: 4px;
     }
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="auth-icons">
-      <a href="login.html"><i class="fas fa-user"></i></a>
-      <a href="signup.html"><i class="fas fa-user-plus"></i></a>
+  <header>
+    <img src="images/IMG_1276.jpeg" alt="vincode logo" class="logo">
+  </header>
+
+  <div class="search-filter">
+    <input type="text" id="searchInput" placeholder="제품 검색...">
+    <div class="categories">
+      <button onclick="filterCategory('전체')">전체</button>
+      <button onclick="filterCategory('후드티')">후드티</button>
+      <button onclick="filterCategory('맨투맨')">맨투맨</button>
+      <button onclick="filterCategory('반바지')">반바지</button>
+      <button onclick="filterCategory('긴바지')">긴바지</button>
+      <button onclick="filterCategory('키링')">키링</button>
+      <button onclick="filterCategory('NEW')">NEW</button>
     </div>
-    <img src="images/IMG_1276.jpeg" alt="logo" />
-    <div style="width: 30px;"></div>
-  </div>
-
-  <div class="categories">
-    <button data-category="all">전체</button>
-    <button data-category="후드티">후드티</button>
-    <button data-category="맨투맨">맨투맨</button>
-    <button data-category="키링">키링</button>
-  </div>
-
-  <div class="search">
-    <input type="text" id="searchInput" placeholder="제품명을 검색하세요..." />
   </div>
 
   <div class="grid" id="productGrid"></div>
@@ -150,54 +155,64 @@
   </div>
 
   <script>
-    const products = [
-      { id: 'hoodie1', name: '그린 후드티', price: '₩59,000', category: '후드티', img: 'images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png' },
-      { id: 'mtm1', name: '블랙 맨투맨', price: '₩34,000', category: '맨투맨', img: 'https://via.placeholder.com/300x200' },
-      { id: 'keyring1', name: '브랜드 키링', price: '₩15,000', category: '키링', img: 'https://via.placeholder.com/300x200' }
+    const allProducts = [
+      { id: "hoodie1", name: "그린 후드티", price: "₩59,000", category: "후드티", img: "images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png" },
+      { id: "hoodiezipup1", name: "후드집업", price: "₩69,000", category: "후드티", img: "https://via.placeholder.com/300x200" },
+      { id: "mtm1", name: "맨투맨", price: "₩34,000", category: "맨투맨", img: "https://via.placeholder.com/300x200" },
+      { id: "shorts1", name: "반바지", price: "₩30,000", category: "반바지", img: "https://via.placeholder.com/300x200" },
+      { id: "pants1", name: "긴바지", price: "₩37,000", category: "긴바지", img: "https://via.placeholder.com/300x200" },
+      { id: "keyring1", name: "키링", price: "₩15,000", category: "키링", img: "https://via.placeholder.com/300x200" }
     ];
 
     const grid = document.getElementById("productGrid");
     const searchInput = document.getElementById("searchInput");
+    let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
-    function renderProducts(filter = "all") {
-      const keyword = searchInput.value.toLowerCase();
+    function renderProducts(products) {
       grid.innerHTML = "";
-      products.forEach(p => {
-        if ((filter === "all" || p.category === filter) && p.name.toLowerCase().includes(keyword)) {
-          const el = document.createElement("div");
-          el.className = "product";
-          el.innerHTML = `
-            <img src="${p.img}" alt="${p.name}" />
-            <h3>${p.name}</h3>
-            <p>${p.price}</p>
-            <button class="favorite" onclick="toggleFavorite('${p.id}', this)"><i class="fas fa-heart"></i></button>
-          `;
-          grid.appendChild(el);
-        }
+      products.forEach(product => {
+        const div = document.createElement("div");
+        div.className = "product";
+        const isFavorite = favorites.includes(product.id);
+        div.innerHTML = `
+          <img src="${product.img}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p>${product.price}</p>
+          <p class="account">계좌: 농협 352-7561-6717-63 (이형진)</p>
+          <button class="favorite ${isFavorite ? 'active' : ''}" onclick="toggleFavorite('${product.id}', this)">
+            <i class="fas fa-heart"></i>
+          </button>
+        `;
+        grid.appendChild(div);
       });
     }
 
-    function toggleFavorite(id, btn) {
-      let favs = JSON.parse(localStorage.getItem("favorites") || "[]");
-      if (favs.includes(id)) {
-        favs = favs.filter(f => f !== id);
-        btn.classList.remove("active");
+    function filterCategory(category) {
+      if (category === "전체") {
+        renderProducts(allProducts);
       } else {
-        favs.push(id);
-        btn.classList.add("active");
+        renderProducts(allProducts.filter(p => p.category === category));
       }
-      localStorage.setItem("favorites", JSON.stringify(favs));
     }
 
-    document.querySelectorAll(".categories button").forEach(btn => {
-      btn.addEventListener("click", () => renderProducts(btn.dataset.category));
+    function toggleFavorite(id, button) {
+      if (favorites.includes(id)) {
+        favorites = favorites.filter(f => f !== id);
+        button.classList.remove("active");
+      } else {
+        favorites.push(id);
+        button.classList.add("active");
+      }
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+
+    searchInput.addEventListener("input", () => {
+      const keyword = searchInput.value.toLowerCase();
+      const filtered = allProducts.filter(p => p.name.toLowerCase().includes(keyword));
+      renderProducts(filtered);
     });
 
-    searchInput.addEventListener("input", () => renderProducts());
-
-    window.addEventListener("DOMContentLoaded", () => {
-      renderProducts();
-    });
+    renderProducts(allProducts);
   </script>
 </body>
 </html>
