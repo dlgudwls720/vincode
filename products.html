@@ -163,6 +163,15 @@
         accountLink.href = "login.html";
         accountLink.onclick = null;
       }
+
+      // 관리자일 경우 하단에 관리자 버튼 추가
+      if (user && user.email === "vincodeofficial@gmail.com") {
+        const nav = document.querySelector('.bottom-nav');
+        const adminLink = document.createElement('a');
+        adminLink.href = 'admin.html';
+        adminLink.innerHTML = '<i class="fas fa-lock"></i><span>관리자</span>';
+        nav.appendChild(adminLink);
+      }
     });
   </script>
 
