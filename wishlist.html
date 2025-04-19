@@ -80,12 +80,10 @@
 <body>
   <img src="images/IMG_1276.jpeg" alt="vincode logo" class="logo">
   <h1>찜한 상품</h1>
-  <div class="grid" id="wishlist-container">
-    <!-- 찜한 상품 표시 -->
-  </div>
+  <div class="grid" id="wishlist-container"></div>
 
   <div class="mobile-nav">
-    <a href="index.html"><i class="fas fa-home"></i><span>홈</span></a>
+    <a href="index.html?animate=true"><i class="fas fa-home"></i><span>홈</span></a>
     <a href="products.html"><i class="fas fa-shopping-bag"></i><span>제품</span></a>
     <a href="new.html"><i class="fas fa-star"></i><span>신제품</span></a>
     <a href="wishlist.html"><i class="fas fa-heart"></i><span>찜</span></a>
@@ -118,19 +116,19 @@
             location.reload();
           });
         };
+
+        // 관리자용 버튼 추가
+        if (user.email === "vincodeofficial@gmail.com") {
+          const nav = document.querySelector('.mobile-nav');
+          const adminLink = document.createElement('a');
+          adminLink.href = 'admin.html';
+          adminLink.innerHTML = '<i class="fas fa-lock"></i><span>관리자</span>';
+          nav.appendChild(adminLink);
+        }
       } else {
         accountLink.innerHTML = `<i class="fas fa-user"></i><span>계정</span>`;
         accountLink.href = "login.html";
         accountLink.onclick = null;
-      }
-
-      // 관리자 전용 버튼 추가
-      if (user && user.email === "vincodeofficial@gmail.com") {
-        const nav = document.querySelector('.mobile-nav');
-        const adminLink = document.createElement('a');
-        adminLink.href = 'admin.html';
-        adminLink.innerHTML = '<i class="fas fa-lock"></i><span>관리자</span>';
-        nav.appendChild(adminLink);
       }
     });
   </script>
