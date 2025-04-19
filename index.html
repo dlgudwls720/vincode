@@ -52,7 +52,6 @@
       100% { transform: translateX(0); }
     }
 
-    /* 애니메이션 */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -124,6 +123,48 @@
     .shop-button:hover {
       background-color: #333;
     }
+
+    .drop-section {
+      padding: 60px 20px;
+      background-color: #f9f9f9;
+    }
+
+    .drop-section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .drop-section p {
+      color: #555;
+      font-size: 1em;
+      margin-bottom: 40px;
+    }
+
+    .drop-products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .drop-item {
+      width: 250px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .drop-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .drop-item p {
+      padding: 10px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -144,6 +185,26 @@
   <div class="slogan fade-in delay-2">Unlock your code</div>
 
   <a href="products.html" class="shop-button fade-in delay-3">쇼핑하기</a>
+
+  <!-- DROP 01 섹션 -->
+  <div class="drop-section">
+    <h2>DROP 01 — Street Awakens</h2>
+    <p>빈코드의 첫 번째 드롭. 거칠고 담백한 스트릿 감성을 담았습니다.</p>
+    <div class="drop-products">
+      <div class="drop-item">
+        <img src="images/850136D0-35F0-4333-9D33-BEFE2A9857F9.png" alt="그린 후드티" />
+        <p>그린 후드티</p>
+      </div>
+      <div class="drop-item">
+        <img src="images/sample2.jpg" alt="블랙 키링" />
+        <p>블랙 키링</p>
+      </div>
+      <div class="drop-item">
+        <img src="images/sample3.jpg" alt="로고 맨투맨" />
+        <p>로고 맨투맨</p>
+      </div>
+    </div>
+  </div>
 
   <!-- 관리자 버튼 스크립트 -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
