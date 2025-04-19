@@ -6,12 +6,7 @@
   <title>vincode - 홈</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Arial', sans-serif;
       background-color: white;
@@ -52,23 +47,18 @@
       100% { transform: translateX(0); }
     }
 
+    /* 등장 애니메이션 */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeInUp 1s forwards;
+      animation: fadeInUp 0.8s forwards;
     }
-
-    .fade-in.delay-1 {
-      animation-delay: 0.5s;
-    }
-
-    .fade-in.delay-2 {
-      animation-delay: 1s;
-    }
-
-    .fade-in.delay-3 {
-      animation-delay: 1.5s;
-    }
+    .fade-in.delay-1 { animation-delay: 0.3s; }
+    .fade-in.delay-2 { animation-delay: 0.6s; }
+    .fade-in.delay-3 { animation-delay: 0.9s; }
+    .fade-in.delay-4 { animation-delay: 1.2s; }
+    .fade-in.delay-5 { animation-delay: 1.5s; }
+    .fade-in.delay-6 { animation-delay: 1.8s; }
 
     @keyframes fadeInUp {
       to {
@@ -86,7 +76,7 @@
       opacity: 0;
       transform: translateY(-30px);
       animation: dropIn 1s ease-out forwards;
-      animation-delay: 0.3s;
+      animation-delay: 0.2s;
     }
 
     @keyframes dropIn {
@@ -159,11 +149,13 @@
       width: 100%;
       height: 250px;
       object-fit: cover;
+      background-color: #eee;
     }
 
     .drop-item p {
       padding: 10px;
       font-weight: bold;
+      font-size: 1em;
     }
 
     #admin-btn-container {
@@ -189,24 +181,33 @@
   <div class="slogan fade-in delay-2">Unlock your code</div>
 
   <a href="products.html" class="shop-button fade-in delay-3">쇼핑하기</a>
-  <div id="admin-btn-container"></div>
+  <div id="admin-btn-container" class="fade-in delay-4"></div>
 
-  <div class="drop-section">
-    <h2>DROP 01 — Street Awakens</h2>
-    <p>빈코드의 첫 번째 드롭. 거칠고 담백한 스트릿 감성을 담았습니다.</p>
+  <div class="drop-section fade-in delay-4">
+    <h2 class="fade-in delay-4">DROP 01 — Street Awakens</h2>
+    <p class="fade-in delay-5">빈코드의 첫 번째 드롭. 거칠고 담백한 스트릿 감성을 담았습니다.</p>
     <div class="drop-products">
-      <div class="drop-item">
+      <!-- 그린 후드티 (이미지 없음) -->
+      <div class="drop-item fade-in delay-4">
+        <img src="" alt="그린 후드티" />
+        <p>그린 후드티</p>
+      </div>
+
+      <!-- 블랙 키링 -->
+      <div class="drop-item fade-in delay-5">
         <img src="images/sample2.jpg" alt="블랙 키링" />
         <p>블랙 키링</p>
       </div>
-      <div class="drop-item">
+
+      <!-- 로고 맨투맨 -->
+      <div class="drop-item fade-in delay-6">
         <img src="images/sample3.jpg" alt="로고 맨투맨" />
         <p>로고 맨투맨</p>
       </div>
     </div>
   </div>
 
-  <!-- Firebase 로그인 상태 확인 및 관리자 버튼 표시 -->
+  <!-- Firebase 관리자 버튼 -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script>
