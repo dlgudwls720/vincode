@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vincode - 홈</title>
+  <title>modivine - 홈</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,12 +34,6 @@
       flex-shrink: 0;
     }
 
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     @keyframes slide {
       0%   { transform: translateX(0); }
       33%  { transform: translateX(-100%); }
@@ -47,7 +41,6 @@
       100% { transform: translateX(0); }
     }
 
-    /* 등장 애니메이션 */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -67,29 +60,10 @@
       }
     }
 
-    .logo {
-      margin: 30px 0 10px;
-    }
-
-    .logo img {
-      height: 80px;
-      opacity: 0;
-      transform: translateY(-30px);
-      animation: dropIn 1s ease-out forwards;
-      animation-delay: 0.2s;
-    }
-
-    @keyframes dropIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     .brand-name {
       font-size: 2em;
       font-weight: bold;
-      margin-top: 10px;
+      margin-top: 40px;
     }
 
     .slogan {
@@ -145,13 +119,6 @@
       overflow: hidden;
     }
 
-    .drop-item img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      background-color: #eee;
-    }
-
     .drop-item p {
       padding: 10px;
       font-weight: bold;
@@ -167,17 +134,13 @@
 
   <div class="slider">
     <div class="slides">
-      <div class="slide"><img src="images/banner1.jpg" alt="배너1" /></div>
-      <div class="slide"><img src="images/banner2.jpg" alt="배너2" /></div>
-      <div class="slide"><img src="images/banner3.jpg" alt="배너3" /></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
     </div>
   </div>
 
-  <div class="logo">
-    <img src="images/IMG_1276.jpeg" alt="vincode logo" />
-  </div>
-
-  <div class="brand-name fade-in delay-1">vincode</div>
+  <div class="brand-name fade-in delay-1">modivine</div>
   <div class="slogan fade-in delay-2">Unlock your code</div>
 
   <a href="products.html" class="shop-button fade-in delay-3">쇼핑하기</a>
@@ -185,43 +148,34 @@
 
   <div class="drop-section fade-in delay-4">
     <h2 class="fade-in delay-4">DROP 01 — Street Awakens</h2>
-    <p class="fade-in delay-5">빈코드의 첫 번째 드롭. 거칠고 담백한 스트릿 감성을 담았습니다.</p>
+    <p class="fade-in delay-5">모디바인의 첫 번째 드롭. 거칠고 담백한 스트릿 감성을 담았습니다.</p>
     <div class="drop-products">
-      <!-- 그린 후드티 (이미지 없음) -->
       <div class="drop-item fade-in delay-4">
-        <img src="" alt="그린 후드티" />
         <p>그린 후드티</p>
       </div>
-
-      <!-- 블랙 키링 -->
       <div class="drop-item fade-in delay-5">
-        <img src="images/sample2.jpg" alt="블랙 키링" />
         <p>블랙 키링</p>
       </div>
-
-      <!-- 로고 맨투맨 -->
       <div class="drop-item fade-in delay-6">
-        <img src="images/sample3.jpg" alt="로고 맨투맨" />
         <p>로고 맨투맨</p>
       </div>
     </div>
   </div>
 
-  <!-- Firebase 관리자 버튼 -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyAhv2a1tLo9Q0QOrdFtjPO1sSnOYRwsZms",
-      authDomain: "vincode-login-34967.firebaseapp.com",
-      projectId: "vincode-login-34967",
-      storageBucket: "vincode-login-34967.appspot.com",
+      authDomain: "modivine-login-34967.firebaseapp.com",
+      projectId: "modivine-login-34967",
+      storageBucket: "modivine-login-34967.appspot.com",
       messagingSenderId: "579894494271",
       appId: "1:579894494271:web:99cd95f65230eabf3e248a"
     };
     firebase.initializeApp(firebaseConfig);
 
-    const adminEmail = "vincodeofficial@gmail.com";
+    const adminEmail = "modivineofficial@gmail.com";
     firebase.auth().onAuthStateChanged((user) => {
       if (user && user.email === adminEmail) {
         const container = document.getElementById('admin-btn-container');
